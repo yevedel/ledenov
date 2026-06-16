@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledenov — Competitor & Reference Research</title>
+<style>
+  :root{
+    --orange:#ff3e02; --tint:#ffefea; --bg:#fafafa; --surface:#fff;
+    --ink:#1b1b1b; --sub:#727272; --line:#ececec; --line2:#e2e2e2;
+    --radius:14px; --max:980px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  a{color:var(--orange);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* hero */
+  header.hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
+  h1{font-size:44px;line-height:1.05;margin:14px 0 12px;font-weight:600;letter-spacing:-.03em}
+  .lede{font-size:19px;color:var(--sub);max-width:680px;margin:0}
+  .meta{margin-top:22px;font-size:13px;color:var(--sub)}
+  .meta code{background:var(--tint);color:#9a2a07;padding:2px 7px;border-radius:6px;font-size:12px}
+
+  /* nav */
+  nav.toc{position:sticky;top:0;background:rgba(250,250,250,.85);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);z-index:5;padding:12px 0}
+  nav.toc .wrap{display:flex;gap:18px;flex-wrap:wrap;font-size:13px}
+  nav.toc a{color:var(--sub)}
+  nav.toc a:hover{color:var(--ink);text-decoration:none}
+
+  section{padding:46px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin:0 0 6px}
+  h2 + .h2sub{font-size:26px;font-weight:600;letter-spacing:-.02em;margin:0 0 22px;color:var(--ink)}
+  h3{font-size:18px;font-weight:600;margin:26px 0 8px}
+  p{margin:0 0 12px}
+  .sub{color:var(--sub)}
+
+  /* table */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:760px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--sub);font-weight:600;background:#f4f4f4}
+  tr:last-child td{border-bottom:0}
+  td .name{font-weight:600}
+  .star{color:var(--orange)}
+  .yes{color:#1f9d57;font-weight:600}
+  .no{color:var(--sub)}
+
+  /* cards */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:18px 0}
+  .card.accent{border-left:3px solid var(--orange)}
+  ul{margin:8px 0 14px;padding-left:20px}
+  li{margin:5px 0}
+  .kv{font-size:14px}
+  .kv b{font-weight:600}
+
+  /* figure */
+  figure{margin:16px 0}
+  figure img{width:100%;display:block;border:1px solid var(--line2);border-radius:10px}
+  figcaption{font-size:12px;color:var(--sub);margin-top:7px}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:720px){.gallery{grid-template-columns:repeat(2,1fr)}h1{font-size:34px}}
+  @media(max-width:460px){.gallery{grid-template-columns:1fr}}
+  .shot{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+  .shot:hover{border-color:var(--orange);text-decoration:none}
+  .shot img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;object-position:top}
+  .shot .cap{padding:9px 12px;font-size:13px;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+  .shot .cap small{color:var(--sub);font-weight:400}
+  .tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:#9a2a07;background:var(--tint);border-radius:5px;padding:2px 6px}
+
+  /* moves list */
+  ol.moves{counter-reset:m;list-style:none;padding:0}
+  ol.moves li{counter-increment:m;position:relative;padding:10px 0 10px 44px;border-bottom:1px solid var(--line)}
+  ol.moves li:last-child{border-bottom:0}
+  ol.moves li::before{content:counter(m);position:absolute;left:0;top:9px;width:28px;height:28px;
+    background:var(--orange);color:#fff;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600}
+  ol.moves .src{color:var(--sub);font-size:13px}
+
+  footer{padding:40px 0 70px;color:var(--sub);font-size:13px}
+  .pill{display:inline-block;background:var(--tint);color:#9a2a07;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Ledenov · Competitor &amp; Reference Research</div>
+    <h1>How independent senior designers win founders</h1>
+    <p class="lede">12 competitor and reference sites + UX teardowns, analyzed for positioning, hero copy, CTA, pricing, and case-study structure — and what the Ledenov site should borrow.</p>
+    <div class="meta">Gathered 2026-06-16 · WebSearch + WebFetch + live screenshots (Playwright/Chrome) · screens in <code>research/screens/</code> · all 12 homepages public (no login wall)</div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#landscape">Landscape</a>
+  <a href="#analogues">Closest analogues</a>
+  <a href="#productized">Productized tier</a>
+  <a href="#patterns">What converts</a>
+  <a href="#gap">Gap &amp; moves</a>
+  <a href="#gallery">Screens</a>
+  <a href="#sources">Sources</a>
+</div></nav>
+
+<section id="landscape"><div class="wrap">
+  <h2>01</h2><div class="h2sub">Landscape at a glance</div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Site</th><th>Tier</th><th>Positioning</th><th>Primary CTA</th><th>Pricing</th></tr></thead>
+    <tbody>
+      <tr><td><span class="name">Designjoy</span><br><small class="sub">designjoy.co</small></td><td>Solo / productized</td><td>"Design subscriptions for everyone"</td><td>See pricing / Book a call</td><td><span class="yes">✅ $4,995/mo</span></td></tr>
+      <tr><td><span class="name">Artone Studio</span><br><small class="sub">artone.studio</small></td><td>Solo / productized</td><td>"Product design, websites &amp; branding for startups. One monthly fee."</td><td>Book a Call</td><td><span class="yes">✅ $4,000/mo</span></td></tr>
+      <tr><td><span class="name">SaaS Designer</span><br><small class="sub">saasdesigner.com</small></td><td>Solo / B2B SaaS</td><td>"Turn your B2B SaaS into an experience users love"</td><td>Book a UX/UI Discovery Call</td><td class="no">partial</td></tr>
+      <tr><td><span class="name">Simon McCade <span class="star">★</span></span><br><small class="sub">simonmccade.com</small></td><td>Senior indie · B2B SaaS</td><td>"Let's fix your confusing user experience."</td><td>Book discovery call</td><td class="no">day-rate</td></tr>
+      <tr><td><span class="name">Oli Batstone <span class="star">★</span></span><br><small class="sub">olibatstone.com</small></td><td>Senior indie · health</td><td>"You've built it. People just don't engage."</td><td>Book discovery call</td><td class="no">no (scarcity)</td></tr>
+      <tr><td><span class="name">UXIsaac</span><br><small class="sub">uxisaac.com</small></td><td>Freelance · SaaS</td><td>"SaaS websites that turn your ICP into booked demos"</td><td>Book 15min Call</td><td class="no">—</td></tr>
+      <tr><td><span class="name">btsta</span><br><small class="sub">btsta.me</small></td><td>Solo design-engineer</td><td>"Product design that ships" — embedded partner, not agency</td><td>Book a call (1 slot)</td><td class="no">—</td></tr>
+      <tr><td><span class="name">UI Flip</span><br><small class="sub">uiflip.com</small></td><td>Solo vs agency</td><td>"Solo by design. Direct line, no agency layers."</td><td>Book a call</td><td><span class="yes">✅ $6,000/mo</span></td></tr>
+      <tr><td><span class="name">Anomaly</span><br><small class="sub">byanomaly.co</small></td><td>Partner (small team)</td><td>"Design &amp; Webflow partner for quality-obsessed founders"</td><td>Book a free intro call</td><td><span class="yes">✅ weekly/fixed</span></td></tr>
+      <tr><td><span class="name">Startup Design Partners</span><br><small class="sub">startupdesignpartners.com</small></td><td>Design partner</td><td>"design cofounder / partner for founders"</td><td>(varies)</td><td class="no">—</td></tr>
+      <tr><td><span class="name">Rauno Freiberg</span><br><small class="sub">rauno.me</small></td><td>Aesthetic ref only</td><td>Vercel interaction designer · manifesto site</td><td>email only</td><td class="no">—</td></tr>
+      <tr><td><span class="name">Paco Coursey</span><br><small class="sub">paco.me</small></td><td>Aesthetic ref only</td><td>Linear webmaster · minimalist personal site</td><td>email only</td><td class="no">—</td></tr>
+    </tbody>
+  </table></div>
+  <p class="sub" style="margin-top:12px"><span class="star">★</span> = closest analogues to Yev's exact positioning (independent senior product designer, problem-first, book-a-call).</p>
+</div></section>
+
+<section id="analogues"><div class="wrap">
+  <h2>02</h2><div class="h2sub">The two closest analogues — study first</div>
+
+  <div class="card accent">
+    <h3>Simon McCade — the template to beat</h3>
+    <p class="sub">Dark theme, single blue accent, work-forward. The cleanest expression of Yev's own pitch.</p>
+    <figure><img src="research/screens/simon-mccade__fold.png" alt="Simon McCade hero"><figcaption>simonmccade.com — hero</figcaption></figure>
+    <ul class="kv">
+      <li><b>Eyebrow:</b> <code>PRODUCT DESIGN FOR B2B SAAS</code> — instant relevance filter.</li>
+      <li><b>Headline (problem-first):</b> "Let's fix your confusing user experience."</li>
+      <li><b>Subhead (outcome + proof):</b> "I've helped 30+ B2B SaaS teams turn unfriendly products into intuitive experiences…"</li>
+      <li><b>Dual CTA:</b> Book discovery call (primary) + Read case studies (secondary).</li>
+      <li><b>Inline proof:</b> founder avatars + "Trusted by 30+ software founders" under the CTA.</li>
+      <li><b>Hero visual:</b> real product screenshots, not illustration.</li>
+    </ul>
+    <p><b>For Yev:</b> borrow the eyebrow → problem-headline → outcome-subhead → dual-CTA → inline-proof stack. Differentiator: broader single-partner scope + the heavier <span class="pill">$2M / 950 contracts</span> proof.</p>
+  </div>
+
+  <div class="card accent">
+    <h3>Oli Batstone — proof framing + scarcity</h3>
+    <p class="sub">Light theme, centered hero. Best example of the enterprise-logo framing the brief prescribes.</p>
+    <figure><img src="research/screens/oli-batstone__fold.png" alt="Oli Batstone hero"><figcaption>olibatstone.com — hero</figcaption></figure>
+    <ul class="kv">
+      <li><b>Scarcity bar:</b> "Availability for 2 new clients. Book a call →" — urgency without hype.</li>
+      <li><b>Eyebrow → problem headline:</b> health-startups eyebrow → "You've built it. People just don't engage."</li>
+      <li><b>Logo framing:</b> "With 10 years of experience, I've worked with these brands" (Uber, Google…) — kept quiet. <em>Exactly</em> the framing for Yev's Google/Nestlé/P&amp;G/WhatsApp logos.</li>
+      <li><b>Next section:</b> "Typical problems I solve" — problem-led, not a feature list.</li>
+    </ul>
+    <p><b>For Yev:</b> adopt the "worked with these brands" label, the scarcity bar, and the "problems I solve" services framing.</p>
+  </div>
+</div></section>
+
+<section id="productized"><div class="wrap">
+  <h2>03</h2><div class="h2sub">Solo / productized tier — pricing &amp; offer mechanics</div>
+  <ul>
+    <li><b>Designjoy</b> — canonical solo operator. Flat <b>$4,995/mo</b> shown openly, "Pause or cancel anytime," nav includes <b>See pricing</b>. Louder/more colorful than Yev's lane — borrow the <em>structure</em>, not the look.</li>
+    <li><b>Artone Studio</b> — Designjoy clone for startups, "One monthly fee. No contracts," $4,000/mo.</li>
+    <li><b>UI Flip</b> — strongest <b>solo-vs-agency</b> copy: "Solo by design. Direct line, no agency layers." Problem headline "You shipped without a designer. Now it's costing you growth." $6,000/mo.</li>
+    <li><b>btsta</b> — design-engineer angle ("Product design that ships," "embedded partner, not an agency"), scarcity ("one slot open").</li>
+    <li><b>SaaS Designer / UXIsaac</b> — outcome-led heroes ("booked demos"), low-friction CTAs ("Book 15min Call" / "Send Project Brief").</li>
+  </ul>
+  <div class="card"><b>Pricing pattern (research-backed):</b> ~10/11 high-performing productized sites show pricing openly; rule of thumb — if avg deal &lt; $10K/mo, show the price. Decision for Yev: <code>/pricing</code> with packages — show numbers or "starting at"?</div>
+  <p class="sub"><b>Aesthetic refs (craft only):</b> Rauno Freiberg &amp; Paco Coursey — reference-grade Linear/Vercel minimalism, no funnel. Study for typography, whitespace, motion polish; don't copy their no-CTA structure.</p>
+</div></section>
+
+<section id="patterns"><div class="wrap">
+  <h2>04</h2><div class="h2sub">Cross-cutting patterns — what converts</div>
+
+  <h3>Hero</h3>
+  <ul>
+    <li>Eyebrow label = instant "is this for me?" filter (<code>PRODUCT DESIGN FOR [SEGMENT]</code>).</li>
+    <li>Headline = the founder's <em>problem</em> as a short sentence, not the service.</li>
+    <li>Subhead = who you help + outcome + a proof number.</li>
+    <li>Dual CTA: Book call (primary) + case studies / project brief (secondary).</li>
+    <li>Inline proof under the CTA (avatars + "trusted by N founders").</li>
+    <li>Hero visual = real product screenshots, never decorative illustration.</li>
+  </ul>
+
+  <h3>CTA</h3>
+  <ul>
+    <li>Multiple placements: above fold, after each case, dedicated contact. Vary wording by context.</li>
+    <li>Action + duration beats generic: "Book a 20-minute intro call" &gt; "Contact me". After a case: "Want results like this?"</li>
+    <li>Tasteful scarcity ("availability for 2 clients", "one slot open").</li>
+  </ul>
+
+  <h3>Proof</h3>
+  <ul>
+    <li>Logos framed as experience/rigor ("worked with these brands"), kept small — never the hero.</li>
+    <li>Outcome-based testimonials with real numbers, placed inline (inside cases / next to services).</li>
+    <li>Avatar clusters + "trusted by N founders."</li>
+  </ul>
+
+  <h3>Case studies</h3>
+  <ul>
+    <li>3–5 deep cases beat 10 shallow ones; narrative, not a thumbnail wall.</li>
+    <li>Arc: <b>Hook (outcome in one line) → Client context → Problem (specific, with metrics) → Process &amp; decisions → Results (quantified)</b>.</li>
+    <li>Before/after is often the single most persuasive image for a founder.</li>
+    <li>Top portfolios lead with business impact / result first, then process.</li>
+  </ul>
+
+  <h3>Mistakes to avoid</h3>
+  <ul>
+    <li>Portfolio-as-art-gallery (polish over sales mechanics).</li>
+    <li>Vague taglines / "I work with all kinds of businesses" (kills specialist signal).</li>
+    <li>Services as feature lists instead of "problems I solve."</li>
+    <li>Screenshots without problem→process→results.</li>
+    <li>Ignoring mobile.</li>
+  </ul>
+</div></section>
+
+<section id="gap"><div class="wrap">
+  <h2>05</h2><div class="h2sub">Gap &amp; opportunity for Ledenov</div>
+  <div class="card accent">
+    <p>No competitor combines <b>elite Linear-grade minimalist craft</b> (Rauno/Paco) <b>with a tight book-a-call founder funnel</b> (Simon/Oli). Craft sites have no funnel; funnel sites look templated. <b>Yev's site can own that intersection</b> — with $2M / 950-contract proof heavier than any analogue's "30+ teams," and a single-partner scope (product + site + brand) broader than the SaaS-only specialists.</p>
+  </div>
+  <h3>Concrete moves to borrow (mapped to our IA)</h3>
+  <ol class="moves">
+    <li><b>Hero</b> — add an eyebrow (<code>PRODUCT DESIGN FOR FOUNDERS</code>); problem-first headline; subhead = outcome + Upwork proof; dual CTA; inline avatars/"trusted by". <span class="src">— Simon McCade</span></li>
+    <li><b>Scarcity bar</b> — optional top strip ("Booking N projects this quarter"). <span class="src">— Oli Batstone</span></li>
+    <li><b>Logos</b> — label "Brands I've brought senior rigor to / 10+ years," keep small. <span class="src">— Oli Batstone (+ NDA guardrail)</span></li>
+    <li><b>Services</b> → reframe as "Problems I solve," problem-led not feature-led. <span class="src">— Oli Batstone</span></li>
+    <li><b>Case studies</b> → 3–5 deep, Hook→Context→Problem→Process→Results, before/after, quantified. <span class="src">— Alex Berman / DesignerUp</span></li>
+    <li><b>Pricing</b> → <code>/pricing</code> with packages; decide show-number vs "starting at". <span class="src">— productized tier</span></li>
+    <li><b>Motion / craft bar</b> → hold to Rauno/Paco restraint so the site reads "senior," not "template." <span class="src">— aesthetic refs</span></li>
+  </ol>
+</div></section>
+
+<section id="gallery"><div class="wrap">
+  <h2>06</h2><div class="h2sub">Screens — click any to open full page</div>
+  <div class="gallery">
+    <a class="shot" href="research/screens/designjoy__full.png"><img src="research/screens/designjoy__fold.png" alt="Designjoy"><span class="cap">Designjoy <small>productized</small></span></a>
+    <a class="shot" href="research/screens/artone-studio__full.png"><img src="research/screens/artone-studio__fold.png" alt="Artone Studio"><span class="cap">Artone Studio <small>productized</small></span></a>
+    <a class="shot" href="research/screens/saasdesigner__full.png"><img src="research/screens/saasdesigner__fold.png" alt="SaaS Designer"><span class="cap">SaaS Designer <small>SaaS</small></span></a>
+    <a class="shot" href="research/screens/simon-mccade__full.png"><img src="research/screens/simon-mccade__fold.png" alt="Simon McCade"><span class="cap">Simon McCade <small><span class="tag">closest</span></small></span></a>
+    <a class="shot" href="research/screens/oli-batstone__full.png"><img src="research/screens/oli-batstone__fold.png" alt="Oli Batstone"><span class="cap">Oli Batstone <small><span class="tag">closest</span></small></span></a>
+    <a class="shot" href="research/screens/uxisaac__full.png"><img src="research/screens/uxisaac__fold.png" alt="UXIsaac"><span class="cap">UXIsaac <small>SaaS</small></span></a>
+    <a class="shot" href="research/screens/btsta__full.png"><img src="research/screens/btsta__fold.png" alt="btsta"><span class="cap">btsta <small>design-eng</small></span></a>
+    <a class="shot" href="research/screens/uiflip__full.png"><img src="research/screens/uiflip__fold.png" alt="UI Flip"><span class="cap">UI Flip <small>solo vs agency</small></span></a>
+    <a class="shot" href="research/screens/anomaly__full.png"><img src="research/screens/anomaly__fold.png" alt="Anomaly"><span class="cap">Anomaly <small>partner</small></span></a>
+    <a class="shot" href="research/screens/startup-design-partners__full.png"><img src="research/screens/startup-design-partners__fold.png" alt="Startup Design Partners"><span class="cap">Startup Design Partners <small>partner</small></span></a>
+    <a class="shot" href="research/screens/rauno__full.png"><img src="research/screens/rauno__fold.png" alt="Rauno Freiberg"><span class="cap">Rauno Freiberg <small>aesthetic</small></span></a>
+    <a class="shot" href="research/screens/paco-coursey__full.png"><img src="research/screens/paco-coursey__fold.png" alt="Paco Coursey"><span class="cap">Paco Coursey <small>aesthetic</small></span></a>
+  </div>
+</div></section>
+
+<section id="sources"><div class="wrap">
+  <h2>07</h2><div class="h2sub">Source teardowns</div>
+  <ul>
+    <li><a href="https://alexberman.com/web-designer-freelance-portfolio">alexberman.com</a> — designer-portfolio teardown (hero, CTA, case structure, mistakes).</li>
+    <li><a href="https://designerup.co/blog/10-exceptional-product-design-portfolios-with-case-study-breakdowns/">designerup.co</a> — case-study structures of 10 top portfolios.</li>
+    <li><a href="https://webflow.com/blog/write-the-perfect-case-study">webflow.com</a> — 5-element case framework.</li>
+    <li><a href="https://blog.uxfol.io/ux-case-study-template/">blog.uxfol.io</a> — section-by-section case template.</li>
+    <li><a href="https://thrivethemes.com/hero-section-examples/">thrivethemes.com</a> — hero copy hierarchy teardown.</li>
+    <li><a href="https://www.demandcurve.com/teardowns">demandcurve.com</a> — SaaS hero/CTA conversion teardowns.</li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">
+  Ledenov site research · generated 2026-06-16 · companion to <code>RESEARCH.md</code>, <code>strategy-and-ia.md</code>, <code>CLAUDE.md</code>.
+</div></footer>
+
+</body>
+</html>

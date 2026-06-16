@@ -1,0 +1,8 @@
+# deps
+research/node_modules/
+node_modules/
+# OS / editor
+.DS_Store
+*.log
+# playwright runtime
+research/package-lock.json

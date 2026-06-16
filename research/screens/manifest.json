@@ -1,0 +1,158 @@
+[
+  {
+    "slug": "designjoy",
+    "url": "https://designjoy.co",
+    "status": "ok",
+    "finalUrl": "https://www.designjoy.co/",
+    "title": "Designjoy - Design as a Subscription",
+    "loginWall": false,
+    "files": [
+      "designjoy__fold.png",
+      "designjoy__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "artone-studio",
+    "url": "https://www.artone.studio",
+    "status": "ok",
+    "finalUrl": "https://www.artone.studio/",
+    "title": "Artone Studio — The Design Partner for your Startup.",
+    "loginWall": false,
+    "files": [
+      "artone-studio__fold.png",
+      "artone-studio__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "saasdesigner",
+    "url": "https://saasdesigner.com",
+    "status": "ok",
+    "finalUrl": "https://saasdesigner.com/",
+    "title": "SaaS Designer | UI & UX Design for SaaS Product Startups",
+    "loginWall": false,
+    "files": [
+      "saasdesigner__fold.png",
+      "saasdesigner__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "simon-mccade",
+    "url": "https://www.simonmccade.com",
+    "status": "ok",
+    "finalUrl": "https://www.simonmccade.com/",
+    "title": "SaaS UX Designer & Product Designer | Simon McCade",
+    "loginWall": false,
+    "files": [
+      "simon-mccade__fold.png",
+      "simon-mccade__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "oli-batstone",
+    "url": "https://www.olibatstone.com",
+    "status": "ok",
+    "finalUrl": "https://www.olibatstone.com/",
+    "title": "Oli Batstone | Independent Senior Product Designer specialising in digital health UX",
+    "loginWall": false,
+    "files": [
+      "oli-batstone__fold.png",
+      "oli-batstone__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "uxisaac",
+    "url": "https://www.uxisaac.com",
+    "status": "ok",
+    "finalUrl": "https://www.uxisaac.com/",
+    "title": "UXIsaac | Freelance Product & Web Designer for SaaS Startups",
+    "loginWall": false,
+    "files": [
+      "uxisaac__fold.png",
+      "uxisaac__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "btsta",
+    "url": "https://btsta.me",
+    "status": "ok",
+    "finalUrl": "https://www.btsta.me/",
+    "title": "btsta — Design engineer for B2B SaaS teams",
+    "loginWall": false,
+    "files": [
+      "btsta__fold.png",
+      "btsta__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "uiflip",
+    "url": "https://uiflip.com",
+    "status": "ok",
+    "finalUrl": "https://uiflip.com/",
+    "title": "UI Flip - SaaS Product & Web Design Studio | Framer Certified Expert",
+    "loginWall": false,
+    "files": [
+      "uiflip__fold.png",
+      "uiflip__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "anomaly",
+    "url": "https://www.byanomaly.co",
+    "status": "ok",
+    "finalUrl": "https://www.byanomaly.co/",
+    "title": "Anomaly | Design Partner For Product Founders.",
+    "loginWall": false,
+    "files": [
+      "anomaly__fold.png",
+      "anomaly__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "startup-design-partners",
+    "url": "https://www.startupdesignpartners.com",
+    "status": "ok",
+    "finalUrl": "https://www.startupdesignpartners.com/",
+    "title": "Startup Design Partners",
+    "loginWall": false,
+    "files": [
+      "startup-design-partners__fold.png",
+      "startup-design-partners__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "rauno",
+    "url": "https://rauno.me",
+    "status": "ok",
+    "finalUrl": "https://rauno.me/",
+    "title": "Rauno Freiberg",
+    "loginWall": false,
+    "files": [
+      "rauno__fold.png",
+      "rauno__full.png"
+    ],
+    "httpStatus": 200
+  },
+  {
+    "slug": "paco-coursey",
+    "url": "https://paco.me",
+    "status": "ok",
+    "finalUrl": "https://paco.me/",
+    "title": "Paco Coursey",
+    "loginWall": false,
+    "files": [
+      "paco-coursey__fold.png",
+      "paco-coursey__full.png"
+    ],
+    "httpStatus": 200
+  }
+]
