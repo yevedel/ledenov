@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yev Ledenov — homepage preview</title>
+<style>
+  :root{
+    --bg:#fafafa; --surface:#fff; --tint:#ffefea; --ink:#1b1b1b; --sub:#727272;
+    --line:#ececec; --line2:#e2e2e2; --orange:#ff3e02; --orange-ink:#9a2a07; --rad:14px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    letter-spacing:-.011em;-webkit-font-smoothing:antialiased;line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+  h2{font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-.02em;margin:12px 0 0}
+  .sub{color:var(--sub);font-size:17px;margin-top:16px;max-width:640px}
+  section{border-top:1px solid var(--line);padding:80px 0}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-size:15px;font-weight:500;
+    padding:11px 20px;cursor:pointer;border:1px solid transparent}
+  .btn-primary{background:var(--orange);color:#fff}
+  .btn-primary:hover{background:var(--orange-ink)}
+  .btn-ghost{border-color:var(--line2);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink)}
+
+  /* scarcity */
+  .scarcity{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:8px 16px}
+  .scarcity .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--orange);vertical-align:middle;margin-right:6px}
+  .scarcity a{color:var(--orange);font-weight:500;margin-left:6px}
+
+  /* header */
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(250,250,250,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  header.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+  .logo{font-size:20px;font-weight:600}
+  nav.links{display:flex;gap:28px}
+  nav.links a{color:var(--sub);font-size:15px}
+  nav.links a:hover{color:var(--ink)}
+  @media(max-width:760px){nav.links{display:none}}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;text-align:center}
+  .hero .inner{position:relative;max-width:880px;margin:0 auto;padding:96px 24px 64px}
+  .glow{position:absolute;left:50%;top:44%;width:680px;height:680px;border-radius:50%;pointer-events:none;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,var(--orange) 0%,rgba(255,62,2,.32) 30%,rgba(255,62,2,0) 64%);
+    animation:glow 7s ease-in-out infinite}
+  @keyframes glow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}50%{transform:translate(-50%,-50%) scale(1.09);opacity:1}}
+  h1{position:relative;font-size:clamp(34px,6vw,64px);font-weight:600;line-height:1.05;letter-spacing:-.03em;margin:24px 0 0}
+  .hero p.lede{position:relative;color:var(--sub);font-size:18px;max-width:640px;margin:24px auto 0}
+  .hero .cta{position:relative;display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+  .proof{position:relative;margin-top:40px}
+  .avatars{display:flex;justify-content:center;margin-bottom:12px}
+  .avatars span{width:32px;height:32px;border-radius:50%;border:2px solid var(--bg);
+    background:linear-gradient(135deg,var(--tint),var(--line2));margin-left:-8px}
+  .proof .stats{font-size:13px;font-weight:500;margin-top:8px}
+  .proof .stats span{color:var(--line2);margin:0 8px}
+
+  /* ticker */
+  .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);padding:12px 0}
+  .ticker .track{display:flex;gap:32px;white-space:nowrap;width:max-content;animation:marquee 40s linear infinite}
+  .ticker:hover .track{animation-play-state:paused}
+  .ticker .item{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--sub);display:flex;align-items:center;gap:32px}
+  .ticker .item::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--orange);display:inline-block}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* logos */
+  .logos{text-align:center;padding:48px 0}
+  .logos p{color:var(--sub);font-size:13px;margin:0}
+  .logos ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;margin:24px 0 0;padding:0}
+  .logos li{font-size:18px;font-weight:600;color:rgba(27,27,27,.35)}
+
+  /* generic grid cards */
+  .grid{display:grid;gap:16px;margin-top:40px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--rad);padding:24px}
+  .ind-grid{grid-template-columns:repeat(3,1fr)}
+  .ind{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:var(--rad);padding:18px 20px;font-weight:500}
+  .ind:hover{border-color:var(--orange)}
+  .ind span{color:var(--sub)}
+  @media(max-width:640px){.ind-grid{grid-template-columns:repeat(2,1fr)}}
+
+  /* services list */
+  .svc{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:40px}
+  .svc .row{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;padding:28px 0;border-bottom:1px solid var(--line)}
+  .svc .row:last-child{border-bottom:0}
+  .svc .q{font-size:19px;font-weight:500}
+  .svc .a{color:var(--sub);font-size:16px}
+  @media(max-width:640px){.svc .row{grid-template-columns:1fr;gap:8px}}
+
+  /* process */
+  .proc-grid{grid-template-columns:repeat(4,1fr)}
+  .num{width:36px;height:36px;border-radius:50%;background:var(--tint);color:var(--orange-ink);font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .card h3{margin:16px 0 0;font-size:18px}
+  .card .p{color:var(--sub);font-size:15px;margin-top:8px}
+  @media(max-width:900px){.proc-grid{grid-template-columns:repeat(2,1fr)}}
+
+  /* advantages */
+  .adv-grid{grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;margin-top:48px}
+  .adv{background:var(--surface);padding:28px}
+  .adv .vs{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink)}
+  .adv .got{color:var(--sub);font-size:14px;margin-top:16px}
+  .adv .get{font-size:15px;margin-top:8px}
+  .adv b{font-weight:600}
+  .adv-close{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:40px;flex-wrap:wrap}
+  .adv-close p{font-size:18px;font-weight:500;max-width:560px;margin:0}
+  @media(max-width:640px){.adv-grid{grid-template-columns:1fr}}
+
+  /* testimonials */
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+  .pill{background:var(--tint);color:var(--orange-ink);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:500}
+  .tg{grid-template-columns:repeat(3,1fr)}
+  .tcard{display:flex;flex-direction:column}
+  .tcard q{font-size:15px;line-height:1.55}
+  .tcard .who{border-top:1px solid var(--line);margin-top:20px;padding-top:16px}
+  .tcard .who b{display:block;font-size:14px}
+  .tcard .who small{color:var(--sub)}
+  @media(max-width:900px){.tg{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.tg{grid-template-columns:1fr}}
+
+  /* faq */
+  .faq{max-width:760px}
+  details{border-bottom:1px solid var(--line)}
+  details summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-size:17px;font-weight:500}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";color:var(--orange);font-size:22px}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--sub);font-size:16px;margin:0 0 20px}
+
+  /* book */
+  .book{text-align:center}
+  .book h2{font-size:clamp(30px,5vw,52px)}
+  .book .sub{margin:20px auto 0}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);background:var(--surface)}
+  .fcols{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding:56px 0 40px}
+  .fcols .tag{font-size:20px;font-weight:600;max-width:320px}
+  .fgrid{display:flex;gap:48px;flex-wrap:wrap}
+  .fgrid h4{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--sub);margin:0 0 12px}
+  .fgrid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
+  .fgrid a:hover{color:var(--orange)}
+  .fbottom{border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:24px 0;color:var(--sub);font-size:13px}
+  .center{text-align:center}
+  @media(prefers-reduced-motion:reduce){.glow,.track{animation:none}}
+  .note{background:#fff7f3;border:1px dashed var(--orange);color:var(--orange-ink);font-size:12px;text-align:center;padding:6px}
+</style>
+</head>
+<body>
+
+<div class="note">Static preview of the homepage (file-openable). The real site is the Next.js app in <code>/site</code>. Links are placeholders.</div>
+
+<!-- scarcity -->
+<div class="scarcity"><span class="dot"></span>Booking 2 new projects this quarter.<a href="#book">Book a call →</a></div>
+
+<!-- header -->
+<header class="nav"><div class="wrap">
+  <div class="logo">ledenov.</div>
+  <nav class="links"><a href="#about">About</a><a href="#work">Work</a><a href="#industries">Solutions</a><a href="#">Pricing</a><a href="#">Blog</a></nav>
+  <button class="btn btn-primary">Let's talk ▾</button>
+</div></header>
+
+<!-- hero -->
+<section class="hero" style="border-top:0">
+  <div class="glow"></div>
+  <div class="inner">
+    <div class="eyebrow">Product design for founders</div>
+    <h1>Design that ships.<br>Not Figma files that don't.</h1>
+    <p class="lede">You're too early for a design team and too serious to ship something half-baked. I'm the one senior partner who turns messy product, site, and brand into things that actually launch. ~$2M delivered across 950+ projects.</p>
+    <div class="cta">
+      <button class="btn btn-primary">Book a call</button>
+      <a class="btn btn-ghost" href="#work">See the work</a>
+    </div>
+    <div class="proof">
+      <div class="avatars"><span></span><span></span><span></span><span></span></div>
+      <div style="color:var(--sub);font-size:13px">Trusted by founders across the US, EU and Australia</div>
+      <div class="stats">~$2M delivered<span>·</span>950+ projects<span>·</span>Top Rated Plus<span>·</span>10+ years</div>
+    </div>
+  </div>
+</section>
+
+<!-- ticker -->
+<div class="ticker"><div class="track">
+  <span class="item">Upwork Top Rated Plus</span><span class="item">~$2M delivered</span><span class="item">950+ projects</span><span class="item">Replies within hours</span><span class="item">Works across US / EU / AU</span><span class="item">Free 30-min UX audit</span>
+  <span class="item">Upwork Top Rated Plus</span><span class="item">~$2M delivered</span><span class="item">950+ projects</span><span class="item">Replies within hours</span><span class="item">Works across US / EU / AU</span><span class="item">Free 30-min UX audit</span>
+</div></div>
+
+<!-- logos -->
+<div class="logos"><div class="wrap">
+  <p>Senior rigor brought to work for teams like</p>
+  <ul><li>Google</li><li>Nestlé</li><li>P&amp;G</li><li>AB InBev</li><li>WhatsApp</li></ul>
+</div></div>
+
+<!-- about -->
+<section id="about"><div class="wrap" style="max-width:760px">
+  <div class="eyebrow">About</div>
+  <h2>You don't need a design team. You need one person who's seen this before.</h2>
+  <p class="sub" style="font-size:18px">I've spent 10+ years designing products, sites, and brands across fintech, AI, healthcare, and B2B SaaS. 950+ projects, ~$2M delivered. I know which decisions matter at your stage and which can wait. That judgment is what you're actually buying.</p>
+  <p style="margin-top:24px"><a style="color:var(--orange);font-weight:500" href="#">More about me →</a></p>
+</div></section>
+
+<!-- industries -->
+<section id="industries"><div class="wrap">
+  <div class="eyebrow">Industries</div>
+  <h2>I go deep where it counts</h2>
+  <p class="sub">One partner, but not a generalist. Pick your space, see the work and the thinking behind it.</p>
+  <div class="grid ind-grid">
+    <a class="ind" href="#">AI <span>→</span></a><a class="ind" href="#">Web3 <span>→</span></a><a class="ind" href="#">Fintech <span>→</span></a>
+    <a class="ind" href="#">Healthcare <span>→</span></a><a class="ind" href="#">Edtech <span>→</span></a><a class="ind" href="#">Ecommerce <span>→</span></a>
+    <a class="ind" href="#">Real Estate <span>→</span></a><a class="ind" href="#">Gambling <span>→</span></a><a class="ind" href="#">B2B <span>→</span></a>
+  </div>
+</div></section>
+
+<!-- services -->
+<section id="services"><div class="wrap">
+  <div class="eyebrow">What I do</div>
+  <h2>Problems I solve</h2>
+  <p class="sub">Not a service menu. The things that quietly cost founders time, users, and runway.</p>
+  <div class="svc">
+    <div class="row"><div class="q">“Users don't get our product.”</div><div class="a">Product UX/UI for dashboards, web, and mobile (incl. iOS, RTL/Arabic). I turn confusing flows into ones people finish.</div></div>
+    <div class="row"><div class="q">“Our site looks like we built it ourselves.”</div><div class="a">Product and marketing sites, landing to multi-page, copy included. Senior-grade, built to convert.</div></div>
+    <div class="row"><div class="q">“Our UI is inconsistent and slows the team.”</div><div class="a">Design systems, prototyping, and micro-animation that keep speed and quality as you grow.</div></div>
+    <div class="row"><div class="q">“We need to move fast without looking generic.”</div><div class="a">AI-assisted workflows, senior-directed. I use the same tools as everyone, then apply the judgment they can't.</div></div>
+    <div class="row"><div class="q">“Design keeps breaking in handoff.”</div><div class="a">Front-end-aware design that drops cleanly into React/Next.js/Tailwind/Webflow. I design with what ships in mind.</div></div>
+  </div>
+  <p style="margin-top:32px"><button class="btn btn-ghost">Not sure which is you? Book a call</button></p>
+</div></section>
+
+<!-- process -->
+<section id="process"><div class="wrap">
+  <div class="eyebrow">Process</div>
+  <h2>How it works</h2>
+  <p class="sub">Built to reduce your risk at every step, not to fill time.</p>
+  <div class="grid proc-grid">
+    <div class="card"><div class="num">01</div><h3>Discovery</h3><div class="p">We get on a call. I learn the product, the users, the constraints, and what "shipped" means for you. You get a clear scope, no guesswork.</div></div>
+    <div class="card"><div class="num">02</div><h3>Design</h3><div class="p">I work in fast cycles, senior decisions first. You see progress early and often, not a big reveal at the end.</div></div>
+    <div class="card"><div class="num">03</div><h3>Ship</h3><div class="p">Production-ready files and front-end-aware handoff. Built to launch, not to admire in Figma.</div></div>
+    <div class="card"><div class="num">04</div><h3>Iterate</h3><div class="p">I stay close after launch. Real usage beats opinions.</div></div>
+  </div>
+</div></section>
+
+<!-- advantages -->
+<section id="advantages"><div class="wrap">
+  <div class="eyebrow">Why me</div>
+  <h2>You've been burned before. Here's why this is different.</h2>
+  <p class="sub">Most founders come to me after paying twice. Once for the cheap version, then again to fix it. Here's the honest comparison.</p>
+  <div class="adv-grid">
+    <div class="adv"><div class="vs">vs a cheap freelancer</div><div class="got"><b style="color:var(--ink)">What you got: </b>Pretty Figma files, no product logic, nothing that ships.</div><div class="get"><b>What you get here: </b>Senior product judgment. Decisions backed by 10+ years and 950+ projects, designed to launch, not to admire.</div></div>
+    <div class="adv"><div class="vs">vs an agency</div><div class="got"><b style="color:var(--ink)">What you got: </b>Account managers, slow cycles, a markup on every hour.</div><div class="get"><b>What you get here: </b>One direct line. You talk to the person doing the work. Founder-speed turnaround, no middlemen.</div></div>
+    <div class="adv"><div class="vs">vs DIY-AI (v0, Lovable)</div><div class="got"><b style="color:var(--ink)">What you got: </b>Generic output that looks like everyone else's.</div><div class="get"><b>What you get here: </b>AI-accelerated, senior-directed. I use the same tools, then apply the judgment they can't.</div></div>
+    <div class="adv"><div class="vs">vs an early full-time hire</div><div class="got"><b style="color:var(--ink)">What you got: </b>A 3-month search and a salaried bet before you have product clarity.</div><div class="get"><b>What you get here: </b>Senior output now. Commit to a team later, once the direction is proven.</div></div>
+  </div>
+  <div class="adv-close"><p>One partner. Product, site, and brand. Senior judgment, at founder speed.</p><button class="btn btn-primary">Book a call</button></div>
+</div></section>
+
+<!-- testimonials -->
+<section id="testimonials"><div class="wrap">
+  <div class="eyebrow">Testimonials</div>
+  <h2>Founders, in their words</h2>
+  <p class="sub">The strongest signal isn't praise. It's that they come back.</p>
+  <div class="pills">
+    <span class="pill">5 contracts since 2016 (Benjamin Greene)</span>
+    <span class="pill">"our 10th design together" (Mario Cimmino)</span>
+    <span class="pill">"over a year, like a member of our internal team" (Scott Morris)</span>
+  </div>
+  <div class="grid tg">
+    <div class="card tcard"><q>Yev worked with us for over a year. He was truly like a member of our internal team. He's highly creative and really collaborative. We tackled some difficult design problems together.</q><div class="who"><b>Scott Morris</b><small>Propulsion (US)</small></div></div>
+    <div class="card tcard"><q>He understands both the big picture and the details. Proactive with recommendations, takes feedback without reservation. I would work with him again.</q><div class="who"><b>Zach Wagner</b><small>Product MVP (US)</small></div></div>
+    <div class="card tcard"><q>The consummate professional! Super talented and great to work with. Hire with confidence!</q><div class="who"><b>Ozzie Burnham</b><small>Finance SaaS startup (US)</small></div></div>
+    <div class="card tcard"><q>Outstanding job on our UX. They took our ideas and turned them into clean, modern, user-friendly designs. The final output exceeded expectations.</q><div class="who"><b>Patrick McCarthy</b><small>Product lead (UK)</small></div></div>
+    <div class="card tcard"><q>One of the most talented designers I've ever worked with. Innovative, unique, and modern.</q><div class="who"><b>Tessa Scordio</b><small>Frequency Ads (US)</small></div></div>
+    <div class="card tcard"><q>Best designer on Upwork, as simple as that.</q><div class="who"><b>Dav G</b><small>SaaS SMS platform (France)</small></div></div>
+  </div>
+  <p style="margin-top:32px"><a style="color:var(--orange);font-weight:500" href="#">Read all reviews →</a></p>
+</div></section>
+
+<!-- work -->
+<section id="work"><div class="wrap">
+  <div class="eyebrow">Work</div>
+  <h2>More work</h2>
+  <p class="sub">A wider look across industries and types.</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card center" style="aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border-style:dashed;color:var(--sub);font-size:13px">Case study →</div>
+    <div class="card center" style="aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border-style:dashed;color:var(--sub);font-size:13px">Case study →</div>
+    <div class="card center" style="aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border-style:dashed;color:var(--sub);font-size:13px">Case study →</div>
+  </div>
+  <p style="margin-top:32px"><a style="color:var(--orange);font-weight:500" href="#">See all work →</a></p>
+</div></section>
+
+<!-- faq -->
+<section id="faq"><div class="wrap faq">
+  <div class="eyebrow">FAQ</div>
+  <h2>Straight answers</h2>
+  <div style="margin-top:40px;border-top:1px solid var(--line)">
+    <details open><summary>What does it cost?</summary><p>Projects start at $500. For ongoing work I run at $1,000/week. We scope the exact number on the call, so you commit knowing it, no surprise invoices.</p></details>
+    <details><summary>How fast can you start, and how long does it take?</summary><p>I usually take on a new project within a week. A focused scope ships from two weeks, longer for bigger builds. We set the timeline on the call so you're not guessing.</p></details>
+    <details><summary>Do you work solo? What if I need more than one person?</summary><p>Yes, solo and senior. That's the value: one accountable partner, no middlemen. When you genuinely need a team, I help you build one, later, once the direction is proven.</p></details>
+    <details><summary>Do you sign an NDA?</summary><p>Yes, always. Your product and data stay yours.</p></details>
+    <details><summary>What do you actually deliver?</summary><p>Production-ready design (Figma), front-end-aware handoff for React/Next.js/Tailwind/Webflow, and the thinking behind every decision.</p></details>
+    <details><summary>Which industries do you know?</summary><p>Fintech, AI, healthcare, B2B SaaS, Web3, ecommerce, real estate, and more. See the industry pages for niche-specific work.</p></details>
+    <details><summary>What time zone are you in?</summary><p>Based in Zagreb (CET). I work across US, EU, and Australia time zones.</p></details>
+  </div>
+</div></section>
+
+<!-- book -->
+<section id="book" class="book"><div class="wrap" style="max-width:760px">
+  <h2>Let's talk</h2>
+  <p class="sub">Book a 30-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p>
+  <p style="margin-top:32px"><button class="btn btn-primary">Book a call</button></p>
+  <p style="color:var(--sub);font-size:14px;margin-top:24px">Prefer to message? <a style="color:var(--orange)" href="#">Telegram</a> or <a style="color:var(--orange)" href="#">WhatsApp</a>. I reply fast.</p>
+</div></section>
+
+<!-- footer -->
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><div class="tag">One senior partner. Product, site, and brand.</div><p style="margin-top:20px"><button class="btn btn-primary">Book a call</button></p></div>
+    <div class="fgrid">
+      <div><h4>Site</h4><ul><li><a href="#about">About</a></li><li><a href="#work">Work</a></li><li><a href="#industries">Solutions</a></li><li><a href="#">Pricing</a></li><li><a href="#">Blog</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Behance</a></li><li><a href="#">Dribbble</a></li><li><a href="#">Upwork</a></li><li><a href="#">Instagram</a></li><li><a href="#">Contra</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="#">hello@ledenov.com</a></li><li><a href="#">Telegram</a></li><li><a href="#">WhatsApp</a></li><li style="color:var(--sub)">Zagreb, Croatia</li></ul></div>
+    </div>
+  </div>
+  <div class="fbottom"><span>© 2026 Ledo.digital OÜ. All rights reserved.</span><span>Privacy · Cookies</span></div>
+</div></footer>
+
+</body>
+</html>
