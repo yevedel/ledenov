@@ -82,7 +82,17 @@ Built once, reused for all 9. Per SEO consult + research:
 
 ## 7. Case-study page (`/work/[case]`)
 
-Scalable data structure (card + detail), not hardcoded. Card tags: industry, type, year. Detail = narrative arc: **problem → constraints → approach → what shipped → result.** Built so a skeptical founder's doubts fall away and they can book directly from the case. 🎯 CTA mid + end.
+Scalable data structure (card + detail), not hardcoded. Card tags: industry, type, year. Built so a skeptical founder's doubts fall away and they can book directly from the case. 🎯 CTA mid + end.
+
+**Detail template (modeled on the Balakin/Everscale reference — see RESEARCH.md §6b):**
+1. **Result-first headline** with the number in it (e.g. "Onboarding 212,000 users into blockchain via gamification") + one-line "what it is" subhead.
+2. **Metrics row** immediately under the hero (3–5 quantified outcomes).
+3. **Metadata block:** Role · Company · Scope.
+4. **"About the product"** — short context.
+5. **Several self-contained Problem → Solution → Result mini-stories**, each with its own metric (not one long arc). Each section = a proof unit: decision + number. Before/after imagery where possible.
+6. **Wrap-up** with honest insights/learnings (transparency reads as senior).
+7. Visuals interleaved after each section (product shots, heatmaps, flows, device mockups on dark).
+- Where Yev lacks hard metrics on a project, lead with the qualitative decision + shipped outcome; don't fabricate numbers.
 
 ## 8. GEO / SEO build requirements (hand to dev)
 

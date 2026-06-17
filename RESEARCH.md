@@ -108,6 +108,18 @@ No competitor combines **elite Linear-grade minimalist craft** (Rauno/Paco level
 6. **Pricing** → keep `/pricing` with packages; decide show-number vs "starting at". [productized tier]
 7. **Motion/craft bar** → hold to Rauno/Paco restraint so the site reads "senior," not "template."
 
+## 6b. Case-study presentation reference — Alexei Balakin / Everscale ⭐
+`screens/ref-balakin-everscale__*` · alexeibalakin.com/cases/everscale — the gold standard for the case-study page. Exact structure to mirror:
+
+1. **Result-first hero headline** with the number in it: "Onboarding 212,000 users into blockchain via gamification." Subhead = one line on what it is.
+2. **Metrics row immediately under the hero** (5 stats): +212K users in 12 days · +67.1% account conversion · +14% wallet conversion · +15 countries · 99.3% mobile. Quantified impact above the fold.
+3. **Metadata block:** Role · Company · Scope (e.g. "Product designer · Broxus · Landing, web app, mobile app").
+4. **Body = several self-contained Problem → Solution → Result mini-stories**, each with its OWN metric, not one long arc. e.g. "Quest card redesign" → Problem: only 25% scrolled to all quests → Solution: compact redesign → Result: "75% of users now see 14 quests instead of 8." This is the "show your thinking, back each decision with a number" pattern the teardowns praise.
+5. **Wrap-up with honest insights** (retention 19.6% D1, ~0% D7) — transparency, not glossy spin.
+6. **Visuals interleaved after each section:** product screenshots, heatmaps, before/after, flow diagrams. Big device shots on dark backgrounds. Minimal centered editorial layout, clean type.
+
+**For Yev:** this is the template for `/work/[case]`. It beats the generic single-arc case because every section is a proof unit (decision + metric). Use it especially where Yev has real numbers.
+
 ## 7. Source teardowns
 - alexberman.com/web-designer-freelance-portfolio — designer-portfolio teardown (hero, CTA, case structure, mistakes).
 - designerup.co/blog/10-exceptional-product-design-portfolios-with-case-study-breakdowns/ — case-study structures of 10 top portfolios.
