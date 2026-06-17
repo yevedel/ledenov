@@ -7,10 +7,9 @@ export const site = {
   domain: "ledenov.com",
   legal: "Ledo.digital OÜ",
   location: "Zagreb, Croatia",
-  email: "hello@ledenov.com", // TODO confirm real address
-  calendly: "https://calendly.com/", // TODO real Calendly link
-  telegram: "https://t.me/", // TODO
-  whatsapp: "https://wa.me/", // TODO
+  email: "yevledenov@gmail.com",
+  calendly: "https://calendly.com/yevledenov/20min",
+  telegram: "https://t.me/yevedel",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/" },
     { label: "Behance", href: "https://www.behance.net/yevled" },
@@ -149,8 +148,7 @@ export const faq = {
 
 export const booking = {
   heading: "Let's talk",
-  sub: "Book a 30-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.",
-  secondary: "Prefer to message? Telegram or WhatsApp. I reply fast.",
+  sub: "Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.",
 };
 
 export const footer = {

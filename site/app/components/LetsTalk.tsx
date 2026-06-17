@@ -66,26 +66,16 @@ export default function LetsTalk({
             className="block rounded-xl bg-orange p-4 text-white transition-colors hover:bg-orange-ink"
           >
             <div className="text-[15px] font-semibold">Book a call</div>
-            <div className="text-[13px] text-white/80">30 min. Tell me the problem, I'll tell you straight.</div>
+            <div className="text-[13px] text-white/80">20 min. Tell me the problem, I'll tell you straight.</div>
           </a>
-          <div className="mt-2 grid grid-cols-2 gap-2">
-            <a
-              href={site.telegram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-xl border border-line p-3 text-center text-[14px] text-ink transition-colors hover:border-ink"
-            >
-              Telegram
-            </a>
-            <a
-              href={site.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-xl border border-line p-3 text-center text-[14px] text-ink transition-colors hover:border-ink"
-            >
-              WhatsApp
-            </a>
-          </div>
+          <a
+            href={site.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block rounded-xl border border-line p-3 text-center text-[14px] text-ink transition-colors hover:border-ink"
+          >
+            Message me on Telegram
+          </a>
           <p className="px-1 py-2 text-center text-[12px] text-sub">I reply within hours.</p>
         </div>
       )}

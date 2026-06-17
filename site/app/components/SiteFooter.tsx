@@ -54,8 +54,7 @@ export default function SiteFooter() {
               <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-sub">Contact</p>
               <ul className="mt-3 space-y-2 text-[14px] text-ink">
                 <li><a href={`mailto:${site.email}`} className="hover:text-orange">{site.email}</a></li>
-                <li><a href={site.telegram} className="hover:text-orange">Telegram</a></li>
-                <li><a href={site.whatsapp} className="hover:text-orange">WhatsApp</a></li>
+                <li><a href={site.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-orange">Telegram</a></li>
                 <li className="text-sub">{site.location}</li>
               </ul>
             </div>
