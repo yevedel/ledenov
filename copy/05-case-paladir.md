@@ -3,7 +3,7 @@
 > Built to the Case Study Spec (`copy/04-case-study-spec.md`), using the narrative from the Figma case (`Ledo-cases`, node 438:4606).
 >
 > 🚨 **ALL NUMBERS IN THIS DOC ARE FICTIONAL PLACEHOLDERS** marked `[PH]`. There were no real metrics for this project. Replace every `[PH]` with real data (or remove and use the deliverables-only fallback from spec §2) BEFORE publishing. Publishing invented metrics would break the site's whole trust thesis.
-> NDA check: confirm Paladir is publishable and the client name can be shown (or anonymize to "a GRC SaaS startup").
+> NDA: ✅ publishable, client name "Paladir" can be shown (confirmed by Yev, 2026-06-18).
 
 ---
 
@@ -81,7 +81,7 @@ A GRC platform that reads less like a regulatory inventory and more like a guide
 *What I'd watch next:* `[PH]` how evidence-collection holds up at audit time, and whether the AI's task cadences need tuning per framework. `[PH]`
 
 ## 9. Testimonial
-[No real Paladir testimonial available. If publishable, request a 1-line quote tied to the redesign outcome. Otherwise omit, or pair with a relevant SaaS quote from `inbox/clients-and-testimonials.md` clearly attributed to a different project.]
+Omitted for now (decided 2026-06-18) — no real Paladir testimonial. Do not borrow another project's quote. Add later if the client provides one.
 
 ## 10. Related + CTA
 - Related: [2–3 other B2B SaaS / AI cases → /work/...]

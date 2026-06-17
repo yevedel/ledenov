@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ── Design tokens (Linear/Delphi-minimalist, single orange accent) ── */
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --tint: #ffefea;
+  --ink: #1b1b1b;
+  --sub: #727272;
+  --line: #ececec;
+  --line2: #e2e2e2;
+  --orange: #ff3e02;
+  --orange-ink: #9a2a07;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-tint: var(--tint);
+  --color-ink: var(--ink);
+  --color-sub: var(--sub);
+  --color-line: var(--line);
+  --color-line2: var(--line2);
+  --color-orange: var(--orange);
+  --color-orange-ink: var(--orange-ink);
+
+  --font-sans: var(--font-app), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-card: 14px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hero radial glow (Delphi-style) */
+@keyframes glowpulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.85; }
+  50%      { transform: translate(-50%, -50%) scale(1.09); opacity: 1; }
+}
+.hero-glow {
+  background: radial-gradient(circle, var(--orange) 0%, rgba(255,62,2,0.32) 30%, rgba(255,62,2,0) 64%);
+  animation: glowpulse 7s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Scroll reveal */
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; }
+.reveal.in { animation: fadeup 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+/* Marquee ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 40s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow,
+  .marquee-track { animation: none; }
+  .reveal, .reveal.in { opacity: 1; animation: none; }
+  html { scroll-behavior: auto; }
+}
