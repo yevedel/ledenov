@@ -79,7 +79,8 @@
 
 ## ✅ SELECTED
 - **Hero headline direction: A** ("Design that ships. Not Figma files that don't.") — locked by Yev, 2026-06-17.
-- Defaults kept (change anytime): proof "~$2M / 950+", scarcity bar on (slot count TBC), trust-logo line as written.
+- **Scarcity bar (locked):** `Booking 2 new projects this quarter. Book a call →`
+- Defaults kept (change anytime): proof "~$2M / 950+", trust-logo line as written.
 
 ## Notes / open
 - Pick eyebrow + headline direction (A recommended). I can A/B A vs C.

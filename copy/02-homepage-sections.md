@@ -54,8 +54,19 @@ Sub: Prefer to watch first? Here's the short version.
 
 ## 10 · Testimonials
 Heading: **Founders, in their words**
-Sub: Tied to outcomes, not adjectives. [Each testimonial: quote + name/role + result number + platform logo (Upwork/Clutch/Google).]
-[CONTENT NEEDED: paste LinkedIn recommendations / platform reviews to slot in.]
+Sub: The strongest signal isn't praise. It's that they come back.
+
+Lead with the repeat-client proof, then the quotes:
+- Stat callout: **Clients come back** — 5 contracts since 2016 (Benjamin Greene) · "our 10th design together" (Mario Cimmino) · "over a year, like a member of our internal team" (Scott Morris).
+
+Selected quotes (each with name, company/role, platform logo; from `inbox/clients-and-testimonials.md`):
+- **Scott Morris, Propulsion (US):** "Yev worked with us for over a year. He was truly like a member of our internal team. He's highly creative and really collaborative. We tackled some difficult design problems together."
+- **Zach Wagner, Product MVP (US):** "He understands both the big picture and the details. Proactive with recommendations, takes feedback without reservation. I would work with him again."
+- **Ozzie Burnham, Finance SaaS startup (US):** "The consummate professional! Super talented and great to work with. Hire with confidence!"
+- **Patrick McCarthy, Product lead (UK):** "Outstanding job on our UX. They took our ideas and turned them into clean, modern, user-friendly designs. The final output exceeded expectations."
+- **Tessa Scordio, Frequency Ads (US):** "One of the most talented designers I've ever worked with. Innovative, unique, and modern."
+- **Dav G, SaaS SMS platform (France):** "Best designer on Upwork, as simple as that."
+
 Link: **Read all reviews →** (/reviews)
 
 ## 11 · Projects (lighter grid below featured cases)
@@ -67,9 +78,9 @@ Link: **See all work →** (/work)
 Heading: **Straight answers**
 
 - **What does it cost?**
-  [TBC with Yev — e.g.] Projects start at $X. Most founders engage me per-project or on a [weekly/monthly] basis. We scope it on the call so you know the number before you commit.
+  Projects start at $500. For ongoing work I run at $1,000/week. We scope the exact number on the call, so you commit knowing it, no surprise invoices.
 - **How fast can you start, and how long does it take?**
-  [TBC] I usually start within [X] and a focused scope ships in [X weeks]. Speed is the point.
+  I usually take on a new project within a week. A focused scope ships from two weeks, longer for bigger builds. We set the timeline on the call so you're not guessing.
 - **Do you work solo? What if I need more than one person?**
   Yes, solo and senior. That's the value: one accountable partner, no middlemen. When you genuinely need a team, I help you build one, later, once the direction is proven.
 - **Do you sign an NDA?**
