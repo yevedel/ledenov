@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { site } from "./content";
 import ScarcityBar from "./components/ScarcityBar";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 
-// Fallback for Passenger Sans (commercial — swap once licensed).
-const app = Inter({ subsets: ["latin"], variable: "--font-app", display: "swap" });
+// Passenger Sans (licensed web kit — Regular/Medium/Semibold). Body 400, UI 500, headings 600.
+const app = localFont({
+  variable: "--font-app",
+  display: "swap",
+  src: [
+    { path: "./fonts/PassengerSans-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/PassengerSans-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/PassengerSans-Semibold.woff2", weight: "600", style: "normal" },
+  ],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
