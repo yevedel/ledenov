@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { hero } from "../content";
+import { hero, site } from "../content";
 import LetsTalk from "./LetsTalk";
 
 export default function Hero() {
@@ -27,12 +26,14 @@ export default function Hero() {
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <LetsTalk variant="primary" label="Book a call" />
-          <Link
-            href="/work"
+          <a
+            href={site.calendly}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full border border-line2 px-5 py-2.5 text-[15px] font-medium text-ink transition-colors hover:border-ink"
           >
-            See the work
-          </Link>
+            Get a free UX audit
+          </a>
         </div>
 
         {/* inline proof */}

@@ -160,6 +160,40 @@ export const booking = {
   sub: "Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.",
 };
 
+// Free UX audit — the low-risk hook (the main "why reach out now").
+export const audit = {
+  eyebrow: "Start here",
+  heading: "Not sure where your product leaks? I'll show you. Free.",
+  body: "Send me your product. In a 30-minute call I'll show you exactly where users drop off and the first things I'd fix. No pitch, no commitment.",
+  steps: ["Send your product or link", "Senior teardown of the UX", "Clear next steps you can act on"],
+  cta: "Get your free audit",
+};
+
+// What the founder walks away with (outcome framing, not credentials).
+export const outcomes = {
+  eyebrow: "What you get",
+  heading: "What you walk away with",
+  items: [
+    { h: "A product that ships", p: "Production-ready design, not a folder of Figma files that never launches." },
+    { h: "Clarity you can show investors", p: "A product and story that look funded, before you are." },
+    { h: "One partner, not three vendors", p: "Product, site, and brand from one accountable person. No coordination tax." },
+    { h: "Senior decisions, made fast", p: "The right calls for your stage, at founder speed, without the agency overhead." },
+  ],
+};
+
+// Loyalty = the strongest real proof for a skeptic. Surfaced as its own stat band.
+export const loyalty = {
+  eyebrow: "Why it works",
+  heading: "Founders don't just hire me once. They come back.",
+  facts: [
+    { big: "5", label: "contracts with one client since 2016", who: "Benjamin Greene" },
+    { big: "10th", label: "design together, and counting", who: "Mario Cimmino" },
+    { big: "1+ yr", label: "embedded like an internal team member", who: "Scott Morris, Propulsion" },
+  ],
+};
+
+export const riskReversal = ["NDA on every project", "Scoped on a call, no surprise invoices", "Stop anytime, no lock-in"];
+
 export const footer = {
   tagline: "One senior partner. Product, site, and brand.",
 };

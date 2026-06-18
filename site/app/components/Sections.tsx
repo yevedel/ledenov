@@ -9,6 +9,10 @@ import {
   booking,
   site,
   allWork,
+  audit,
+  outcomes,
+  loyalty,
+  riskReversal,
 } from "../content";
 import Reveal from "./Reveal";
 import LetsTalk from "./LetsTalk";
@@ -169,6 +173,85 @@ export function Projects() {
   );
 }
 
+export function Outcomes() {
+  return (
+    <section className="border-t border-line py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <Reveal>
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-orange">{outcomes.eyebrow}</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl">{outcomes.heading}</h2>
+        </Reveal>
+        <div className="mt-10 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
+          {outcomes.items.map((o, i) => (
+            <Reveal key={o.h} delay={(i % 2) * 60} className="bg-surface p-7">
+              <h3 className="text-lg font-semibold text-ink">{o.h}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-sub">{o.p}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Loyalty() {
+  return (
+    <section className="border-t border-line py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <Reveal>
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-sub">{loyalty.eyebrow}</p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-[-0.02em] text-orange sm:text-4xl">{loyalty.heading}</h2>
+        </Reveal>
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {loyalty.facts.map((f, i) => (
+            <Reveal key={i} delay={i * 60} className="rounded-card border border-line bg-surface p-7">
+              <div className="text-5xl font-semibold tracking-[-0.03em] text-orange">{f.big}</div>
+              <p className="mt-3 text-[15px] text-ink">{f.label}</p>
+              <p className="mt-1 text-[13px] text-sub">— {f.who}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function AuditOffer() {
+  return (
+    <section className="border-t border-line py-20 sm:py-28">
+      <div className="mx-auto max-w-5xl px-6">
+        <Reveal className="relative overflow-hidden rounded-card border border-orange/30 bg-tint/40 p-8 sm:p-12">
+          <div aria-hidden className="hero-glow pointer-events-none absolute -right-20 -top-20 h-[320px] w-[320px] rounded-full opacity-50" />
+          <div className="relative">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-orange">{audit.eyebrow}</p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl">{audit.heading}</h2>
+            <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-sub">{audit.body}</p>
+            <ol className="mt-6 flex flex-col gap-2 sm:flex-row sm:gap-6">
+              {audit.steps.map((s, i) => (
+                <li key={s} className="flex items-center gap-2 text-[15px] text-ink">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-orange text-[12px] font-semibold text-white">{i + 1}</span>
+                  {s}
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={site.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-orange px-5 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-orange-ink"
+              >
+                {audit.cta} →
+              </a>
+              <span className="text-[14px] text-sub">Free · 30 minutes · no commitment</span>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 export function BookCall() {
   return (
     <section id="book" className="border-t border-line py-20 sm:py-28">
@@ -183,6 +266,14 @@ export function BookCall() {
             Prefer to message?{" "}
             <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="text-orange hover:underline">WhatsApp</a>. I reply fast.
           </p>
+          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px] text-sub">
+            {riskReversal.map((r) => (
+              <li key={r} className="flex items-center gap-1.5">
+                <span className="text-orange" aria-hidden>✓</span>
+                {r}
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>

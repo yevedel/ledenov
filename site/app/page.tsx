@@ -6,11 +6,14 @@ import Faq from "./components/Faq";
 import {
   Logos,
   About,
+  Outcomes,
   Industries,
   Services,
   Process,
+  Loyalty,
   Testimonials,
   Projects,
+  AuditOffer,
   BookCall,
 } from "./components/Sections";
 
@@ -22,12 +25,15 @@ export default function Home() {
       <Logos />
       <Numbers />
       <About />
+      <Outcomes />
       <Industries />
       <Services />
       <Process />
       <Advantages />
+      <Loyalty />
       <Testimonials />
       <Projects />
+      <AuditOffer />
       <Faq />
       <BookCall />
     </>
