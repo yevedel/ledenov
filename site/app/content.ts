@@ -29,12 +29,13 @@ export const nav = [
   { label: "FAQ", href: "/#faq" },
 ];
 
+// Operational reassurance — NOT a re-run of the hero/Numbers stats (kept proof out on purpose).
 export const ticker = [
-  "Upwork Top Rated Plus",
-  "~$2M delivered",
-  "Clients who come back",
+  "Senior, end to end",
   "Replies within hours",
   "Works across US / EU / AU time zones",
+  "NDA on every project",
+  "Build-ready, front-end-aware handoff",
   "Free async UX teardown",
 ];
 
@@ -44,7 +45,7 @@ export const hero = {
   eyebrow: "Product design for founders",
   headline: ["Design that ships.", "Not Figma files that don't."],
   sub: "Past the MVP scramble, not ready for a full design team. I'm the one senior partner who turns messy product, site, and brand into things that actually launch, and founders keep coming back, a 5th and 10th project deep.",
-  proof: ["Clients return for a 5th & 10th project", "10+ years senior", "Top Rated Plus", "~$2M delivered"],
+  proof: ["10+ years senior", "Top Rated Plus", "~$2M delivered"],
   priceNote: "Scoped to your stage, from a single $500 flow to an embedded weekly partner.",
 };
 
@@ -58,7 +59,7 @@ export const logos = {
 
 export const about = {
   heading: "You don't need a design team. You need one person who's seen this before.",
-  body: "I've spent 10+ years designing products, sites, and brands across fintech, AI, healthcare, and B2B SaaS, much of it the same founders coming back, ~$2M delivered. I know which decisions matter at your stage and which can wait. That judgment is what you're actually buying.",
+  body: "I've spent 10+ years designing products, sites, and brands across fintech, AI, healthcare, and B2B SaaS. I know which decisions matter at your stage and which can wait, and which corners you can cut now and which will cost you later. That judgment is what you're actually buying.",
   link: { label: "More about me", href: "/about" },
 };
 
@@ -125,12 +126,7 @@ export const advantages = {
 
 export const testimonials = {
   heading: "Founders, in their words",
-  sub: "The strongest signal isn't praise. It's that they come back.",
-  repeat: [
-    "5 contracts since 2016 (Benjamin Greene)",
-    "“our 10th design together” (Mario Cimmino)",
-    "“over a year, like a member of our internal team” (Scott Morris)",
-  ],
+  sub: "A few of the founders I've worked with, in their own words.",
   quotes: [
     { quote: "Yev worked with us for over a year. He was truly like a member of our internal team. He's highly creative and really collaborative. We tackled some difficult design problems together.", name: "Scott Morris", role: "Propulsion (US)", platform: "Upwork" },
     { quote: "He understands both the big picture and the details. Proactive with recommendations, takes feedback without reservation. I would work with him again.", name: "Zach Wagner", role: "Product MVP (US)", platform: "Upwork" },
@@ -160,7 +156,7 @@ export const faq = {
     { q: "Do I own the files and IP?", a: "Yes. You own everything, full source files and rights. It's your product." },
     { q: "Do you also build it, or just hand off?", a: "I design with what ships in mind, so the work drops cleanly into your stack (React/Next.js/Tailwind/Webflow), and I stay available during implementation. I don't disappear at hand-off." },
     { q: "How do we communicate, and how often?", a: "A direct line, plus Slack or WhatsApp for the day-to-day. I reply within hours and show progress early and often, not one big reveal at the end." },
-    { q: "Can I see references and proof it worked?", a: "Yes, work and reviews are on the site. Upwork Top Rated Plus, 950+ projects, ~$2M delivered, and the strongest signal: clients who come back." },
+    { q: "Can I see references and proof it worked?", a: "Yes. Open any case study for the metrics and a live link, the reviews page for client feedback, or my Upwork profile for the full track record." },
     { q: "What if it's not working out?", a: "No lock-in. Ongoing work pauses or stops anytime, and we pressure-test fit on the first call before we start." },
     { q: "What time zone are you in?", a: "Based in Zagreb (CET). I work across US, EU, and Australia time zones." },
   ],
@@ -677,13 +673,13 @@ export const pricing = {
 // Big-number social proof (Figma "Numbers" section). Upwork-anchored — it's the main client source.
 export const numbers = {
   eyebrow: "Numbers",
-  heading: "A decade of senior work, and clients who keep coming back.",
-  note: "Top Rated Plus on Upwork for 10+ years. The volume is mostly repeat founders, not one-off gigs.",
+  heading: "A decade of senior work, end to end.",
+  note: "Top Rated Plus on Upwork for over a decade, the top tier of talent on the platform.",
   upworkHref: "https://www.upwork.com/freelancers/yevledenov",
   stats: [
     { pre: "", num: 10, suf: "+", label: "Years, senior end to end", desc: "A decade of senior product, site, and brand design, from strategy to build-ready handoff." },
-    { pre: "~$", num: 2, suf: "M", label: "Delivered for founders", desc: "Top Rated Plus, the top tier of talent, for 10+ years running, with clients who return." },
-    { pre: "", num: 950, suf: "+", label: "Projects, mostly repeat", desc: "950+ contracts across fintech, AI, healthcare, and B2B SaaS, much of it the same founders coming back." },
+    { pre: "~$", num: 2, suf: "M", label: "Delivered for founders", desc: "Real client work at scale, across fintech, AI, healthcare, and B2B SaaS." },
+    { pre: "", num: 950, suf: "+", label: "Projects, mostly repeat", desc: "Much of it the same founders coming back for a second and third project, not one-off gigs." },
   ],
 };
 

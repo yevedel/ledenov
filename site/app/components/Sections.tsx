@@ -126,14 +126,6 @@ export function Testimonials() {
           <p className="mt-4 max-w-2xl text-[17px] text-sub">{testimonials.sub}</p>
         </Reveal>
 
-        <Reveal className="mt-8 flex flex-wrap gap-2">
-          {testimonials.repeat.map((r) => (
-            <span key={r} className="rounded-full bg-tint px-3 py-1 text-[13px] font-medium text-orange-ink">
-              {r}
-            </span>
-          ))}
-        </Reveal>
-
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.quotes.map((q, i) => {
             const initials = q.name.split(" ").map((w) => w[0]).slice(0, 2).join("");
