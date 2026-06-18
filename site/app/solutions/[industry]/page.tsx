@@ -4,7 +4,7 @@ import { Crumbs } from "../../components/Bits";
 import Reveal from "../../components/Reveal";
 import LetsTalk from "../../components/LetsTalk";
 import { Process, BookCall } from "../../components/Sections";
-import { solutions } from "../../content";
+import { solutions, faq } from "../../content";
 
 export function generateStaticParams() {
   return solutions.map((s) => ({ industry: s.slug }));
@@ -86,9 +86,9 @@ export default async function SolutionPage({ params }: { params: Promise<{ indus
       {/* Industry FAQ */}
       <section className="border-t border-line py-16">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-2xl font-semibold tracking-[-0.02em] text-ink">Straight answers, {s.label.toLowerCase()} edition</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.02em] text-ink">{faq.heading}</h2>
           <dl className="mt-8 divide-y divide-line border-y border-line">
-            {s.faqs.map((item, i) => (
+            {faq.items.map((item, i) => (
               <div key={i} className="py-5">
                 <dt className="text-[17px] font-medium text-ink">{item.q}</dt>
                 <dd className="mt-2 text-[16px] text-sub">{item.a}</dd>

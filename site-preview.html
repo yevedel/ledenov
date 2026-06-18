@@ -670,7 +670,7 @@ function solution(slug){const s=C.solutions[slug];if(!s)return notfound();return
   <section><div class="wrap narrow" data-reveal><div class="eyebrow">Why ${s.label.toLowerCase()}</div><p style="font-size:20px;line-height:1.5;margin-top:14px">${s.why}</p><p class="sub" style="margin-top:14px">${s.proof}</p></div></section>
   <section><div class="wrap"><div data-reveal><h2>${s.label} work</h2></div><div class="grid" style="grid-template-columns:repeat(3,1fr)">${[0,1,2].map(()=>`<div class="ph" data-reveal style="aspect-ratio:4/3">Case study →</div>`).join("")}</div></div></section>
   ${procSection()}
-  <section><div class="wrap narrow"><div data-reveal><h2>Straight answers, ${s.label.toLowerCase()} edition</h2></div>${faqList(s.faqs)}</div></section>
+  <section><div class="wrap narrow"><div data-reveal><h2>Straight answers</h2></div>${faqList(C.faq)}</div></section>
   ${bookSection()}`;}
 
 function pricing(){const p=C.pricing;return `
@@ -683,7 +683,7 @@ function pricing(){const p=C.pricing;return `
   <section><div class="wrap narrow"><div data-reveal><h2>${p.compare.heading}</h2><p class="sub">${p.compare.sub}</p></div>
     <div class="ctable">${p.compare.rows.map(r=>`<div class="crow ${r[3]?"me":""}" data-reveal><span class="opt">${r[0]}</span><span class="cost">${r[1]}</span><span class="cnote">${r[2]}</span></div>`).join("")}</div></div></section>
   <section><div class="wrap"><div class="trust" data-reveal>${p.trust.map(t=>`<div>${t}</div>`).join("")}</div></div></section>
-  <section><div class="wrap narrow"><div data-reveal><h2>Pricing questions</h2></div>${faqList(C.faq.slice(0,3))}</div></section>${bookSection()}`;}
+  <section><div class="wrap narrow"><div data-reveal><h2>Straight answers</h2></div>${faqList(C.faq)}</div></section>${bookSection()}`;}
 
 function reviews(){return `
   <section style="border-top:0"><div class="wrap" style="padding-top:72px">

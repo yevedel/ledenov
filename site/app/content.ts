@@ -526,15 +526,10 @@ export type Solution = {
   offer: string;
   why: string;
   proofLine: string;
-  faqs: { q: string; a: string }[];
 };
 
-const sharedFaqs = [
-  faq.items[0], // cost
-  faq.items[1], // timeline
-  faq.items[3], // NDA
-];
-
+// FAQ is intentionally identical on every page (homepage, pricing, all industry
+// pages) — they all render the canonical `faq.items` above. No per-page FAQ data.
 export const solutions: Solution[] = [
   {
     slug: "fintech", label: "Fintech",
@@ -544,11 +539,6 @@ export const solutions: Solution[] = [
     offer: "Free 30-minute fintech UX audit. Send your product, I'll show you where users drop off before they fund.",
     why: "In fintech, trust is the conversion. One confusing step in onboarding or KYC, one screen that feels unsafe, and the funded account never happens. The hard part isn't making it pretty, it's making compliance, dense data, and speed feel effortless at once. That's a senior judgment call, not a template.",
     proofLine: "Work spanning an FCA-regulated fintech (Vuelo) to finance SaaS startups.",
-    faqs: [
-      { q: "Do you understand KYC, onboarding, and compliance flows?", a: "Yes. I design them so they convert without cutting corners on trust or regulation." },
-      { q: "Can you work within our regulated constraints?", a: "Yes, I've designed for an FCA-regulated product. Your compliance and legal limits are inputs, not afterthoughts." },
-      ...sharedFaqs,
-    ],
   },
   {
     slug: "ai", label: "AI",
@@ -557,9 +547,7 @@ export const solutions: Solution[] = [
     sub: "I design AI products where users trust the output, understand the system, and actually act on it. Senior product judgment over generic chat UIs.",
     offer: "Free 30-minute AI UX audit. Send your product, I'll show you where users lose trust.",
     why: "AI products fail on legibility, not capability. If users can't tell why the model said what it said, or what to do next, they bounce. I design the data density, the trust cues, and the novel interaction patterns that make AI feel reliable.",
-    proofLine: "Work across AI products including Reliant.ai and Blackwave.ai.",
-    faqs: sharedFaqs,
-  },
+    proofLine: "Work across AI products including Reliant.ai and Blackwave.ai.",  },
   {
     slug: "web3", label: "Web3",
     eyebrow: "Product design for Web3 founders",
@@ -567,9 +555,7 @@ export const solutions: Solution[] = [
     sub: "I design Web3 products that get past wallets and jargon, so mainstream users actually convert.",
     offer: "Free 30-minute Web3 UX audit. Send your product, I'll show you where users drop off.",
     why: "Web3's hardest problem is onboarding. Wallets, gas, and jargon kill conversion for everyone outside the bubble. I design gamified onboarding and wallet flows that move normal users through, step by step.",
-    proofLine: "Work on gamified onboarding and wallet-conversion flows.",
-    faqs: sharedFaqs,
-  },
+    proofLine: "Work on gamified onboarding and wallet-conversion flows.",  },
   {
     slug: "healthcare", label: "Healthcare",
     eyebrow: "Product design for health startups",
@@ -577,9 +563,7 @@ export const solutions: Solution[] = [
     sub: "I design digital health products people use, not avoid, balancing engagement, clarity, regulation, and accessibility.",
     offer: "Free 30-minute healthcare UX audit. Send your product, I'll show you where engagement breaks.",
     why: "Health products live or die on engagement and trust. Clinicians have no patience for friction; patients need clarity and accessibility. I design for both, within regulated constraints, incl. RTL/Arabic where needed.",
-    proofLine: "Work across health products including Eterno Health and a Saudi telehealth platform.",
-    faqs: sharedFaqs,
-  },
+    proofLine: "Work across health products including Eterno Health and a Saudi telehealth platform.",  },
   {
     slug: "edtech", label: "Edtech",
     eyebrow: "Product design for edtech founders",
@@ -587,9 +571,7 @@ export const solutions: Solution[] = [
     sub: "I design edtech products that hold attention, show progress, and keep learners motivated.",
     offer: "Free 30-minute edtech UX audit. Send your product, I'll show you where learners drop off.",
     why: "Edtech's metric is completion. Engagement, progress, and motivation are design problems, not content problems. I design the flows that keep learners moving.",
-    proofLine: "Work across learning products.",
-    faqs: sharedFaqs,
-  },
+    proofLine: "Work across learning products.",  },
   {
     slug: "ecommerce", label: "Ecommerce",
     eyebrow: "Product design for ecommerce founders",
@@ -597,9 +579,7 @@ export const solutions: Solution[] = [
     sub: "I design ecommerce experiences built for conversion, trust, and speed.",
     offer: "Free 30-minute ecommerce UX audit. Send your store, I'll show you where carts die.",
     why: "Every step between interest and checkout leaks revenue. I design for conversion, trust, and speed, so the path to purchase is the path of least resistance.",
-    proofLine: "Work across ecommerce and DTC products.",
-    faqs: sharedFaqs,
-  },
+    proofLine: "Work across ecommerce and DTC products.",  },
   {
     slug: "real-estate", label: "Real Estate",
     eyebrow: "Product design for real-estate founders",
@@ -607,9 +587,7 @@ export const solutions: Solution[] = [
     sub: "I design real-estate and proptech products that make dense data searchable, scannable, and actionable.",
     offer: "Free 30-minute real-estate UX audit. Send your product, I'll show you where users stall.",
     why: "Real-estate products drown in data. The win is search, filtering, and density that lead to action, not analysis paralysis. I design for the decision, not just the dataset.",
-    proofLine: "Work across proptech including Zoomprop and Lusardi Land.",
-    faqs: sharedFaqs,
-  },
+    proofLine: "Work across proptech including Zoomprop and Lusardi Land.",  },
   {
     slug: "gambling", label: "Gambling",
     eyebrow: "Product design for gaming & gambling founders",
@@ -617,9 +595,7 @@ export const solutions: Solution[] = [
     sub: "I design gaming and gambling products that balance speed, trust, regulation, and retention.",
     offer: "Free 30-minute UX audit. Send your product, I'll show you where players drop off.",
     why: "Gambling products need speed and trust under heavy regulation, with retention as the north star. I design flows that stay compliant without killing momentum.",
-    proofLine: "Work across regulated gaming products.",
-    faqs: sharedFaqs,
-  },
+    proofLine: "Work across regulated gaming products.",  },
   {
     slug: "b2b", label: "B2B SaaS",
     eyebrow: "Product design for B2B SaaS founders",
@@ -627,9 +603,7 @@ export const solutions: Solution[] = [
     sub: "I design B2B SaaS products, dashboards, activation, and retention, so users reach value fast and stick.",
     offer: "Free 30-minute B2B SaaS UX audit. Send your product, I'll show you where activation breaks.",
     why: "B2B SaaS lives on activation and retention. If users don't reach value fast, they churn before they pay. I design the dashboards and flows that get them there.",
-    proofLine: "Work across B2B SaaS including Propulsion, Frequency Ads, and Reliant.ai.",
-    faqs: sharedFaqs,
-  },
+    proofLine: "Work across B2B SaaS including Propulsion, Frequency Ads, and Reliant.ai.",  },
 ];
 
 export const pricing = {

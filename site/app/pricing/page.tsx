@@ -114,9 +114,9 @@ export default function Pricing() {
       {/* Pricing FAQ */}
       <section className="border-t border-line py-16">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-2xl font-semibold tracking-[-0.02em] text-ink">Pricing questions</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.02em] text-ink">{faq.heading}</h2>
           <dl className="mt-6 divide-y divide-line border-y border-line">
-            {faq.items.slice(0, 3).map((item, i) => (
+            {faq.items.map((item, i) => (
               <div key={i} className="py-5">
                 <dt className="text-[17px] font-medium text-ink">{item.q}</dt>
                 <dd className="mt-2 text-[16px] text-sub">{item.a}</dd>
