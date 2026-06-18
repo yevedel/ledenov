@@ -45,7 +45,7 @@ export const hero = {
   headline: ["Design that ships.", "Not Figma files that don't."],
   sub: "Past the MVP scramble, not ready for a full design team. I'm the one senior partner who turns messy product, site, and brand into things that actually launch, and founders keep coming back, a 5th and 10th project deep.",
   proof: ["Clients return for a 5th & 10th project", "10+ years senior", "Top Rated Plus", "~$2M delivered"],
-  priceNote: "Projects from $500. Senior judgment, not agency overhead.",
+  priceNote: "Scoped to your stage, from a single $500 flow to an embedded weekly partner.",
 };
 
 // NOTE: switched from unsubstantiated megabrand logos (Google/Nestlé/…) to NAMED real clients,
@@ -58,23 +58,25 @@ export const logos = {
 
 export const about = {
   heading: "You don't need a design team. You need one person who's seen this before.",
-  body: "I've spent 10+ years designing products, sites, and brands across fintech, AI, healthcare, and B2B SaaS. 950+ projects, ~$2M delivered. I know which decisions matter at your stage and which can wait. That judgment is what you're actually buying.",
+  body: "I've spent 10+ years designing products, sites, and brands across fintech, AI, healthcare, and B2B SaaS, much of it the same founders coming back, ~$2M delivered. I know which decisions matter at your stage and which can wait. That judgment is what you're actually buying.",
   link: { label: "More about me", href: "/about" },
 };
 
 export const industries = {
   heading: "I go deep where it counts",
   sub: "One partner, but not a generalist. Pick your space, see the work and the thinking behind it.",
+  // Order leads with the deep, credible verticals; Web3/Gambling demoted to the end
+  // (synthetic audit: equal-weight Gambling/Web3 next to regulated fintech read as generalist).
   items: [
-    { label: "AI", slug: "ai" },
-    { label: "Web3", slug: "web3" },
     { label: "Fintech", slug: "fintech" },
+    { label: "B2B", slug: "b2b" },
     { label: "Healthcare", slug: "healthcare" },
+    { label: "AI", slug: "ai" },
     { label: "Edtech", slug: "edtech" },
     { label: "Ecommerce", slug: "ecommerce" },
     { label: "Real Estate", slug: "real-estate" },
+    { label: "Web3", slug: "web3" },
     { label: "Gambling", slug: "gambling" },
-    { label: "B2B", slug: "b2b" },
   ],
 };
 
@@ -113,7 +115,7 @@ export const advantages = {
   heading: "You've been burned before. Here's why this is different.",
   intro: "Most founders come to me after paying twice. Once for the cheap version, then again to fix it. Here's the honest comparison.",
   blocks: [
-    { vs: "vs a cheap freelancer", got: "Pretty Figma files, no product logic, nothing that ships.", get: "Senior product judgment. Decisions backed by 10+ years and 950+ projects, designed to launch, not to admire." },
+    { vs: "vs a cheap freelancer", got: "Pretty Figma files, no product logic, nothing that ships.", get: "Senior product judgment. Decisions backed by 10+ years and hundreds of shipped projects, designed to launch, not to admire." },
     { vs: "vs an agency", got: "Account managers, slow cycles, a markup on every hour.", get: "One direct line. You talk to the person doing the work. Founder-speed turnaround, no middlemen." },
     { vs: "vs DIY-AI (v0, Lovable)", got: "Generic output that looks like everyone else's.", get: "AI-accelerated, senior-directed. I use the same tools, then apply the judgment they can't." },
     { vs: "vs an early full-time hire", got: "A 3-month search and a salaried bet before you have product clarity.", get: "Senior output now. Commit to a team later, once the direction is proven." },
@@ -149,7 +151,7 @@ export const projects = {
 export const faq = {
   heading: "Straight answers",
   items: [
-    { q: "What does it cost?", a: "Projects start at $500, that's one core flow redesigned and handed off build-ready. For ongoing work I run at $1,000/week. We scope the exact number on the call, so you commit knowing it, no surprise invoices." },
+    { q: "What does it cost?", a: "It's scoped to your stage. A focused piece, one core flow redesigned and handed off build-ready, starts at $500; ongoing senior work runs $1,000/week. We set the exact number on the call, so you commit knowing it, no surprise invoices." },
     { q: "How fast can you start, and how long does it take?", a: "I usually take on a new project within a week. A focused scope ships from two weeks, longer for bigger builds. We set the timeline on the call so you're not guessing." },
     { q: "Do you work solo? What if I need more than one person?", a: "Yes, solo and senior. That's the value: one accountable partner, no middlemen. When you genuinely need a team, I help you build one, later, once the direction is proven." },
     { q: "Do you sign an NDA?", a: "Yes, always. Your product and data stay yours." },
@@ -494,7 +496,7 @@ export const aboutPage = {
   hero: { eyebrow: "My experience, my story", title: "Beyond Pixels", statement: "10 years of shaping digital clarity." },
   intro:
     "I'm Yev Ledenov. For 10+ years I've designed products, sites, and brands for founders, across fintech, AI, healthcare, and B2B SaaS. Most of that work came through Upwork, where I've been Top Rated Plus for over a decade. Founders hire me when they're too early for a design team and too serious to ship something half-baked.",
-  proof: ["~$2M earned on Upwork", "950+ projects", "Top Rated Plus, 10+ years", "Based in Zagreb, work worldwide"],
+  proof: ["~$2M earned on Upwork", "Clients who come back", "Top Rated Plus, 10+ years", "Based in Zagreb, work worldwide"],
   recognition: {
     eyebrow: "Recognition",
     heading: "Recognition",
