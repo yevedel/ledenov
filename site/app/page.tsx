@@ -1,5 +1,6 @@
 import Hero from "./components/Hero";
 import Ticker from "./components/Ticker";
+import Numbers from "./components/Numbers";
 import Advantages from "./components/Advantages";
 import Faq from "./components/Faq";
 import {
@@ -19,6 +20,7 @@ export default function Home() {
       <Hero />
       <Ticker />
       <Logos />
+      <Numbers />
       <About />
       <Industries />
       <Services />

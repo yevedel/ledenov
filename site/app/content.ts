@@ -23,9 +23,10 @@ export const site = {
 export const nav = [
   { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
-  { label: "Solutions", href: "/#industries" },
+  { label: "Services", href: "/#services" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Blog", href: "/blog" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export const ticker = [
@@ -385,17 +386,50 @@ export const pricing = {
   faqRef: true,
 };
 
-export const aboutPage = {
-  eyebrow: "About",
-  title: "I'm the senior designer you hire before you can afford a team.",
-  intro:
-    "I'm Yev Ledenov. For 10+ years I've designed products, sites, and brands for founders, across fintech, AI, healthcare, and B2B SaaS. 950+ projects, ~$2M delivered, Upwork Top Rated Plus. Founders hire me when they're too early for a design team and too serious to ship something half-baked.",
-  sections: [
-    { h: "One partner, not three vendors", p: "Most founders end up coordinating a UX person, a web person, and a brand person, then stitching the seams themselves. I cover product UX/UI, sites, brand, and AI-assisted workflows as one accountable partner. Breadth isn't a gimmick, it's fewer handoffs, one direct line, and decisions that hold together." },
-    { h: "Senior judgment, not just execution", p: "The value isn't pixels, it's knowing which decisions matter at your stage and which can wait. I've seen how the best operate and I bring that rigor to early-stage products, without the agency overhead or the wait for a full-time hire." },
-    { h: "Built to ship", p: "I design with what ships in mind, front-end-aware work that drops cleanly into React/Next.js/Tailwind/Webflow. AI-accelerated where it helps, senior-directed so it never goes generic. The output is production-ready, not a folder of Figma files." },
+// Big-number social proof (Figma "Numbers" section). Upwork-anchored — it's the main client source.
+export const numbers = {
+  eyebrow: "Numbers",
+  heading: "A singular vision with extraordinary reach.",
+  note: "Most of my clients come through Upwork, where I've been Top Rated Plus for over a decade.",
+  upworkHref: "https://www.upwork.com/freelancers/yevledenov",
+  stats: [
+    { pre: "", num: 950, suf: "+", label: "Projects completed", desc: "950+ contracts on Upwork for founders across fintech, AI, healthcare, and B2B SaaS." },
+    { pre: "~$", num: 2, suf: "M", label: "Earned on Upwork", desc: "Top Rated Plus, the top tier of talent, for 10+ years running." },
+    { pre: "", num: 10, suf: "+", label: "Years of experience", desc: "A decade of senior product, site, and brand design, end to end." },
   ],
-  proof: ["~$2M delivered", "950+ projects", "Top Rated Plus, 10+ years", "Based in Zagreb, work worldwide"],
+};
+
+export const aboutPage = {
+  hero: { eyebrow: "My experience, my story", title: "Beyond Pixels", statement: "10 years of shaping digital clarity." },
+  intro:
+    "I'm Yev Ledenov. For 10+ years I've designed products, sites, and brands for founders, across fintech, AI, healthcare, and B2B SaaS. Most of that work came through Upwork, where I've been Top Rated Plus for over a decade. Founders hire me when they're too early for a design team and too serious to ship something half-baked.",
+  proof: ["~$2M earned on Upwork", "950+ projects", "Top Rated Plus, 10+ years", "Based in Zagreb, work worldwide"],
+  recognition: {
+    eyebrow: "Recognition",
+    heading: "Recognition",
+    cards: [
+      { big: "Top Rated Plus", label: "On Upwork, 10+ years", desc: "The top tier of Upwork talent, and my main, steady source of clients." },
+      { big: "950+", label: "Completed projects", desc: "Proven, repeat experience in UX/UI across many industries, not one-offs." },
+      { big: "~$2M", label: "Earned on platform", desc: "Real client work at scale, with clients who come back." },
+    ],
+  },
+  method: {
+    eyebrow: "My method",
+    heading: "How I work",
+    note: "One senior partner across the whole arc, from research to a build-ready handoff. No relay race between vendors.",
+    nodes: ["Research", "UX", "UI", "Testing", "Handoff"],
+  },
+  journey: {
+    eyebrow: "Journey",
+    heading: "Designs shaped by travel",
+    body: "I've worked from many corners of Europe and beyond. Different cities, different problems, different users. That range shows up in the work: more empathy, more visual vocabulary, fewer assumptions.",
+    places: ["Croatia — Zagreb", "Croatia — Dubrovnik", "Greece — Santorini", "Norway — Oslo", "Estonia — Tallinn", "Portugal — Madeira"],
+  },
+  principles: [
+    { h: "One partner, not three vendors", p: "Most founders end up coordinating a UX person, a web person, and a brand person, then stitching the seams themselves. I cover product UX/UI, sites, brand, and AI-assisted workflows as one accountable partner. Fewer handoffs, one direct line, decisions that hold together." },
+    { h: "Senior judgment, not just execution", p: "The value isn't pixels, it's knowing which decisions matter at your stage and which can wait. I bring that rigor to early-stage products, without the agency overhead or the wait for a full-time hire." },
+    { h: "Built to ship", p: "I design with what ships in mind, front-end-aware work that drops cleanly into React/Next.js/Tailwind/Webflow. AI-accelerated where it helps, senior-directed so it never goes generic." },
+  ],
 };
 
 export const reviewsPage = {

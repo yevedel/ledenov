@@ -108,8 +108,8 @@ export function Process() {
     <section id="process" className="border-t border-line py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-orange">Process</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl">{proc.heading}</h2>
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-sub">Process</p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.02em] text-orange sm:text-5xl">{proc.heading}</h2>
           <p className="mt-4 max-w-2xl text-[17px] text-sub">{proc.sub}</p>
         </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

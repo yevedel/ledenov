@@ -6,68 +6,72 @@ import { nav, site } from "../content";
 import LetsTalk from "./LetsTalk";
 
 export default function SiteHeader() {
-  const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenu(false);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-40 border-b transition-colors ${
-        scrolled ? "border-line bg-bg/85 backdrop-blur-md" : "border-transparent bg-bg/0"
-      }`}
-    >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
-        <Link href="/" className="text-xl font-semibold tracking-tight text-ink">
+    <header className="sticky top-0 z-40">
+      <div className="relative mx-auto flex max-w-6xl items-center justify-center px-6 py-4">
+        {/* logo, left */}
+        <Link
+          href="/"
+          className="absolute left-6 top-1/2 -translate-y-1/2 text-xl font-semibold tracking-tight text-ink"
+        >
           {site.name}
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
-          {nav.map((n) => (
-            <Link key={n.label} href={n.href} className="text-[15px] text-sub transition-colors hover:text-ink">
-              {n.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <div className="hidden md:block">
-            <LetsTalk variant="nav" />
-          </div>
+        {/* centered floating pill */}
+        <nav className="flex items-center gap-1 rounded-full border border-line bg-surface/85 p-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-md">
           <button
             type="button"
-            className="md:hidden text-ink"
             aria-label="Menu"
             aria-expanded={menu}
             onClick={() => setMenu((v) => !v)}
+            className="flex h-9 w-9 items-center justify-center rounded-full text-ink hover:bg-bg"
           >
-            <span className="text-2xl leading-none">{menu ? "×" : "≡"}</span>
+            <span className="text-lg leading-none">{menu ? "×" : "≡"}</span>
           </button>
-        </div>
-      </div>
 
-      {menu && (
-        <div className="border-t border-line bg-bg px-6 py-4 md:hidden">
-          <nav className="flex flex-col gap-3">
+          <div className="hidden items-center gap-0.5 md:flex">
             {nav.map((n) => (
               <Link
                 key={n.label}
                 href={n.href}
-                className="text-[15px] text-ink"
-                onClick={() => setMenu(false)}
+                className="rounded-full px-3.5 py-2 text-[14px] text-sub transition-colors hover:bg-bg hover:text-ink"
               >
                 {n.label}
               </Link>
             ))}
-            <div className="pt-2">
-              <LetsTalk variant="primary" />
+          </div>
+
+          <div className="ml-1">
+            <LetsTalk variant="nav" />
+          </div>
+        </nav>
+      </div>
+
+      {/* menu overlay (mobile + the ≡ affordance) */}
+      {menu && (
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="rounded-2xl border border-line bg-surface p-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
+            <div className="grid gap-1 sm:grid-cols-2">
+              {nav.map((n) => (
+                <Link
+                  key={n.label}
+                  href={n.href}
+                  className="rounded-xl px-4 py-3 text-[15px] text-ink hover:bg-bg"
+                  onClick={() => setMenu(false)}
+                >
+                  {n.label}
+                </Link>
+              ))}
             </div>
-          </nav>
+          </div>
         </div>
       )}
     </header>
