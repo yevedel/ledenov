@@ -207,6 +207,14 @@
   .fctag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink)}
   .fcline{font-size:16px;font-weight:500;line-height:1.35;margin:12px 0 0;color:var(--ink)}
   .fcgo{margin-top:auto;padding-top:20px;font-size:14px;font-weight:500;color:var(--sub)}.fccard:hover .fcgo{color:var(--orange)}
+  .wgrid3{grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:760px){.wgrid3{grid-template-columns:1fr}}
+  .waytier{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--rad);padding:28px}
+  .waytier.on{border-color:var(--orange);background:rgba(255,239,234,.5)}
+  .wwho{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink);margin:0}
+  .waytier h3{font-size:20px;margin:12px 0 0}
+  .wprice{font-size:15px;font-weight:500;color:var(--sub);margin:4px 0 0}
+  .wdesc{font-size:15px;color:var(--sub);line-height:1.5;margin:16px 0 0;flex:1}
+  .waytier .btn{margin-top:24px;align-self:flex-start}
   @media(max-width:760px){.fcgrid{grid-template-columns:1fr 1fr}}@media(max-width:420px){.fcgrid{grid-template-columns:1fr}}
   .risk{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;padding:0;margin:28px 0 0;font-size:13px;color:var(--sub)}
   .risk li{display:flex;gap:6px}.risk li::before{content:"✓";color:var(--orange)}
@@ -362,6 +370,9 @@ const C = {
   outcomes:{heading:"What you walk away with",items:[["A product that ships","Production-ready design, not a folder of Figma files that never launches."],["Clarity you can show investors","A product and story that look funded, before you are."],["One partner, not three vendors","Product, site, and brand from one accountable person. No coordination tax."],["Senior decisions, made fast","The right calls for your stage, at founder speed, without the agency overhead."]]},
   loyalty:{heading:"Founders don't just hire me once. They come back.",facts:[["5","contracts with one client since 2016","Benjamin Greene"],["10th","design together, and counting","Mario Cimmino"],["1+ yr","embedded like an internal team member","Scott Morris, Propulsion"]]},
   riskReversal:["NDA on every project","Scoped on a call, no surprise invoices","Stop anytime, no lock-in"],
+  ways:{eyebrow:"Ways to work together",heading:"One partner, three ways in.",sub:"Start as small as a single flow, or bring me in as your weekly design partner. Same senior judgment either way.",
+    tiers:[["One flow","from $500","Pre-seed, testing the water","A single core flow redesigned and handed off build-ready. No retainer, no call required, start with the free async teardown.","Start with a teardown","#audit",false],["Scoped project","from $2,000","A defined outcome","A site, an app surface, or a design system, scoped on a call to a fixed outcome and timeline. No surprise invoices.","Book a call","#book",false],["Embedded partner","$1,000 / week","Scaling, needs a senior partner","Your senior design partner across product, site, and brand, week to week. Priced like a real engagement, stop anytime.","Book a call","#book",true]],
+    continuity:"Files stay build-ready and documented, I keep a vetted backup designer on call, and I hand over cleanly if you ever scale to an in-house team."},
   numbers:{heading:"A decade of senior work, and clients who keep coming back.",note:"Top Rated Plus on Upwork for 10+ years. The volume is mostly repeat founders, not one-off gigs.",
     stats:[["",10,"+","Years, senior end to end","A decade of senior product, site, and brand design, from strategy to build-ready handoff."],["~$",2,"M","Delivered for founders","Top Rated Plus, the top tier of talent, for 10+ years running, with clients who return."],["",950,"+","Projects, mostly repeat","950+ contracts across fintech, AI, healthcare, and B2B SaaS, much of it the same founders coming back."]]},
   about2:{eyebrow:"My experience, my story",title:"Beyond Pixels",statement:"10 years of shaping digital clarity.",
@@ -404,7 +415,7 @@ const C = {
   faq:[
     ["What does it cost?","It's scoped to your stage. A focused piece, one core flow redesigned and handed off build-ready, starts at $500; ongoing senior work runs $1,000/week. We set the exact number on the call, so you commit knowing it, no surprise invoices."],
     ["How fast can you start, and how long does it take?","I usually take on a new project within a week. A focused scope ships from two weeks, longer for bigger builds. We set the timeline on the call so you're not guessing."],
-    ["Do you work solo? What if I need more than one person?","Yes, solo and senior. That's the value: one accountable partner, no middlemen. When you genuinely need a team, I help you build one, later, once the direction is proven."],
+    ["Do you work solo? What if I need more than one person?","Yes, solo and senior. That's the value: one accountable partner, no middlemen. I'm not a single point of failure either: files stay build-ready and documented, I keep a vetted backup designer on call, and I hand over cleanly if you ever scale to an in-house team."],
     ["Do you sign an NDA?","Yes, always. Your product and data stay yours."],
     ["What do you actually deliver?","Production-ready design (Figma), front-end-aware handoff for React/Next.js/Tailwind/Webflow, and the thinking behind every decision."],
     ["Which industries do you know?","Fintech, AI, healthcare, B2B SaaS, Web3, ecommerce, real estate, and more."],
@@ -530,6 +541,9 @@ function auditS(){const a=C.audit;return `<section id="audit"><div class="wrap">
   <p class="sub" style="font-size:13px;margin-top:14px">Free · async · no call required · I reply within one business day</p>
 </div></div></section>`;}
 function auditSubmit(e){e.preventDefault();const f=e.target;f.style.display="none";const ok=f.parentElement.querySelector(".auditok");if(ok)ok.hidden=false;}
+function waysS(){const w=C.ways;return `<section id="ways"><div class="wrap">${sectionHead(w.eyebrow,w.heading,w.sub)}
+  <div class="grid wgrid3" data-reveal>${w.tiers.map(t=>`<div class="waytier${t[7]?" on":""}"><p class="wwho">${t[2]}</p><h3>${t[0]}</h3><p class="wprice">${t[1]}</p><p class="wdesc">${t[3]}</p><a class="btn ${t[7]?"btn-primary":"btn-ghost"}" href="${t[5]}" onclick="event.preventDefault();document.getElementById('${t[5]==="#audit"?"audit":"book"}').scrollIntoView({behavior:'smooth'})">${t[4]} →</a></div>`).join("")}</div>
+  <p data-reveal class="sub" style="max-width:760px;margin-top:24px;font-size:15px"><b style="color:var(--ink)">No bottleneck, no bus factor.</b> ${w.continuity}</p></div></section>`;}
 function featuredCaseS(){const c=C.cases.paladir;return `<section id="featured-case"><div class="wrap">${sectionHead("Featured case",c.headline,c.subhead)}
   <div class="grid fcgrid" data-reveal>${c.metrics.slice(0,4).map(m=>`<div class="fcm"><div class="fcv">${cnt(m.pre,m.num,m.suf)}</div><p class="sub" style="font-size:14px;margin-top:8px;line-height:1.3">${m.l}</p></div>`).join("")}</div>
   <div data-reveal style="margin-top:28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap"><a class="btn btn-primary" data-link href="#/work/paladir">Read the full case →</a>${c.liveUrl?`<a class="link" href="${c.liveUrl}" target="_blank" rel="noopener">View it live ↗</a>`:""}<span class="sub" style="font-size:13px">${c.tags.slice(0,3).join(" · ")}</span></div>
@@ -584,6 +598,7 @@ function home(){
   <section><div class="wrap">${sectionHead("Work","Selected work","A few in depth, the rest as a quick look.")}
     ${workGrid(C.allWork.slice(0,6))}
     <p data-reveal style="margin-top:28px"><a class="link" data-link href="#/work">See all work →</a></p></div></section>
+  ${waysS()}
   ${auditS()}
   <section><div class="wrap narrow"><div data-reveal><div class="eyebrow">FAQ</div><h2>Straight answers</h2></div>${faqList(C.faq)}</div></section>
   ${bookSection()}`;

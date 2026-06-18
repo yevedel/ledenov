@@ -153,7 +153,7 @@ export const faq = {
   items: [
     { q: "What does it cost?", a: "It's scoped to your stage. A focused piece, one core flow redesigned and handed off build-ready, starts at $500; ongoing senior work runs $1,000/week. We set the exact number on the call, so you commit knowing it, no surprise invoices." },
     { q: "How fast can you start, and how long does it take?", a: "I usually take on a new project within a week. A focused scope ships from two weeks, longer for bigger builds. We set the timeline on the call so you're not guessing." },
-    { q: "Do you work solo? What if I need more than one person?", a: "Yes, solo and senior. That's the value: one accountable partner, no middlemen. When you genuinely need a team, I help you build one, later, once the direction is proven." },
+    { q: "Do you work solo? What if I need more than one person?", a: "Yes, solo and senior. That's the value: one accountable partner, no middlemen. I'm not a single point of failure either: files stay build-ready and documented, I keep a vetted backup designer on call, and I hand over cleanly if you ever scale to an in-house team." },
     { q: "Do you sign an NDA?", a: "Yes, always. Your product and data stay yours." },
     { q: "What do you actually deliver?", a: "Production-ready design (Figma), front-end-aware handoff for React/Next.js/Tailwind/Webflow, and the thinking behind every decision." },
     { q: "Which industries do you know?", a: "Fintech, AI, healthcare, B2B SaaS, Web3, ecommerce, real estate, and more. See the industry pages for niche-specific work." },
@@ -192,6 +192,20 @@ export const audit = {
     endpoint: "",
   },
   altCta: "Prefer to talk it through? Book a call instead.",
+};
+
+// Ways to work together — 3 tiers so each segment (pre-seed / project / scaling) sees one built for it.
+// Closes the synthetic-audit "contractor-cheap, no partner tier" + solo bus-factor gaps.
+export const ways = {
+  eyebrow: "Ways to work together",
+  heading: "One partner, three ways in.",
+  sub: "Start as small as a single flow, or bring me in as your weekly design partner. Same senior judgment either way.",
+  tiers: [
+    { name: "One flow", price: "from $500", who: "Pre-seed, testing the water", desc: "A single core flow redesigned and handed off build-ready. No retainer, no call required, start with the free async teardown.", cta: { label: "Start with a teardown", href: "#audit" } },
+    { name: "Scoped project", price: "from $2,000", who: "A defined outcome", desc: "A site, an app surface, or a design system, scoped on a call to a fixed outcome and timeline. No surprise invoices.", cta: { label: "Book a call", href: "#book" } },
+    { name: "Embedded partner", price: "$1,000 / week", who: "Scaling, needs a senior partner", desc: "Your senior design partner across product, site, and brand, week to week. Priced like a real engagement, stop anytime.", cta: { label: "Book a call", href: "#book" }, highlight: true },
+  ],
+  continuity: "Files stay build-ready and documented, I keep a vetted backup designer on call, and I hand over cleanly if you ever scale to an in-house team.",
 };
 
 // What the founder walks away with (outcome framing, not credentials).

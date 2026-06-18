@@ -3,6 +3,7 @@ import Ticker from "./components/Ticker";
 import Numbers from "./components/Numbers";
 import Advantages from "./components/Advantages";
 import FeaturedCase from "./components/FeaturedCase";
+import Ways from "./components/Ways";
 import Faq from "./components/Faq";
 import {
   Logos,
@@ -35,6 +36,7 @@ export default function Home() {
       <FeaturedCase />
       <Testimonials />
       <Projects />
+      <Ways />
       <AuditOffer />
       <Faq />
       <BookCall />
