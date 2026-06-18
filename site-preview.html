@@ -214,6 +214,19 @@
   .wcap{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;font-size:15px;font-weight:500}
   .wcap .sub2{color:var(--sub);font-weight:400;font-size:13px}
   .g1{background:linear-gradient(135deg,#fff1ea,#ffd2c0)}.g2{background:linear-gradient(135deg,#f4f4f5,#e7e7ea)}.g3{background:linear-gradient(135deg,#fbe9e2,#eef0f2)}.g4{background:linear-gradient(135deg,#ededed,#fbfbfb)}.g5{background:linear-gradient(135deg,#fff0e9,#f1f1f1)}.g6{background:linear-gradient(135deg,#eef0f2,#e2e4e7)}
+  /* review card extras */
+  .rfoot{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:16px;margin-top:18px}
+  .rthumb{width:68px;height:44px;border-radius:8px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .rthumb span{font-size:10px;font-weight:600;color:rgba(27,27,27,.45);text-align:center;line-height:1.1;padding:0 4px}
+  .rresult{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--orange-ink);margin-top:10px}
+  /* work hover overlay + masonry */
+  .woverlay{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:14px;background:linear-gradient(to top,rgba(0,0,0,.55),transparent);opacity:0;transition:opacity .3s;color:#fff}
+  .wcard:hover .woverlay{opacity:1}
+  .woverlay span{font-size:15px;font-weight:500}.woverlay small{font-size:12px;color:rgba(255,255,255,.8)}
+  .war{opacity:1}
+  .wmasonry{columns:3;column-gap:18px}@media(max-width:900px){.wmasonry{columns:2}}@media(max-width:560px){.wmasonry{columns:1}}
+  .wmitem{break-inside:avoid;margin-bottom:18px}
+  .wa0{aspect-ratio:4/3}.wa1{aspect-ratio:16/11}.wa2{aspect-ratio:3/4}.wa3{aspect-ratio:16/10}.wa4{aspect-ratio:1/1}.wa5{aspect-ratio:16/12}
 
   .note{background:#fff7f3;border-bottom:1px dashed var(--orange);color:var(--orange-ink);font-size:12px;text-align:center;padding:6px}
 </style>
@@ -237,7 +250,7 @@
       <button class="btn btn-primary" data-lt>Let's talk ▾</button>
       <div class="lt-panel">
         <a class="lt-book" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener"><b>Book a call</b><small>20 min. Tell me the problem, I'll tell you straight.</small></a>
-        <a class="lt-msg" href="https://t.me/yevedel" target="_blank" rel="noopener">Message me on Telegram</a>
+        <a class="lt-msg" href="https://wa.me/0000000000" target="_blank" rel="noopener">Message me on WhatsApp</a>
         <div class="lt-note">I reply within hours.</div>
       </div>
     </div>
@@ -261,7 +274,7 @@
         <li><a href="#">LinkedIn</a></li></ul></div>
       <div><h4>Contact</h4><ul>
         <li><a href="mailto:yevledenov@gmail.com">yevledenov@gmail.com</a></li>
-        <li><a href="https://t.me/yevedel" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a></li>
         <li style="color:var(--sub)">Zagreb, Croatia</li></ul></div>
     </div>
   </div>
@@ -346,18 +359,20 @@ const C = {
       ["Project","from $500","scoped","A defined piece of work, scoped on the call. Production-ready, front-end-aware handoff.",true],
       ["Ongoing","$1,000","per week","Embedded senior partner for product, site, and brand. One direct line.",false]]},
   reviews:[
-    ["Yev worked with us for over a year. He was truly like a member of our internal team. We tackled some difficult design problems together.","Scott Morris","Propulsion (US)"],
-    ["He understands both the big picture and the details. I would work with him again.","Zach Wagner","Product MVP (US)"],
-    ["The consummate professional! Hire with confidence!","Ozzie Burnham","Finance SaaS startup (US)"],
-    ["The final output exceeded expectations.","Patrick McCarthy","Product lead (UK)"],
-    ["One of the most talented designers I've ever worked with.","Tessa Scordio","Frequency Ads (US)"],
-    ["Best designer on Upwork, as simple as that.","Dav G","SaaS SMS platform (France)"],
-    ["Yev is a top tier designer.","Mike Garite","Zoomprop (US)"],
-    ["One of the best I've worked with, a keen eye for detail and great communication.","Alvin Leer","Pinecone (Norway)"],
-    ["Took our app to the next level. The new look and feel really pops.","Michael Dausmann","Trolleymate (Sydney)"],
-    ["An absolute pleasure. Professional, communicative, and creative.","Yehor Barkanov","EverTwo Films (LA)"],
-    ["Always amazing and high quality work! This is probably our 10th design together.","Mario Cimmino","Website CRO partner (US)"],
-    ["Fast work, to the point, very high quality.","Alejandro Barrera","(Chile)"]],
+    ["B2B SaaS","Propulsion","Embedded partner, 1+ year","Yev worked with us for over a year. He was truly like a member of our internal team. We tackled some difficult design problems together.","Scott Morris","Propulsion (US)"],
+    ["MVP","Product MVP","MVP designed end to end","He understands both the big picture and the details. I would work with him again.","Zach Wagner","Product MVP (US)"],
+    ["Fintech","Dragin","Finance SaaS UI/UX","The consummate professional! Hire with confidence!","Ozzie Burnham","Finance SaaS startup (US)"],
+    ["Sports","Clubrunna","Runner app UX, shipped","The final output exceeded expectations.","Patrick McCarthy","Product lead (UK)"],
+    ["Marketing site","Frequency Ads","Brand-grade marketing site","One of the most talented designers I've ever worked with.","Tessa Scordio","Frequency Ads (US)"],
+    ["SaaS","SMS platform","SaaS platform design","Best designer on Upwork, as simple as that.","Dav G","SaaS SMS platform (France)"],
+    ["Real Estate","Zoomprop","Proptech UX/UI","Yev is a top tier designer.","Mike Garite","Zoomprop (US)"],
+    ["Web","Pinecone","Website, end to end","One of the best I've worked with, a keen eye for detail and great communication.","Alvin Leer","Pinecone (Norway)"],
+    ["Web + Mobile","Luminal","Web + mobile design","Highly skilled and experienced UI/UX designer.","Aaron Carbon","Luminal (UAE)"],
+    ["Mobile","Trolleymate","App redesign","Took our app to the next level. The new look and feel really pops.","Michael Dausmann","Trolleymate (Sydney)"],
+    ["Brand + Web","EverTwo Films","Website + rebrand","An absolute pleasure. Professional, communicative, and creative.","Yehor Barkanov","EverTwo Films (LA)"],
+    ["Web / CRO","Landing CRO","10+ designs, repeat client","Always amazing and high quality work! This is probably our 10th design together.","Mario Cimmino","Website CRO partner (US)"],
+    ["Healthcare","Oral surgery site","Practice website","Yevhen was incredible. Very quick and love his style.","Cody Jordan","(US)"],
+    ["Brand","Galvanek","Brand identity","Great professionalism, creativity, and a strong sense of responsibility.","Galvanek Bau","(Germany)"]],
   solutions:{}
 };
 const sharedFaq=[C.faq[0],C.faq[1],C.faq[3]];
@@ -376,11 +391,12 @@ const sharedFaq=[C.faq[0],C.faq[1],C.faq[3]];
 /* ----------------------------- helpers ----------------------------- */
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const cnt=(pre,num,suf)=>`<span class="count" data-pre="${esc(pre)}" data-num="${num}" data-suf="${esc(suf)}">${esc(pre)}0${esc(suf)}</span>`;
-const ltPanel=()=>`<div class="lt"><button class="btn btn-primary" data-lt>Book a call ▾</button><div class="lt-panel"><a class="lt-book" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener"><b>Book a call</b><small>20 min. No pitch.</small></a><a class="lt-msg" href="https://t.me/yevedel" target="_blank" rel="noopener">Message me on Telegram</a></div></div>`;
+const ltPanel=()=>`<div class="lt"><button class="btn btn-primary" data-lt>Book a call ▾</button><div class="lt-panel"><a class="lt-book" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener"><b>Book a call</b><small>20 min. No pitch.</small></a><a class="lt-msg" href="https://wa.me/0000000000" target="_blank" rel="noopener">Message me on WhatsApp</a></div></div>`;
 const sectionHead=(eb,h,sub)=>`<div data-reveal><div class="eyebrow">${eb}</div><h2>${h}</h2>${sub?`<p class="sub">${sub}</p>`:""}</div>`;
 const wg=["g1","g2","g3","g4","g5","g6"];
-function workGrid(items){return `<div class="wgrid">${items.map((it,i)=>{const t=it[0],tag=it[1],slug=it[2];const inner=`<div class="wthumb ${wg[i%6]}"><span class="wname">${t}</span><span class="wtag">${tag}</span>${slug?'<span class="war">→</span>':''}</div><div class="wcap"><span>${t}</span><span class="sub2">${slug?"Case study":"Preview"}</span></div>`;return slug?`<a class="wcard" data-reveal data-link href="#/work/${slug}">${inner}</a>`:`<div class="wcard" data-reveal>${inner}</div>`;}).join("")}</div>`;}
-const bookSection=()=>`<section id="book" class="center"><div class="wrap narrow"><div data-reveal><h2 style="font-size:clamp(30px,5vw,48px)">Let's talk</h2><p class="sub" style="margin:18px auto 0">Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p><div style="margin-top:28px;display:flex;justify-content:center">${ltPanel()}</div><p style="color:var(--sub);font-size:14px;margin-top:20px">Prefer to message? <a class="link" href="https://t.me/yevedel" target="_blank" rel="noopener">Telegram</a>. I reply fast.</p></div></div></section>`;
+function workTile(it,i,masonry){const t=it[0],tag=it[1],slug=it[2];const asp=masonry?(" wa"+(i%6)):"";const inner=`<div class="wthumb ${wg[i%6]}${asp}"><span class="wname">${t}</span><span class="wtag">${tag}</span><span class="war">${slug?"→":"•"}</span><div class="woverlay"><span>${t}</span><small>${slug?"Case study":"Preview"}</small></div></div>`;const card=slug?`<a class="wcard" data-reveal data-link href="#/work/${slug}">${inner}</a>`:`<div class="wcard" data-reveal>${inner}</div>`;return masonry?`<div class="wmitem">${card}</div>`:card;}
+function workGrid(items,masonry){return masonry?`<div class="wmasonry">${items.map((it,i)=>workTile(it,i,true)).join("")}</div>`:`<div class="wgrid">${items.map((it,i)=>workTile(it,i,false)).join("")}</div>`;}
+const bookSection=()=>`<section id="book" class="center"><div class="wrap narrow"><div data-reveal><h2 style="font-size:clamp(30px,5vw,48px)">Let's talk</h2><p class="sub" style="margin:18px auto 0">Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p><div style="margin-top:28px;display:flex;justify-content:center">${ltPanel()}</div><p style="color:var(--sub);font-size:14px;margin-top:20px">Prefer to message? <a class="link" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>. I reply fast.</p></div></div></section>`;
 
 /* ----------------------------- pages ----------------------------- */
 function numbers(){const n=C.numbers;return `<section><div class="wrap">
@@ -456,7 +472,7 @@ function about(){const a=C.about2;return `
 function work(){return `
   <section style="border-top:0"><div class="wrap" style="padding-top:72px">
     <div data-reveal><div class="eyebrow">Work</div><h1 style="margin-top:16px">Selected work</h1><p class="sub">A few in depth, not a wall of thumbnails. Product, site, and brand across fintech, AI, healthcare, and B2B SaaS.</p></div>
-    ${workGrid(C.allWork)}
+    ${workGrid(C.allWork,true)}
   </div></section>${bookSection()}`;}
 
 function casePage(){const c=C.cases.paladir;return `
@@ -498,7 +514,7 @@ function pricing(){const p=C.pricing;return `
 function reviews(){return `
   <section style="border-top:0"><div class="wrap" style="padding-top:72px">
     <div data-reveal><div class="eyebrow">Reviews</div><h1 style="margin-top:16px">What clients say</h1><p class="sub">Across Upwork and direct work. The strongest signal: many of them come back.</p></div>
-    <div class="grid tg" style="margin-top:36px">${C.reviews.map(([q,n,r])=>`<div class="card tcard" data-reveal><q>“${q}”</q><div class="who"><b>${n}</b><small>${r}</small></div></div>`).join("")}</div>
+    <div class="grid tg" style="margin-top:36px">${C.reviews.map((r,i)=>{const tag=r[0],proj=r[1],res=r[2],q=r[3],n=r[4],role=r[5];return `<div class="card tcard" data-reveal><span class="pill" style="width:fit-content">${tag}</span><q style="margin-top:14px;flex:1">“${q}”</q><div class="rfoot"><div class="rthumb ${wg[i%6]}"><span>${proj}</span></div><div style="min-width:0"><b style="display:block;font-size:14px">${n}</b><small style="color:var(--sub);font-size:12px">${role}</small></div></div><div class="rresult">↗ ${res}</div></div>`;}).join("")}</div>
   </div></section>${bookSection()}`;}
 
 function blog(){return `<section style="border-top:0"><div class="wrap narrow" style="padding-top:72px"><div data-reveal><div class="eyebrow">Blog</div><h1 style="margin-top:16px">Notes on product, design, and founders</h1><p class="sub">Practical, no fluff. Coming soon.</p><div class="ph" style="padding:50px;margin-top:32px">Articles are on the way. In the meantime, the fastest way to get value is a call.</div></div></div></section>${bookSection()}`;}
