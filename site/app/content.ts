@@ -157,6 +157,11 @@ export const faq = {
     { q: "Do you sign an NDA?", a: "Yes, always. Your product and data stay yours." },
     { q: "What do you actually deliver?", a: "Production-ready design (Figma), front-end-aware handoff for React/Next.js/Tailwind/Webflow, and the thinking behind every decision." },
     { q: "Which industries do you know?", a: "Fintech, AI, healthcare, B2B SaaS, Web3, ecommerce, real estate, and more. See the industry pages for niche-specific work." },
+    { q: "Do I own the files and IP?", a: "Yes. You own everything, full source files and rights. It's your product." },
+    { q: "Do you also build it, or just hand off?", a: "I design with what ships in mind, so the work drops cleanly into your stack (React/Next.js/Tailwind/Webflow), and I stay available during implementation. I don't disappear at hand-off." },
+    { q: "How do we communicate, and how often?", a: "A direct line, plus Slack or WhatsApp for the day-to-day. I reply within hours and show progress early and often, not one big reveal at the end." },
+    { q: "Can I see references and proof it worked?", a: "Yes, work and reviews are on the site. Upwork Top Rated Plus, 950+ projects, ~$2M delivered, and the strongest signal: clients who come back." },
+    { q: "What if it's not working out?", a: "No lock-in. Ongoing work pauses or stops anytime, and we pressure-test fit on the first call before we start." },
     { q: "What time zone are you in?", a: "Based in Zagreb (CET). I work across US, EU, and Australia time zones." },
   ],
 };
