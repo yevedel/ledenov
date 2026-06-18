@@ -9,9 +9,11 @@ import {
   projects,
   booking,
   site,
+  allWork,
 } from "../content";
 import Reveal from "./Reveal";
 import LetsTalk from "./LetsTalk";
+import WorkGrid from "./WorkGrid";
 
 export function Logos() {
   return (
@@ -175,14 +177,10 @@ export function Projects() {
           <h2 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl">{projects.heading}</h2>
           <p className="mt-4 max-w-2xl text-[17px] text-sub">{projects.sub}</p>
         </Reveal>
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {[0, 1, 2].map((i) => (
-            <Reveal key={i} delay={i * 60} className="aspect-[4/3] rounded-card border border-dashed border-line2 bg-surface">
-              <div className="flex h-full items-center justify-center text-[13px] text-sub">Case study →</div>
-            </Reveal>
-          ))}
+        <div className="mt-10">
+          <WorkGrid items={allWork.slice(0, 6)} />
         </div>
-        <Reveal className="mt-8">
+        <Reveal className="mt-10">
           <Link href={projects.link.href} className="text-[15px] font-medium text-orange hover:underline">
             {projects.link.label} →
           </Link>

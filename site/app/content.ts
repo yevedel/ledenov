@@ -241,13 +241,22 @@ export const cases: CaseDetail[] = [
   },
 ];
 
-// Extra cards for the /work grid (no detail page yet — shown as previews).
-export const workCards = [
-  { title: "Vuelo", blurb: "FCA-regulated travel fintech, flexible payments.", tag: "Fintech" },
-  { title: "HostIQ.ai", blurb: "SaaS for short-term-rental hosts, desktop + mobile.", tag: "SaaS" },
-  { title: "Reliant.ai", blurb: "Marketing & web for a B2B SaaS / AI product.", tag: "AI" },
-  { title: "Trolleymate", blurb: "Grocery comparison app redesign.", tag: "Mobile" },
-  { title: "Vozzy", blurb: "Car marketplace platform UI/UX.", tag: "Marketplace" },
+// Gallery grid (godly.website style). `slug` links to a case page; others are previews.
+// `img` is a screenshot path under /public/work — drop real screenshots there later.
+export type WorkItem = { title: string; tag: string; slug?: string; img?: string };
+export const allWork: WorkItem[] = [
+  { title: "Paladir", tag: "GRC / Compliance", slug: "paladir" },
+  { title: "Vuelo", tag: "Fintech" },
+  { title: "HostIQ.ai", tag: "SaaS" },
+  { title: "Reliant.ai", tag: "AI" },
+  { title: "Propulsion", tag: "B2B SaaS" },
+  { title: "Trolleymate", tag: "Mobile" },
+  { title: "Zoomprop", tag: "Real Estate" },
+  { title: "Eterno Health", tag: "Healthcare" },
+  { title: "Vozzy", tag: "Marketplace" },
+  { title: "EverTwo Films", tag: "Brand / Web" },
+  { title: "Firstfan", tag: "Music / Social" },
+  { title: "Clubrunna", tag: "Sports" },
 ];
 
 export type Solution = {

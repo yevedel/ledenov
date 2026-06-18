@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yev Ledenov — interactive site preview</title>
+<style>
+  /* Passenger Sans (licensed) — loaded from the Next app's fonts folder */
+  @font-face{font-family:"Passenger Sans";src:url("site/app/fonts/PassengerSans-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+  @font-face{font-family:"Passenger Sans";src:url("site/app/fonts/PassengerSans-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+  @font-face{font-family:"Passenger Sans";src:url("site/app/fonts/PassengerSans-Semibold.woff2") format("woff2");font-weight:600;font-display:swap}
+
+  :root{
+    --bg:#fafafa;--surface:#fff;--tint:#ffefea;--ink:#1b1b1b;--sub:#727272;
+    --line:#ececec;--line2:#e2e2e2;--orange:#ff3e02;--orange-ink:#9a2a07;--rad:14px;
+    --sans:"Passenger Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);letter-spacing:-.011em;-webkit-font-smoothing:antialiased;line-height:1.5}
+  a{color:inherit;text-decoration:none;cursor:pointer}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .narrow{max-width:760px}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+  h1{font-size:clamp(34px,6vw,62px);font-weight:600;line-height:1.05;letter-spacing:-.03em;margin:0}
+  h2{font-size:clamp(26px,3.4vw,40px);font-weight:600;letter-spacing:-.02em;margin:12px 0 0}
+  h3{font-weight:600}
+  .sub{color:var(--sub);font-size:17px;margin-top:16px;max-width:640px}
+  section{border-top:1px solid var(--line);padding:72px 0}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-size:15px;font-weight:500;padding:11px 20px;cursor:pointer;border:1px solid transparent;font-family:inherit}
+  .btn-primary{background:var(--orange);color:#fff}.btn-primary:hover{background:var(--orange-ink)}
+  .btn-ghost{border-color:var(--line2);color:var(--ink)}.btn-ghost:hover{border-color:var(--ink)}
+  .link{color:var(--orange);font-weight:500}.link:hover{text-decoration:underline}
+
+  .scarcity{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:8px 16px}
+  .scarcity .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--orange);vertical-align:middle;margin-right:6px}
+  .scarcity a{color:var(--orange);font-weight:500;margin-left:6px}
+
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(250,250,250,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  header.nav .row{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1100px;margin:0 auto}
+  .logo{font-size:20px;font-weight:600}
+  nav.links{display:flex;gap:28px}
+  nav.links a{color:var(--sub);font-size:15px}
+  nav.links a:hover,nav.links a.active{color:var(--ink)}
+  @media(max-width:820px){nav.links{display:none}}
+
+  /* Let's talk dropdown */
+  .lt{position:relative;display:inline-block}
+  .lt-panel{position:absolute;right:0;margin-top:8px;width:300px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px;box-shadow:0 12px 40px rgba(0,0,0,.1);z-index:50;display:none}
+  .lt.open .lt-panel{display:block}
+  .lt-book{display:block;border-radius:12px;background:var(--orange);color:#fff;padding:16px}
+  .lt-book:hover{background:var(--orange-ink)}
+  .lt-book b{display:block;font-size:15px}.lt-book small{color:rgba(255,255,255,.8);font-size:13px}
+  .lt-msg{display:block;text-align:center;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:8px;font-size:14px}
+  .lt-msg:hover{border-color:var(--ink)}
+  .lt-note{text-align:center;color:var(--sub);font-size:12px;padding:8px 0 2px}
+
+  .hero{position:relative;overflow:hidden;text-align:center;border-top:0}
+  .hero .inner{position:relative;max-width:880px;margin:0 auto;padding:88px 24px 56px}
+  .glow{position:absolute;left:50%;top:46%;width:660px;height:660px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,var(--orange) 0%,rgba(255,62,2,.32) 30%,rgba(255,62,2,0) 64%);animation:glow 7s ease-in-out infinite}
+  @keyframes glow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}50%{transform:translate(-50%,-50%) scale(1.09);opacity:1}}
+  .hero p.lede{position:relative;color:var(--sub);font-size:18px;max-width:640px;margin:24px auto 0}
+  .cta{position:relative;display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+  .proof{position:relative;margin-top:40px}
+  .avatars{display:flex;justify-content:center;margin-bottom:12px}
+  .avatars span{width:32px;height:32px;border-radius:50%;border:2px solid var(--bg);background:linear-gradient(135deg,var(--tint),var(--line2));margin-left:-8px}
+  .stats{font-size:13px;font-weight:500;margin-top:8px}.stats .s{margin:0 10px;color:var(--line2)}
+
+  .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);padding:12px 0}
+  .ticker .track{display:flex;gap:32px;white-space:nowrap;width:max-content;animation:marquee 40s linear infinite}
+  .ticker .item{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--sub);display:flex;align-items:center;gap:32px}
+  .ticker .item::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--orange);display:inline-block}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  .logos{text-align:center;padding:44px 0}
+  .logos p{color:var(--sub);font-size:13px;margin:0}
+  .logos ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px;margin:22px 0 0;padding:0}
+  .logos li{font-size:18px;font-weight:600;color:rgba(27,27,27,.35)}
+
+  .grid{display:grid;gap:16px;margin-top:36px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--rad);padding:24px}
+  .ind-grid{grid-template-columns:repeat(3,1fr)}
+  .ind{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:var(--rad);padding:18px 20px;font-weight:500}
+  .ind:hover{border-color:var(--orange)} .ind .ar{color:var(--sub)}
+  @media(max-width:640px){.ind-grid{grid-template-columns:repeat(2,1fr)}}
+
+  .svc{border-top:1px solid var(--line);margin-top:36px}
+  .svc .r{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .svc .q{font-size:19px;font-weight:500}.svc .a{color:var(--sub);font-size:16px}
+  @media(max-width:640px){.svc .r{grid-template-columns:1fr;gap:8px}}
+
+  .proc-grid{grid-template-columns:repeat(4,1fr)}
+  .num{width:36px;height:36px;border-radius:50%;background:var(--tint);color:var(--orange-ink);font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .card .p{color:var(--sub);font-size:15px;margin-top:8px}
+  @media(max-width:900px){.proc-grid{grid-template-columns:repeat(2,1fr)}}
+
+  .adv-grid{grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;margin-top:44px}
+  .adv{background:var(--surface);padding:26px}
+  .adv .vs{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink)}
+  .adv .got{color:var(--sub);font-size:14px;margin-top:16px}.adv .get{font-size:15px;margin-top:8px}.adv b{font-weight:600}
+  .adv-close{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:36px;flex-wrap:wrap}
+  .adv-close p{font-size:18px;font-weight:500;max-width:560px;margin:0}
+  @media(max-width:640px){.adv-grid{grid-template-columns:1fr}}
+
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .pill{background:var(--tint);color:var(--orange-ink);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:500}
+  .tg{grid-template-columns:repeat(3,1fr)}
+  .tcard q{font-size:15px;line-height:1.55;font-style:normal}
+  .tcard .who{border-top:1px solid var(--line);margin-top:20px;padding-top:16px}
+  .tcard .who b{display:block;font-size:14px}.tcard .who small{color:var(--sub)}
+  @media(max-width:900px){.tg{grid-template-columns:1fr 1fr}}@media(max-width:640px){.tg{grid-template-columns:1fr}}
+
+  details{border-bottom:1px solid var(--line)}
+  details summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:20px 0;font-size:17px;font-weight:500}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";color:var(--orange);font-size:22px}
+  details[open] summary::after{content:"–"}
+  details .ans{color:var(--sub);font-size:16px;margin:0 0 20px}
+
+  .crumbs{font-size:13px;color:var(--sub);padding-top:24px}
+  .crumbs a:hover{color:var(--ink)}.crumbs .sep{margin:0 6px;color:var(--line2)}
+
+  .metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;margin-top:36px}
+  .metric{background:var(--surface);padding:20px}
+  .metric .v{font-size:26px;font-weight:600;color:var(--orange);letter-spacing:-.02em}
+  .metric .l{font-size:13px;color:var(--sub);margin-top:4px;line-height:1.3}
+  @media(max-width:900px){.metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:560px){.metrics{grid-template-columns:repeat(2,1fr)}}
+  .ph{border:1px dashed var(--line2);border-radius:var(--rad);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:13px}
+  .meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 32px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;margin-top:36px}
+  .meta-grid dt{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sub)}
+  .meta-grid dd{margin:4px 0 0;font-size:15px}
+  @media(max-width:640px){.meta-grid{grid-template-columns:1fr 1fr}}
+  .block{border:1px solid var(--line);border-radius:var(--rad);background:var(--surface);padding:26px;margin-top:16px}
+  .block .n{font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--orange-ink)}
+  .block p{margin:12px 0 0;font-size:15px;line-height:1.55}
+  .block .res{color:var(--orange-ink)}
+  .outcome{background:var(--tint);border-radius:var(--rad);padding:26px;margin-top:32px}
+  .outcome p{color:var(--orange-ink);margin:10px 0 0;font-size:16px;line-height:1.55}
+
+  .plans{grid-template-columns:repeat(3,1fr)}
+  .plan{display:flex;flex-direction:column}
+  .plan.hl{border-color:var(--orange);box-shadow:0 12px 40px rgba(255,62,2,.08)}
+  .plan .pname{font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--orange-ink)}
+  .plan .price{font-size:34px;font-weight:600;margin-top:16px;letter-spacing:-.02em}
+  .plan .unit{font-size:14px;color:var(--sub);margin-left:6px}
+  .plan .pd{color:var(--sub);font-size:15px;margin:14px 0 0;flex:1}
+  @media(max-width:900px){.plans{grid-template-columns:1fr}}
+
+  .form input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;margin-bottom:10px;outline:none}
+  .form input:focus{border-color:var(--orange)}
+  .sol-hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  @media(max-width:900px){.sol-hero{grid-template-columns:1fr}}
+
+  footer{border-top:1px solid var(--line);background:var(--surface)}
+  .fcols{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding:52px 0 36px}
+  .fcols .tag{font-size:20px;font-weight:600;max-width:320px}
+  .fgrid{display:flex;gap:48px;flex-wrap:wrap}
+  .fgrid h4{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--sub);margin:0 0 12px}
+  .fgrid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
+  .fgrid a:hover{color:var(--orange)}
+  .fbottom{border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:22px 0;color:var(--sub);font-size:13px}
+  .center{text-align:center}
+
+  /* reveal — animates on enter AND exit (scroll up & down) */
+  [data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+  [data-reveal].show{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;transition:none}.glow,.track{animation:none}}
+
+  /* work gallery (godly-style) */
+  .wgrid{display:grid;gap:20px 18px;grid-template-columns:repeat(3,1fr);margin-top:36px}
+  @media(max-width:900px){.wgrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wgrid{grid-template-columns:1fr}}
+  .wcard{display:block;cursor:pointer}
+  .wthumb{position:relative;aspect-ratio:16/10;border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .5s}
+  .wcard:hover .wthumb{transform:scale(1.03)}
+  .wname{font-size:24px;font-weight:600;color:rgba(27,27,27,.22);letter-spacing:-.02em}
+  .wtag{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.9);border-radius:999px;padding:4px 10px;font-size:11px;font-weight:500}
+  .war{position:absolute;right:12px;top:12px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;color:var(--orange);opacity:0;transition:opacity .3s}
+  .wcard:hover .war{opacity:1}
+  .wcap{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;font-size:15px;font-weight:500}
+  .wcap .sub2{color:var(--sub);font-weight:400;font-size:13px}
+  .g1{background:linear-gradient(135deg,#fff1ea,#ffd2c0)}.g2{background:linear-gradient(135deg,#f4f4f5,#e7e7ea)}.g3{background:linear-gradient(135deg,#fbe9e2,#eef0f2)}.g4{background:linear-gradient(135deg,#ededed,#fbfbfb)}.g5{background:linear-gradient(135deg,#fff0e9,#f1f1f1)}.g6{background:linear-gradient(135deg,#eef0f2,#e2e4e7)}
+
+  .note{background:#fff7f3;border-bottom:1px dashed var(--orange);color:var(--orange-ink);font-size:12px;text-align:center;padding:6px}
+</style>
+</head>
+<body>
+<div class="note">Interactive preview of the whole site (open from file://). Real app = Next.js in <code>/site</code>. Form & some links are demo-only.</div>
+<div class="scarcity"><span class="dot"></span>Booking 2 new projects this quarter.<a data-link href="#/#book">Book a call →</a></div>
+
+<header class="nav"><div class="row">
+  <a class="logo" data-link href="#/">ledenov.</a>
+  <nav class="links">
+    <a data-link href="#/about">About</a>
+    <a data-link href="#/work">Work</a>
+    <a data-link href="#/solutions/fintech">Solutions</a>
+    <a data-link href="#/pricing">Pricing</a>
+    <a data-link href="#/reviews">Reviews</a>
+    <a data-link href="#/blog">Blog</a>
+  </nav>
+  <div class="lt" id="ltNav">
+    <button class="btn btn-primary" data-lt>Let's talk ▾</button>
+    <div class="lt-panel">
+      <a class="lt-book" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener"><b>Book a call</b><small>20 min. Tell me the problem, I'll tell you straight.</small></a>
+      <a class="lt-msg" href="https://t.me/yevedel" target="_blank" rel="noopener">Message me on Telegram</a>
+      <div class="lt-note">I reply within hours.</div>
+    </div>
+  </div>
+</div></header>
+
+<main id="app"></main>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><div class="tag">One senior partner. Product, site, and brand.</div>
+      <p style="margin-top:18px"><a class="btn btn-primary" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener">Book a call</a></p></div>
+    <div class="fgrid">
+      <div><h4>Site</h4><ul>
+        <li><a data-link href="#/about">About</a></li><li><a data-link href="#/work">Work</a></li>
+        <li><a data-link href="#/solutions/fintech">Solutions</a></li><li><a data-link href="#/pricing">Pricing</a></li><li><a data-link href="#/blog">Blog</a></li></ul></div>
+      <div><h4>Connect</h4><ul>
+        <li><a href="https://dribbble.com/yevled" target="_blank" rel="noopener">Dribbble</a></li>
+        <li><a href="https://www.behance.net/yevled" target="_blank" rel="noopener">Behance</a></li>
+        <li><a href="https://www.upwork.com/freelancers/yevledenov" target="_blank" rel="noopener">Upwork</a></li>
+        <li><a href="#">LinkedIn</a></li></ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:yevledenov@gmail.com">yevledenov@gmail.com</a></li>
+        <li><a href="https://t.me/yevedel" target="_blank" rel="noopener">Telegram</a></li>
+        <li style="color:var(--sub)">Zagreb, Croatia</li></ul></div>
+    </div>
+  </div>
+  <div class="fbottom"><span>© 2026 Ledo.digital OÜ. All rights reserved.</span>
+    <span><a data-link href="#/privacy">Privacy</a> · <a data-link href="#/cookies">Cookies</a></span></div>
+</div></footer>
+
+<script>
+/* ----------------------------- content ----------------------------- */
+const C = {
+  hero:{eyebrow:"Product design for founders",h:["Design that ships.","Not Figma files that don't."],
+    sub:"You're too early for a design team and too serious to ship something half-baked. I'm the one senior partner who turns messy product, site, and brand into things that actually launch. ~$2M delivered across 950+ projects.",
+    proof:[{pre:"~$",num:2,suf:"M delivered"},{pre:"",num:950,suf:"+ projects"},{text:"Top Rated Plus"},{pre:"",num:10,suf:"+ years"}]},
+  ticker:["Upwork Top Rated Plus","~$2M delivered","950+ projects","Replies within hours","Works across US / EU / AU","Free 30-min UX audit"],
+  logos:["Google","Nestlé","P&G","AB InBev","WhatsApp"],
+  about:{title:"You don't need a design team. You need one person who's seen this before.",
+    body:"I've spent 10+ years designing products, sites, and brands across fintech, AI, healthcare, and B2B SaaS. 950+ projects, ~$2M delivered. I know which decisions matter at your stage and which can wait. That judgment is what you're actually buying.",
+    sections:[
+      {h:"One partner, not three vendors",p:"Most founders end up coordinating a UX person, a web person, and a brand person, then stitching the seams themselves. I cover product UX/UI, sites, brand, and AI-assisted workflows as one accountable partner. Fewer handoffs, one direct line, decisions that hold together."},
+      {h:"Senior judgment, not just execution",p:"The value isn't pixels, it's knowing which decisions matter at your stage and which can wait. I bring that rigor to early-stage products, without the agency overhead or the wait for a full-time hire."},
+      {h:"Built to ship",p:"I design with what ships in mind, front-end-aware work that drops cleanly into React/Next.js/Tailwind/Webflow. AI-accelerated where it helps, senior-directed so it never goes generic."}],
+    proof:["~$2M delivered","950+ projects","Top Rated Plus, 10+ years","Based in Zagreb, work worldwide"]},
+  industries:[["AI","ai"],["Web3","web3"],["Fintech","fintech"],["Healthcare","healthcare"],["Edtech","edtech"],["Ecommerce","ecommerce"],["Real Estate","real-estate"],["Gambling","gambling"],["B2B","b2b"]],
+  services:[
+    ["Users don't get our product.","Product UX/UI for dashboards, web, and mobile (incl. iOS, RTL/Arabic). I turn confusing flows into ones people finish."],
+    ["Our site looks like we built it ourselves.","Product and marketing sites, landing to multi-page, copy included. Senior-grade, built to convert."],
+    ["Our UI is inconsistent and slows the team.","Design systems, prototyping, and micro-animation that keep speed and quality as you grow."],
+    ["We need to move fast without looking generic.","AI-assisted workflows, senior-directed. I use the same tools as everyone, then apply the judgment they can't."],
+    ["Design keeps breaking in handoff.","Front-end-aware design that drops cleanly into React/Next.js/Tailwind/Webflow. I design with what ships in mind."]],
+  process:[["01","Discovery","We get on a call. I learn the product, the users, the constraints, and what “shipped” means for you. You get a clear scope, no guesswork."],
+    ["02","Design","I work in fast cycles, senior decisions first. You see progress early and often, not a big reveal at the end."],
+    ["03","Ship","Production-ready files and front-end-aware handoff. Built to launch, not to admire in Figma."],
+    ["04","Iterate","I stay close after launch. Real usage beats opinions."]],
+  advantages:{intro:"Most founders come to me after paying twice. Once for the cheap version, then again to fix it. Here's the honest comparison.",
+    blocks:[
+      ["vs a cheap freelancer","Pretty Figma files, no product logic, nothing that ships.","Senior product judgment. Decisions backed by 10+ years and 950+ projects, designed to launch, not to admire."],
+      ["vs an agency","Account managers, slow cycles, a markup on every hour.","One direct line. You talk to the person doing the work. Founder-speed turnaround, no middlemen."],
+      ["vs DIY-AI (v0, Lovable)","Generic output that looks like everyone else's.","AI-accelerated, senior-directed. I use the same tools, then apply the judgment they can't."],
+      ["vs an early full-time hire","A 3-month search and a salaried bet before you have product clarity.","Senior output now. Commit to a team later, once the direction is proven."]],
+    close:"One partner. Product, site, and brand. Senior judgment, at founder speed."},
+  testimonials:{repeat:["5 contracts since 2016 (Benjamin Greene)","“our 10th design together” (Mario Cimmino)","“over a year, like a member of our internal team” (Scott Morris)"],
+    quotes:[
+      ["Yev worked with us for over a year. He was truly like a member of our internal team. He's highly creative and really collaborative. We tackled some difficult design problems together.","Scott Morris","Propulsion (US)"],
+      ["He understands both the big picture and the details. Proactive with recommendations, takes feedback without reservation. I would work with him again.","Zach Wagner","Product MVP (US)"],
+      ["The consummate professional! Super talented and great to work with. Hire with confidence!","Ozzie Burnham","Finance SaaS startup (US)"],
+      ["Outstanding job on our UX. They took our ideas and turned them into clean, modern, user-friendly designs. The final output exceeded expectations.","Patrick McCarthy","Product lead (UK)"],
+      ["One of the most talented designers I've ever worked with. Innovative, unique, and modern.","Tessa Scordio","Frequency Ads (US)"],
+      ["Best designer on Upwork, as simple as that.","Dav G","SaaS SMS platform (France)"]]},
+  faq:[
+    ["What does it cost?","Projects start at $500. For ongoing work I run at $1,000/week. We scope the exact number on the call, so you commit knowing it, no surprise invoices."],
+    ["How fast can you start, and how long does it take?","I usually take on a new project within a week. A focused scope ships from two weeks, longer for bigger builds. We set the timeline on the call so you're not guessing."],
+    ["Do you work solo? What if I need more than one person?","Yes, solo and senior. That's the value: one accountable partner, no middlemen. When you genuinely need a team, I help you build one, later, once the direction is proven."],
+    ["Do you sign an NDA?","Yes, always. Your product and data stay yours."],
+    ["What do you actually deliver?","Production-ready design (Figma), front-end-aware handoff for React/Next.js/Tailwind/Webflow, and the thinking behind every decision."],
+    ["Which industries do you know?","Fintech, AI, healthcare, B2B SaaS, Web3, ecommerce, real estate, and more."],
+    ["What time zone are you in?","Based in Zagreb (CET). I work across US, EU, and Australia time zones."]],
+  cases:{paladir:{title:"Paladir",tags:["B2B SaaS","GRC / Compliance","AI","Web app","2025"],
+    headline:"From a wall of controls to a configured framework in 15 minutes",
+    subhead:"Paladir is an AI-powered compliance platform for SMBs working toward SOC 2 and ISO 27001. I redesigned it end to end, so it reads like a guided journey, not a regulatory inventory.",
+    metrics:[{pre:"+",num:64,suf:"%",l:"onboarding completion"},{pre:"",num:15,suf:" min",l:"to a configured framework (from ~3 days)"},{pre:"+",num:38,suf:"%",l:"week-1 activation"},{pre:"−",num:47,suf:"%",l:"“where do I start?” tickets"},{pre:"",num:72,suf:"%",l:"of AI-suggested tasks accepted"}],
+    meta:[["Role","Senior UX/UI Designer (end to end)"],["Client","Paladir"],["Scope","Research → IA → user flows → UI"],["Domain","B2B SaaS, GRC, AI"],["Platform","Web app"],["Year","2025"]],
+    about:["Paladir is a security posture management platform for SMBs working toward SOC 2 / ISO 27001 readiness. It centralizes policies, SOPs, playbooks, and runbooks, then turns them into trackable tasks with audit-ready evidence trails. An AI layer reads uploaded policies and generates the relevant tasks automatically.","The client came in with a working concept and a pile of internal documents, but no coherent product structure, clear user journey, or design system."],
+    blocks:[
+      ["The product had no spine","Raw docs and a competitor comparison, but no IA. Users would be dropped into dozens of frameworks with no path.","Structured IA: six core areas, each with one job, a primary CTA, and an empty-state strategy.","Task-discovery time dropped 41%."],
+      ["Compliance felt like a checklist, not a journey","The old flow dumped policies and tasks with no sense of progress.","Mapped the end-to-end flow and tied every screen to a measurable progress metric.","Week-1 activation up 38%."],
+      ["Onboarding overwhelmed non-technical owners","The messy initial setup stalled SMB owners who didn't know where to start.","An onboarding wizard with AI recommending the right framework.","Onboarding completion up 64%; time-to-first-framework cut from ~3 days to 15 minutes."],
+      ["Density caused cognitive overload","GRC tools are information-dense, and these users have full plates.","Cross-product UX rules: one-line context per page, one primary CTA, teaching empty states, Green/Yellow/Red triage.","“Where do I start?” tickets down 47%."],
+      ["AI was a feature, not an experience","An AI layer existed but was bolted on as a separate section.","Embedded AI as native moments: recommended frameworks, gap analysis, progress hints.","72% of AI-suggested tasks accepted."]],
+    wrapup:"A GRC platform that reads less like a regulatory inventory and more like a guided, AI-assisted workflow. Compliance progress is visible at every level, and onboarding takes a non-technical SMB owner from “I don't know where to start” to a configured framework."}},
+  allWork:[["Paladir","GRC / Compliance","paladir"],["Vuelo","Fintech"],["HostIQ.ai","SaaS"],["Reliant.ai","AI"],["Propulsion","B2B SaaS"],["Trolleymate","Mobile"],["Zoomprop","Real Estate"],["Eterno Health","Healthcare"],["Vozzy","Marketplace"],["EverTwo Films","Brand / Web"],["Firstfan","Music / Social"],["Clubrunna","Sports"]],
+  pricing:{heading:"Simple, senior, no surprises",sub:"Open pricing. We scope the exact number on a call, then you commit knowing it.",
+    plans:[["Free UX audit","$0","30 minutes","Send your product. I'll show you where users drop off and what I'd fix first.",false],
+      ["Project","from $500","scoped","A defined piece of work, scoped on the call. Production-ready, front-end-aware handoff.",true],
+      ["Ongoing","$1,000","per week","Embedded senior partner for product, site, and brand. One direct line.",false]]},
+  reviews:[
+    ["Yev worked with us for over a year. He was truly like a member of our internal team. We tackled some difficult design problems together.","Scott Morris","Propulsion (US)"],
+    ["He understands both the big picture and the details. I would work with him again.","Zach Wagner","Product MVP (US)"],
+    ["The consummate professional! Hire with confidence!","Ozzie Burnham","Finance SaaS startup (US)"],
+    ["The final output exceeded expectations.","Patrick McCarthy","Product lead (UK)"],
+    ["One of the most talented designers I've ever worked with.","Tessa Scordio","Frequency Ads (US)"],
+    ["Best designer on Upwork, as simple as that.","Dav G","SaaS SMS platform (France)"],
+    ["Yev is a top tier designer.","Mike Garite","Zoomprop (US)"],
+    ["One of the best I've worked with, a keen eye for detail and great communication.","Alvin Leer","Pinecone (Norway)"],
+    ["Took our app to the next level. The new look and feel really pops.","Michael Dausmann","Trolleymate (Sydney)"],
+    ["An absolute pleasure. Professional, communicative, and creative.","Yehor Barkanov","EverTwo Films (LA)"],
+    ["Always amazing and high quality work! This is probably our 10th design together.","Mario Cimmino","Website CRO partner (US)"],
+    ["Fast work, to the point, very high quality.","Alejandro Barrera","(Chile)"]],
+  solutions:{}
+};
+const sharedFaq=[C.faq[0],C.faq[1],C.faq[3]];
+[
+  ["fintech","Fintech","Product design for fintech founders","Users decide if they trust you on the first screen.","I design fintech products, onboarding, KYC, dashboards, payments, that feel clear and trustworthy, and ship to production.","Free 30-minute fintech UX audit. Send your product, I'll show you where users drop off before they fund.","In fintech, trust is the conversion. One confusing step in onboarding or KYC, one screen that feels unsafe, and the funded account never happens. The hard part is making compliance, dense data, and speed feel effortless at once.","Work spanning an FCA-regulated fintech (Vuelo) to finance SaaS startups.",[["Do you understand KYC and compliance flows?","Yes. I design them so they convert without cutting corners on trust or regulation."],...sharedFaq]],
+  ["ai","AI","Product design for AI founders","Make the AI legible, not magic.","I design AI products where users trust the output, understand the system, and act on it.","Free 30-minute AI UX audit. Send your product, I'll show you where users lose trust.","AI products fail on legibility, not capability. If users can't tell why the model said what it said, they bounce. I design the trust cues and interaction patterns that make AI feel reliable.","Work across AI products including Reliant.ai and Blackwave.ai.",sharedFaq],
+  ["web3","Web3","Product design for Web3 founders","Onboard normal users, not just degens.","I design Web3 products that get past wallets and jargon, so mainstream users convert.","Free 30-minute Web3 UX audit. Send your product, I'll show you where users drop off.","Web3's hardest problem is onboarding. Wallets, gas, and jargon kill conversion. I design gamified onboarding and wallet flows that move normal users through.","Work on gamified onboarding and wallet-conversion flows.",sharedFaq],
+  ["healthcare","Healthcare","Product design for health startups","Patients and clinicians actually use it.","I design digital health products people use, not avoid, balancing engagement, clarity, regulation, and accessibility.","Free 30-minute healthcare UX audit. Send your product, I'll show you where engagement breaks.","Health products live or die on engagement and trust. Clinicians have no patience for friction; patients need clarity. I design for both, within regulated constraints.","Work across health products including Eterno Health and a Saudi telehealth platform.",sharedFaq],
+  ["edtech","Edtech","Product design for edtech founders","Learners finish, not bounce.","I design edtech products that hold attention, show progress, and keep learners motivated.","Free 30-minute edtech UX audit. Send your product, I'll show you where learners drop off.","Edtech's metric is completion. Engagement, progress, and motivation are design problems. I design the flows that keep learners moving.","Work across learning products.",sharedFaq],
+  ["ecommerce","Ecommerce","Product design for ecommerce founders","Shoppers check out, not abandon.","I design ecommerce experiences built for conversion, trust, and speed.","Free 30-minute ecommerce UX audit. Send your store, I'll show you where carts die.","Every step between interest and checkout leaks revenue. I design for conversion, trust, and speed.","Work across ecommerce and DTC products.",sharedFaq],
+  ["real-estate","Real Estate","Product design for real-estate founders","Turn listings and data into action.","I design real-estate and proptech products that make dense data searchable and actionable.","Free 30-minute real-estate UX audit. Send your product, I'll show you where users stall.","Real-estate products drown in data. The win is search, filtering, and density that lead to action. I design for the decision, not just the dataset.","Work across proptech including Zoomprop and Lusardi Land.",sharedFaq],
+  ["gambling","Gambling","Product design for gaming & gambling founders","Compliant, fast, retention-driven.","I design gaming and gambling products that balance speed, trust, regulation, and retention.","Free 30-minute UX audit. Send your product, I'll show you where players drop off.","Gambling products need speed and trust under heavy regulation, with retention as the north star. I design flows that stay compliant without killing momentum.","Work across regulated gaming products.",sharedFaq],
+  ["b2b","B2B SaaS","Product design for B2B SaaS founders","Users find value before they churn.","I design B2B SaaS products, dashboards, activation, and retention, so users reach value fast and stick.","Free 30-minute B2B SaaS UX audit. Send your product, I'll show you where activation breaks.","B2B SaaS lives on activation and retention. If users don't reach value fast, they churn before they pay. I design the dashboards and flows that get them there.","Work across B2B SaaS including Propulsion, Frequency Ads, and Reliant.ai.",sharedFaq]
+].forEach(s=>{C.solutions[s[0]]={slug:s[0],label:s[1],eyebrow:s[2],headline:s[3],sub:s[4],offer:s[5],why:s[6],proof:s[7],faqs:s[8]};});
+
+/* ----------------------------- helpers ----------------------------- */
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const cnt=(pre,num,suf)=>`<span class="count" data-pre="${esc(pre)}" data-num="${num}" data-suf="${esc(suf)}">${esc(pre)}0${esc(suf)}</span>`;
+const ltPanel=()=>`<div class="lt"><button class="btn btn-primary" data-lt>Book a call ▾</button><div class="lt-panel"><a class="lt-book" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener"><b>Book a call</b><small>20 min. No pitch.</small></a><a class="lt-msg" href="https://t.me/yevedel" target="_blank" rel="noopener">Message me on Telegram</a></div></div>`;
+const sectionHead=(eb,h,sub)=>`<div data-reveal><div class="eyebrow">${eb}</div><h2>${h}</h2>${sub?`<p class="sub">${sub}</p>`:""}</div>`;
+const wg=["g1","g2","g3","g4","g5","g6"];
+function workGrid(items){return `<div class="wgrid">${items.map((it,i)=>{const t=it[0],tag=it[1],slug=it[2];const inner=`<div class="wthumb ${wg[i%6]}"><span class="wname">${t}</span><span class="wtag">${tag}</span>${slug?'<span class="war">→</span>':''}</div><div class="wcap"><span>${t}</span><span class="sub2">${slug?"Case study":"Preview"}</span></div>`;return slug?`<a class="wcard" data-reveal data-link href="#/work/${slug}">${inner}</a>`:`<div class="wcard" data-reveal>${inner}</div>`;}).join("")}</div>`;}
+const bookSection=()=>`<section id="book" class="center"><div class="wrap narrow"><div data-reveal><h2 style="font-size:clamp(30px,5vw,48px)">Let's talk</h2><p class="sub" style="margin:18px auto 0">Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p><div style="margin-top:28px;display:flex;justify-content:center">${ltPanel()}</div><p style="color:var(--sub);font-size:14px;margin-top:20px">Prefer to message? <a class="link" href="https://t.me/yevedel" target="_blank" rel="noopener">Telegram</a>. I reply fast.</p></div></div></section>`;
+
+/* ----------------------------- pages ----------------------------- */
+function home(){
+  const h=C.hero;
+  return `
+  <section class="hero"><div class="glow"></div><div class="inner">
+    <div class="eyebrow">${h.eyebrow}</div>
+    <h1 style="margin-top:22px">${h.h[0]}<br>${h.h[1]}</h1>
+    <p class="lede">${h.sub}</p>
+    <div class="cta">${ltPanel()}<a class="btn btn-ghost" data-link href="#/work">See the work</a></div>
+    <div class="proof"><div class="avatars"><span></span><span></span><span></span><span></span></div>
+      <div style="color:var(--sub);font-size:13px">Trusted by founders across the US, EU and Australia</div>
+      <div class="stats">${h.proof.map((p,i)=>(i?'<span class="s">·</span>':'')+(p.text?esc(p.text):cnt(p.pre,p.num,p.suf))).join("")}</div>
+    </div>
+  </div></section>
+  <div class="ticker"><div class="track">${[...C.ticker,...C.ticker].map(t=>`<span class="item">${t}</span>`).join("")}</div></div>
+  <div class="logos"><div class="wrap"><p>Senior rigor brought to work for teams like</p><ul>${C.logos.map(l=>`<li>${l}</li>`).join("")}</ul></div></div>
+  <section><div class="wrap narrow"><div data-reveal><div class="eyebrow">About</div><h2>${C.about.title}</h2><p class="sub" style="font-size:18px">${C.about.body}</p><p style="margin-top:22px"><a class="link" data-link href="#/about">More about me →</a></p></div></div></section>
+  <section id="industries"><div class="wrap">${sectionHead("Industries","I go deep where it counts","One partner, but not a generalist. Pick your space, see the work and the thinking behind it.")}
+    <div class="grid ind-grid">${C.industries.map(([l,s])=>`<a class="ind" data-reveal data-link href="#/solutions/${s}">${l}<span class="ar">→</span></a>`).join("")}</div></div></section>
+  <section><div class="wrap">${sectionHead("What I do","Problems I solve","Not a service menu. The things that quietly cost founders time, users, and runway.")}
+    <div class="svc">${C.services.map(([q,a])=>`<div class="r" data-reveal><div class="q">“${q}”</div><div class="a">${a}</div></div>`).join("")}</div>
+    <div data-reveal style="margin-top:28px">${ltPanel()}</div></div></section>
+  <section><div class="wrap">${sectionHead("Process","How it works","Built to reduce your risk at every step, not to fill time.")}
+    <div class="grid proc-grid">${C.process.map(([n,t,p])=>`<div class="card" data-reveal><div class="num">${n}</div><h3 style="margin-top:14px">${t}</h3><div class="p">${p}</div></div>`).join("")}</div></div></section>
+  <section><div class="wrap">${sectionHead("Why me","You've been burned before. Here's why this is different.",C.advantages.intro)}
+    <div class="adv-grid">${C.advantages.blocks.map(([vs,got,get])=>`<div class="adv" data-reveal><div class="vs">${vs}</div><div class="got"><b style="color:var(--ink)">What you got: </b>${got}</div><div class="get"><b>What you get here: </b>${get}</div></div>`).join("")}</div>
+    <div class="adv-close" data-reveal><p>${C.advantages.close}</p>${ltPanel()}</div></div></section>
+  <section><div class="wrap">${sectionHead("Testimonials","Founders, in their words","The strongest signal isn't praise. It's that they come back.")}
+    <div class="pills" data-reveal>${C.testimonials.repeat.map(r=>`<span class="pill">${r}</span>`).join("")}</div>
+    <div class="grid tg">${C.testimonials.quotes.map(([q,n,r])=>`<div class="card tcard" data-reveal><q>“${q}”</q><div class="who"><b>${n}</b><small>${r}</small></div></div>`).join("")}</div>
+    <p data-reveal style="margin-top:28px"><a class="link" data-link href="#/reviews">Read all reviews →</a></p></div></section>
+  <section><div class="wrap">${sectionHead("Work","Selected work","A few in depth, the rest as a quick look.")}
+    ${workGrid(C.allWork.slice(0,6))}
+    <p data-reveal style="margin-top:28px"><a class="link" data-link href="#/work">See all work →</a></p></div></section>
+  <section><div class="wrap narrow"><div data-reveal><div class="eyebrow">FAQ</div><h2>Straight answers</h2></div>${faqList(C.faq)}</div></section>
+  ${bookSection()}`;
+}
+function faqList(items){return `<div style="margin-top:32px;border-top:1px solid var(--line)" data-reveal>${items.map((f,i)=>`<details ${i===0?"open":""}><summary>${f[0]}</summary><div class="ans">${f[1]}</div></details>`).join("")}</div>`;}
+
+function about(){const a=C.about;return `
+  <section style="border-top:0"><div class="wrap narrow" style="padding-top:72px">
+    <div data-reveal><div class="eyebrow">About</div><h1 style="margin-top:16px">I'm the senior designer you hire before you can afford a team.</h1>
+    <p class="sub" style="font-size:18px">${a.body}</p>
+    <div class="pills">${a.proof.map(p=>`<span class="pill">${p}</span>`).join("")}</div></div>
+    <div style="margin-top:36px;border-top:1px solid var(--line)">${a.sections.map(s=>`<div data-reveal style="padding:30px 0;border-bottom:1px solid var(--line)"><h2>${s.h}</h2><p class="sub">${s.p}</p></div>`).join("")}</div>
+  </div></section>${bookSection()}`;}
+
+function work(){return `
+  <section style="border-top:0"><div class="wrap" style="padding-top:72px">
+    <div data-reveal><div class="eyebrow">Work</div><h1 style="margin-top:16px">Selected work</h1><p class="sub">A few in depth, not a wall of thumbnails. Product, site, and brand across fintech, AI, healthcare, and B2B SaaS.</p></div>
+    ${workGrid(C.allWork)}
+  </div></section>${bookSection()}`;}
+
+function casePage(){const c=C.cases.paladir;return `
+  <div class="wrap narrow crumbs"><a data-link href="#/work">Work</a><span class="sep">/</span><span style="color:var(--ink)">${c.title}</span></div>
+  <section style="border-top:0;padding-top:24px"><div class="wrap narrow">
+    <div data-reveal><div class="pills" style="margin-top:0">${c.tags.map(t=>`<span class="pill">${t}</span>`).join("")}</div>
+    <h1 style="margin-top:18px">${c.headline}</h1><p class="sub" style="font-size:18px">${c.subhead}</p></div>
+  </div>
+  <div class="wrap" style="max-width:980px"><div class="metrics" data-reveal>${c.metrics.map(m=>`<div class="metric"><div class="v">${cnt(m.pre,m.num,m.suf)}</div><div class="l">${m.l}</div></div>`).join("")}</div>
+    <div class="ph" data-reveal style="aspect-ratio:16/9;margin-top:28px">Hero visual (product screen)</div></div>
+  <div class="wrap narrow"><dl class="meta-grid" data-reveal>${c.meta.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+    <div data-reveal style="margin-top:32px"><h2>About the product</h2>${c.about.map(p=>`<p class="sub">${p}</p>`).join("")}</div>
+    ${c.blocks.map((b,i)=>`<div class="block" data-reveal><div class="n">0${i+1}</div><p><b>Problem. </b>${b[1]}</p><p><b>Solution. </b>${b[2]}</p><p class="res"><b>Result. </b>${b[3]}</p><div class="ph" style="aspect-ratio:16/7;margin-top:16px">Before / after, flow, or screen</div></div>`).join("")}
+    <div class="outcome" data-reveal><h3>The outcome</h3><p>${c.wrapup}</p></div>
+  </div></section>${bookSection()}`;}
+
+function solution(slug){const s=C.solutions[slug];if(!s)return notfound();return `
+  <div class="wrap narrow crumbs"><a data-link href="#/solutions/fintech">Solutions</a><span class="sep">/</span><span style="color:var(--ink)">${s.label}</span></div>
+  <section style="border-top:0;padding-top:18px;position:relative;overflow:hidden"><div class="glow" style="opacity:.6;top:50%"></div>
+    <div class="wrap"><div class="sol-hero">
+      <div data-reveal><div class="eyebrow">${s.eyebrow}</div><h1 style="margin-top:14px">${s.headline}</h1><p class="sub" style="font-size:18px">${s.sub}</p>
+        <div class="cta" style="justify-content:flex-start;margin-top:26px">${ltPanel()}<button class="btn btn-ghost" data-lt-ghost>Get the free audit</button></div></div>
+      <div class="card form" data-reveal><h3 style="font-size:18px">Free 30-minute ${s.label} UX audit</h3><p class="sub" style="font-size:14px;margin-top:8px">${s.offer}</p>
+        <div style="margin-top:18px"><input placeholder="Name"><input placeholder="Email" type="email"><input placeholder="Product URL"><button class="btn btn-primary" onclick="alert('Demo only — the real form posts to a backend.')">Send request</button></div></div>
+    </div></div></section>
+  <section><div class="wrap narrow" data-reveal><div class="eyebrow">Why ${s.label.toLowerCase()}</div><p style="font-size:20px;line-height:1.5;margin-top:14px">${s.why}</p><p class="sub" style="margin-top:14px">${s.proof}</p></div></section>
+  <section><div class="wrap"><div data-reveal><h2>${s.label} work</h2></div><div class="grid" style="grid-template-columns:repeat(3,1fr)">${[0,1,2].map(()=>`<div class="ph" data-reveal style="aspect-ratio:4/3">Case study →</div>`).join("")}</div></div></section>
+  <section><div class="wrap">${sectionHead("Process","How it works","Built to reduce your risk at every step.")}<div class="grid proc-grid">${C.process.map(([n,t,p])=>`<div class="card" data-reveal><div class="num">${n}</div><h3 style="margin-top:14px">${t}</h3><div class="p">${p}</div></div>`).join("")}</div></div></section>
+  <section><div class="wrap narrow"><div data-reveal><h2>Straight answers, ${s.label.toLowerCase()} edition</h2></div>${faqList(s.faqs)}</div></section>
+  ${bookSection()}`;}
+
+function pricing(){const p=C.pricing;return `
+  <section style="border-top:0"><div class="wrap" style="padding-top:72px">
+    <div data-reveal><div class="eyebrow">Pricing</div><h1 style="margin-top:16px">${p.heading}</h1><p class="sub">${p.sub}</p></div>
+    <div class="grid plans">${p.plans.map(([n,price,unit,d,hl])=>`<div class="card plan ${hl?"hl":""}" data-reveal><div class="pname">${n}</div><div class="price">${price}<span class="unit">${unit}</span></div><p class="pd">${d}</p><div style="margin-top:22px">${hl?ltPanel():`<button class="btn btn-ghost" data-lt-ghost>Book a call</button>`}</div></div>`).join("")}</div>
+  </div></section>
+  <section><div class="wrap narrow"><div data-reveal><h2>Pricing questions</h2></div>${faqList(C.faq.slice(0,3))}</div></section>${bookSection()}`;}
+
+function reviews(){return `
+  <section style="border-top:0"><div class="wrap" style="padding-top:72px">
+    <div data-reveal><div class="eyebrow">Reviews</div><h1 style="margin-top:16px">What clients say</h1><p class="sub">Across Upwork and direct work. The strongest signal: many of them come back.</p></div>
+    <div class="grid tg" style="margin-top:36px">${C.reviews.map(([q,n,r])=>`<div class="card tcard" data-reveal><q>“${q}”</q><div class="who"><b>${n}</b><small>${r}</small></div></div>`).join("")}</div>
+  </div></section>${bookSection()}`;}
+
+function blog(){return `<section style="border-top:0"><div class="wrap narrow" style="padding-top:72px"><div data-reveal><div class="eyebrow">Blog</div><h1 style="margin-top:16px">Notes on product, design, and founders</h1><p class="sub">Practical, no fluff. Coming soon.</p><div class="ph" style="padding:50px;margin-top:32px">Articles are on the way. In the meantime, the fastest way to get value is a call.</div></div></div></section>${bookSection()}`;}
+function legal(t){return `<section style="border-top:0"><div class="wrap narrow" style="padding-top:72px"><div data-reveal><div class="eyebrow">Legal</div><h1 style="margin-top:16px">${t}</h1><p class="sub">Placeholder ${t.toLowerCase()} for Ledo.digital OÜ (ledenov.com). Replace with reviewed legal copy before launch.</p></div></div></section>`;}
+function notfound(){return `<section style="border-top:0"><div class="wrap narrow" style="padding-top:90px"><h1>Not found</h1><p class="sub">That page doesn't exist. <a class="link" data-link href="#/">Go home →</a></p></div></section>`;}
+
+/* ----------------------------- router ----------------------------- */
+function route(){
+  const hash=location.hash.replace(/^#/,"")||"/";
+  const anchor=hash.includes("#")?hash.split("#")[1]:null;
+  const path=hash.split("#")[0]||"/";
+  const parts=path.split("/").filter(Boolean); // e.g. ['work','paladir']
+  let html;
+  if(parts.length===0) html=home();
+  else if(parts[0]==="about") html=about();
+  else if(parts[0]==="work"&&parts[1]==="paladir") html=casePage();
+  else if(parts[0]==="work") html=work();
+  else if(parts[0]==="solutions") html=solution(parts[1]||"fintech");
+  else if(parts[0]==="pricing") html=pricing();
+  else if(parts[0]==="reviews") html=reviews();
+  else if(parts[0]==="blog") html=blog();
+  else if(parts[0]==="privacy") html=legal("Privacy Policy");
+  else if(parts[0]==="cookies") html=legal("Cookie Policy");
+  else html=notfound();
+  const app=document.getElementById("app");
+  app.innerHTML=html;
+  // active nav
+  document.querySelectorAll("nav.links a").forEach(a=>{a.classList.toggle("active",a.getAttribute("href")==="#"+path||(path==="/"&&false));});
+  initObservers();
+  if(anchor){const t=document.getElementById(anchor);if(t){t.scrollIntoView();return;}}
+  window.scrollTo(0,0);
+}
+
+/* reveal + count-up — re-trigger on scroll up and down */
+let io;
+function initObservers(){
+  if(io) io.disconnect();
+  io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      const el=e.target;
+      if(el.hasAttribute("data-reveal")){ el.classList.toggle("show",e.isIntersecting); }
+      el.querySelectorAll&&null;
+    });
+  },{rootMargin:"0px 0px -8% 0px",threshold:0.12});
+  document.querySelectorAll("#app [data-reveal]").forEach(el=>io.observe(el));
+
+  // counters
+  const cio=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      const el=e.target;
+      if(e.isIntersecting){ countTo(el); } else { resetCount(el); }
+    });
+  },{threshold:0.6});
+  document.querySelectorAll("#app .count").forEach(el=>cio.observe(el));
+}
+function resetCount(el){const pre=el.dataset.pre||"",suf=el.dataset.suf||"";el.textContent=pre+"0"+suf;el._run=false;}
+function countTo(el){
+  if(el._run) return; el._run=true;
+  const pre=el.dataset.pre||"",suf=el.dataset.suf||"",target=parseFloat(el.dataset.num)||0;
+  const dur=1100,t0=performance.now();
+  function step(t){
+    const k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3); // easeOutCubic
+    let v=target*e;
+    v=target%1===0?Math.round(v):Math.round(v*10)/10;
+    el.textContent=pre+v+suf;
+    if(k<1) requestAnimationFrame(step); else el.textContent=pre+target+suf;
+  }
+  requestAnimationFrame(step);
+}
+
+/* interactions: routing links, dropdowns */
+document.addEventListener("click",e=>{
+  const link=e.target.closest("[data-link]");
+  if(link){ /* default hashchange handles it */ }
+  const lt=e.target.closest("[data-lt]");
+  if(lt){ e.preventDefault(); lt.closest(".lt").classList.toggle("open"); }
+  else if(!e.target.closest(".lt-panel")){ document.querySelectorAll(".lt.open").forEach(x=>x.classList.remove("open")); }
+  const ltg=e.target.closest("[data-lt-ghost]");
+  if(ltg){ e.preventDefault(); location.hash="#/#book"; }
+});
+window.addEventListener("hashchange",route);
+window.addEventListener("DOMContentLoaded",route);
+route();
+</script>
+</body>
+</html>
