@@ -202,7 +202,7 @@ export function BookCall() {
           </div>
           <p className="mt-6 text-[14px] text-sub">
             Prefer to message?{" "}
-            <a href={site.telegram} target="_blank" rel="noopener noreferrer" className="text-orange hover:underline">Telegram</a>. I reply fast.
+            <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="text-orange hover:underline">WhatsApp</a>. I reply fast.
           </p>
         </Reveal>
       </div>

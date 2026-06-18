@@ -11,56 +11,63 @@ const grads = [
   "from-[#fff0e9] to-[#f1f1f1]",
   "from-[#eef0f2] to-[#e2e4e7]",
 ];
+// Varied tile shapes for the masonry rhythm (godly-style).
+const aspects = ["aspect-[4/3]", "aspect-[16/11]", "aspect-[3/4]", "aspect-[16/10]", "aspect-[1/1]", "aspect-[16/12]"];
 
-function Card({ item, i }: { item: WorkItem; i: number }) {
+function Tile({ item, i, masonry }: { item: WorkItem; i: number; masonry: boolean }) {
+  const aspect = masonry ? aspects[i % aspects.length] : "aspect-[16/10]";
   const inner = (
-    <>
-      <div className="relative overflow-hidden rounded-card border border-line">
-        <div
-          className={`aspect-[16/10] w-full bg-gradient-to-br ${grads[i % grads.length]} transition-transform duration-500 group-hover:scale-[1.04]`}
-        >
-          {item.img && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={item.img} alt={item.title} className="h-full w-full object-cover object-top" />
-          )}
-          {!item.img && (
-            <div className="flex h-full w-full items-center justify-center">
-              <span className="text-2xl font-semibold tracking-[-0.02em] text-ink/25">{item.title}</span>
-            </div>
-          )}
-        </div>
-        <span className="absolute left-3 top-3 rounded-full bg-surface/90 px-2.5 py-1 text-[11px] font-medium text-ink backdrop-blur">
-          {item.tag}
-        </span>
-        {item.slug && (
-          <span className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-surface/90 text-orange opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
-            →
-          </span>
+    <div className={`group relative block overflow-hidden rounded-card border border-line ${masonry ? "mb-4 break-inside-avoid" : ""}`}>
+      <div className={`${aspect} w-full bg-gradient-to-br ${grads[i % grads.length]} transition-transform duration-500 group-hover:scale-[1.04]`}>
+        {item.img && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={item.img} alt={item.title} className="h-full w-full object-cover object-top" />
+        )}
+        {!item.img && (
+          <div className="flex h-full w-full items-center justify-center">
+            <span className="text-2xl font-semibold tracking-[-0.02em] text-ink/20">{item.title}</span>
+          </div>
         )}
       </div>
-      <div className="mt-3 flex items-baseline justify-between gap-3">
-        <span className="text-[15px] font-medium text-ink">{item.title}</span>
-        <span className="text-[13px] text-sub">{item.slug ? "Case study" : "Preview"}</span>
+
+      {/* category chip (always visible, godly-style) */}
+      <span className="absolute left-3 top-3 rounded-full bg-surface/90 px-2.5 py-1 text-[11px] font-medium text-ink backdrop-blur">
+        {item.tag}
+      </span>
+      {/* top-right action dot */}
+      <span className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-surface/90 text-orange backdrop-blur">
+        {item.slug ? "→" : "•"}
+      </span>
+
+      {/* title overlay on hover */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-black/55 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <span className="text-[15px] font-medium text-white">{item.title}</span>
+        <span className="text-[12px] text-white/80">{item.slug ? "Case study" : "Preview"}</span>
       </div>
-    </>
+    </div>
   );
 
   return (
-    <Reveal delay={(i % 3) * 60} className="group">
-      {item.slug ? (
-        <Link href={`/work/${item.slug}`} className="block">{inner}</Link>
-      ) : (
-        <div className="cursor-default">{inner}</div>
-      )}
+    <Reveal delay={(i % 3) * 50} className={masonry ? "" : "h-full"}>
+      {item.slug ? <Link href={`/work/${item.slug}`}>{inner}</Link> : inner}
     </Reveal>
   );
 }
 
-export default function WorkGrid({ items }: { items: WorkItem[] }) {
+export default function WorkGrid({ items, masonry = false }: { items: WorkItem[]; masonry?: boolean }) {
+  if (masonry) {
+    return (
+      <div className="gap-4 [column-fill:_balance] sm:columns-2 lg:columns-3">
+        {items.map((item, i) => (
+          <Tile key={item.title} item={item} i={i} masonry />
+        ))}
+      </div>
+    );
+  }
   return (
-    <div className="grid gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item, i) => (
-        <Card key={item.title} item={item} i={i} />
+        <Tile key={item.title} item={item} i={i} masonry={false} />
       ))}
     </div>
   );

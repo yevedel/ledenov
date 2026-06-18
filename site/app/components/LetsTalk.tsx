@@ -69,12 +69,12 @@ export default function LetsTalk({
             <div className="text-[13px] text-white/80">20 min. Tell me the problem, I'll tell you straight.</div>
           </a>
           <a
-            href={site.telegram}
+            href={site.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 block rounded-xl border border-line p-3 text-center text-[14px] text-ink transition-colors hover:border-ink"
           >
-            Message me on Telegram
+            Message me on WhatsApp
           </a>
           <p className="px-1 py-2 text-center text-[12px] text-sub">I reply within hours.</p>
         </div>

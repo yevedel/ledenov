@@ -9,7 +9,7 @@ export const site = {
   location: "Zagreb, Croatia",
   email: "yevledenov@gmail.com",
   calendly: "https://calendly.com/yevledenov/20min",
-  telegram: "https://t.me/yevedel",
+  whatsapp: "https://wa.me/0000000000", // TODO: replace 0000000000 with Yev's WhatsApp number (international, digits only)
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/" },
     { label: "Behance", href: "https://www.behance.net/yevled" },
@@ -432,22 +432,27 @@ export const aboutPage = {
   ],
 };
 
+export type Review = { quote: string; name: string; role: string; tag: string; project: string; result: string };
 export const reviewsPage = {
   eyebrow: "Reviews",
   title: "What clients say",
   sub: "Across Upwork and direct work. The strongest signal: many of them come back.",
-  quotes: [
-    ...testimonials.quotes,
-    { quote: "Yev is a top tier designer.", name: "Mike Garite", role: "Zoomprop (US)" },
-    { quote: "One of the best I've worked with, an excellent designer with a keen eye for detail and great communication skills.", name: "Alvin Leer", role: "Pinecone (Norway)" },
-    { quote: "Highly skilled and experienced UI/UX designer. Strong communication skills and the ability to do great work.", name: "Aaron Carbon", role: "Luminal (UAE)" },
-    { quote: "Took our app to the next level. The new look and feel really pops.", name: "Michael Dausmann", role: "Trolleymate (Sydney)" },
-    { quote: "An absolute pleasure. Professional, communicative, and creative. He gave me a clear list of steps that helped me understand the workflow in detail.", name: "Yehor Barkanov", role: "EverTwo Films (LA)" },
-    { quote: "Great professionalism, creativity, and a strong sense of responsibility.", name: "Galvanek Bau", role: "(Germany)" },
-    { quote: "Yevhen was incredible. Very quick and love his style. Highly recommend.", name: "Cody Jordan", role: "(US)" },
-    { quote: "Always amazing and high quality work! This is probably our 10th design together. We will always reach out.", name: "Mario Cimmino", role: "Website CRO partner (US)" },
-    { quote: "Fast work, to the point, very high quality.", name: "Alejandro Barrera", role: "(Chile)" },
-  ],
+  reviews: [
+    { tag: "B2B SaaS", project: "Propulsion", result: "Embedded partner, 1+ year", quote: "Yev worked with us for over a year. He was truly like a member of our internal team. He's highly creative and really collaborative. We tackled some difficult design problems together.", name: "Scott Morris", role: "Propulsion (US)" },
+    { tag: "MVP", project: "Product MVP", result: "MVP designed end to end", quote: "He understands both the big picture and the details. Proactive with recommendations, takes feedback without reservation. I would work with him again.", name: "Zach Wagner", role: "Product MVP (US)" },
+    { tag: "Fintech", project: "Dragin", result: "Finance SaaS UI/UX", quote: "The consummate professional! Super talented and great to work with. Hire with confidence!", name: "Ozzie Burnham", role: "Finance SaaS startup (US)" },
+    { tag: "Sports", project: "Clubrunna", result: "Runner app UX, shipped", quote: "Outstanding job on our UX. They took our ideas and turned them into clean, modern, user-friendly designs. The final output exceeded expectations.", name: "Patrick McCarthy", role: "Product lead (UK)" },
+    { tag: "Marketing site", project: "Frequency Ads", result: "Brand-grade marketing site", quote: "One of the most talented designers I've ever worked with. Innovative, unique, and modern.", name: "Tessa Scordio", role: "Frequency Ads (US)" },
+    { tag: "SaaS", project: "SMS platform", result: "SaaS platform design", quote: "Best designer on Upwork, as simple as that.", name: "Dav G", role: "SaaS SMS platform (France)" },
+    { tag: "Real Estate", project: "Zoomprop", result: "Proptech UX/UI", quote: "Yev is a top tier designer.", name: "Mike Garite", role: "Zoomprop (US)" },
+    { tag: "Web", project: "Pinecone", result: "Website, end to end", quote: "One of the best I've worked with, an excellent designer with a keen eye for detail and great communication skills.", name: "Alvin Leer", role: "Pinecone (Norway)" },
+    { tag: "Web + Mobile", project: "Luminal", result: "Web + mobile design", quote: "Highly skilled and experienced UI/UX designer. Strong communication skills and the ability to do great work.", name: "Aaron Carbon", role: "Luminal (UAE)" },
+    { tag: "Mobile", project: "Trolleymate", result: "App redesign", quote: "Took our app to the next level. The new look and feel really pops.", name: "Michael Dausmann", role: "Trolleymate (Sydney)" },
+    { tag: "Brand + Web", project: "EverTwo Films", result: "Website + rebrand", quote: "An absolute pleasure. Professional, communicative, and creative. He gave me a clear list of steps that helped me understand the workflow in detail.", name: "Yehor Barkanov", role: "EverTwo Films (LA)" },
+    { tag: "Web / CRO", project: "Landing CRO", result: "10+ designs, repeat client", quote: "Always amazing and high quality work! This is probably our 10th design together. We will always reach out.", name: "Mario Cimmino", role: "Website CRO partner (US)" },
+    { tag: "Healthcare", project: "Oral surgery site", result: "Practice website", quote: "Yevhen was incredible. Very quick and love his style. Highly recommend.", name: "Cody Jordan", role: "(US)" },
+    { tag: "Brand", project: "Galvanek", result: "Brand identity", quote: "Great professionalism, creativity, and a strong sense of responsibility.", name: "Galvanek Bau", role: "(Germany)" },
+  ] as Review[],
 };
 
 export const blogPage = {

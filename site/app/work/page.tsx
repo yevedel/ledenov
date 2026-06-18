@@ -19,7 +19,7 @@ export default function Work() {
       />
       <section className="py-8">
         <div className="mx-auto max-w-6xl px-6">
-          <WorkGrid items={allWork} />
+          <WorkGrid items={allWork} masonry />
         </div>
       </section>
       <BookCall />
