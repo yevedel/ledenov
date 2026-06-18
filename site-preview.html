@@ -167,6 +167,40 @@
   [data-reveal].show{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;transition:none}.glow,.track{animation:none}}
 
+  /* floating pill nav */
+  .navwrap{position:sticky;top:0;z-index:40;display:flex;justify-content:center;padding:14px 24px}
+  .navlogo{position:absolute;left:24px;top:50%;transform:translateY(-50%);font-size:20px;font-weight:600}
+  .navpill{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;padding:6px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+  .navpill .menu{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:none;border:none;font-size:18px;color:var(--ink)}
+  .navpill .menu:hover{background:var(--bg)}
+  .plinks{display:flex;align-items:center;gap:2px}
+  .plink{padding:8px 14px;border-radius:999px;font-size:14px;color:var(--sub)}
+  .plink:hover{background:var(--bg);color:var(--ink)}
+  @media(max-width:860px){.plinks{display:none}}
+
+  /* numbers */
+  .numhead{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .numhead h2{max-width:560px}
+  .numrow{display:grid;grid-template-columns:7fr 5fr;gap:32px;align-items:start;padding:34px 0;border-bottom:1px solid var(--line)}
+  .numrow .lbl{font-size:14px;color:var(--sub)}
+  .numrow .big{font-size:clamp(56px,9vw,112px);font-weight:600;line-height:.95;letter-spacing:-.03em;color:var(--orange);margin-top:4px}
+  .numrow .d{font-size:15px;color:var(--sub);padding-top:10px}
+  @media(max-width:640px){.numrow{grid-template-columns:1fr;gap:6px}}
+  /* recognition / method / journey */
+  .recog{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  @media(max-width:760px){.recog{grid-template-columns:1fr}}
+  .ricon{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:18px}
+  .rbig{font-size:28px;font-weight:600;color:var(--orange);margin-top:22px;letter-spacing:-.02em}
+  .method-pill{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 18px;font-weight:500;box-shadow:0 4px 14px rgba(0,0,0,.04)}
+  .nodes{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:28px}
+  .node{background:var(--tint);color:var(--orange-ink);border-radius:999px;padding:9px 16px;font-weight:500;font-size:15px}
+  .jgrid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-top:44px}
+  @media(max-width:860px){.jgrid{grid-template-columns:1fr}}
+  .jphotos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .jphotos div{aspect-ratio:4/3;border-radius:var(--rad);border:1px solid var(--line)}
+  .place{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px}
+  .orange-h{color:var(--orange)}
+
   /* work gallery (godly-style) */
   .wgrid{display:grid;gap:20px 18px;grid-template-columns:repeat(3,1fr);margin-top:36px}
   @media(max-width:900px){.wgrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wgrid{grid-template-columns:1fr}}
@@ -188,25 +222,27 @@
 <div class="note">Interactive preview of the whole site (open from file://). Real app = Next.js in <code>/site</code>. Form & some links are demo-only.</div>
 <div class="scarcity"><span class="dot"></span>Booking 2 new projects this quarter.<a data-link href="#/#book">Book a call →</a></div>
 
-<header class="nav"><div class="row">
-  <a class="logo" data-link href="#/">ledenov.</a>
-  <nav class="links">
-    <a data-link href="#/about">About</a>
-    <a data-link href="#/work">Work</a>
-    <a data-link href="#/solutions/fintech">Solutions</a>
-    <a data-link href="#/pricing">Pricing</a>
-    <a data-link href="#/reviews">Reviews</a>
-    <a data-link href="#/blog">Blog</a>
-  </nav>
-  <div class="lt" id="ltNav">
-    <button class="btn btn-primary" data-lt>Let's talk ▾</button>
-    <div class="lt-panel">
-      <a class="lt-book" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener"><b>Book a call</b><small>20 min. Tell me the problem, I'll tell you straight.</small></a>
-      <a class="lt-msg" href="https://t.me/yevedel" target="_blank" rel="noopener">Message me on Telegram</a>
-      <div class="lt-note">I reply within hours.</div>
+<div class="navwrap">
+  <a class="navlogo" data-link href="#/">ledenov.</a>
+  <nav class="navpill">
+    <button class="menu" aria-label="Menu">≡</button>
+    <span class="plinks">
+      <a class="plink" data-link href="#/about">About</a>
+      <a class="plink" data-link href="#/work">Work</a>
+      <a class="plink" data-link href="#/solutions/fintech">Services</a>
+      <a class="plink" data-link href="#/pricing">Pricing</a>
+      <a class="plink" data-link href="#/reviews">Reviews</a>
+    </span>
+    <div class="lt">
+      <button class="btn btn-primary" data-lt>Let's talk ▾</button>
+      <div class="lt-panel">
+        <a class="lt-book" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener"><b>Book a call</b><small>20 min. Tell me the problem, I'll tell you straight.</small></a>
+        <a class="lt-msg" href="https://t.me/yevedel" target="_blank" rel="noopener">Message me on Telegram</a>
+        <div class="lt-note">I reply within hours.</div>
+      </div>
     </div>
-  </div>
-</div></header>
+  </nav>
+</div>
 
 <main id="app"></main>
 
@@ -241,6 +277,15 @@ const C = {
     proof:[{pre:"~$",num:2,suf:"M delivered"},{pre:"",num:950,suf:"+ projects"},{text:"Top Rated Plus"},{pre:"",num:10,suf:"+ years"}]},
   ticker:["Upwork Top Rated Plus","~$2M delivered","950+ projects","Replies within hours","Works across US / EU / AU","Free 30-min UX audit"],
   logos:["Google","Nestlé","P&G","AB InBev","WhatsApp"],
+  numbers:{heading:"A singular vision with extraordinary reach.",note:"Most of my clients come through Upwork, where I've been Top Rated Plus for over a decade.",
+    stats:[["",950,"+","Projects completed","950+ contracts on Upwork for founders across fintech, AI, healthcare, and B2B SaaS."],["~$",2,"M","Earned on Upwork","Top Rated Plus, the top tier of talent, for 10+ years running."],["",10,"+","Years of experience","A decade of senior product, site, and brand design, end to end."]]},
+  about2:{eyebrow:"My experience, my story",title:"Beyond Pixels",statement:"10 years of shaping digital clarity.",
+    intro:"I'm Yev Ledenov. For 10+ years I've designed products, sites, and brands for founders, across fintech, AI, healthcare, and B2B SaaS. Most of that work came through Upwork, where I've been Top Rated Plus for over a decade.",
+    proof:["~$2M earned on Upwork","950+ projects","Top Rated Plus, 10+ years","Based in Zagreb, work worldwide"],
+    recognition:[["Top Rated Plus","On Upwork, 10+ years","The top tier of Upwork talent, and my main, steady source of clients."],["950+","Completed projects","Proven, repeat experience in UX/UI across many industries."],["~$2M","Earned on platform","Real client work at scale, with clients who come back."]],
+    method:{nodes:["Research","UX","UI","Testing","Handoff"],note:"One senior partner across the whole arc, from research to a build-ready handoff. No relay race between vendors."},
+    journey:{body:"I've worked from many corners of Europe and beyond. Different cities, different problems, different users. That range shows up in the work: more empathy, more visual vocabulary, fewer assumptions.",places:["Croatia — Zagreb","Croatia — Dubrovnik","Greece — Santorini","Norway — Oslo","Estonia — Tallinn","Portugal — Madeira"]},
+    principles:[["One partner, not three vendors","Most founders end up coordinating a UX person, a web person, and a brand person, then stitching the seams themselves. I cover product UX/UI, sites, brand, and AI-assisted workflows as one accountable partner."],["Senior judgment, not just execution","The value isn't pixels, it's knowing which decisions matter at your stage and which can wait. I bring that rigor without agency overhead or the wait for a hire."],["Built to ship","I design with what ships in mind, front-end-aware work that drops cleanly into React/Next.js/Tailwind/Webflow."]]},
   about:{title:"You don't need a design team. You need one person who's seen this before.",
     body:"I've spent 10+ years designing products, sites, and brands across fintech, AI, healthcare, and B2B SaaS. 950+ projects, ~$2M delivered. I know which decisions matter at your stage and which can wait. That judgment is what you're actually buying.",
     sections:[
@@ -338,6 +383,11 @@ function workGrid(items){return `<div class="wgrid">${items.map((it,i)=>{const t
 const bookSection=()=>`<section id="book" class="center"><div class="wrap narrow"><div data-reveal><h2 style="font-size:clamp(30px,5vw,48px)">Let's talk</h2><p class="sub" style="margin:18px auto 0">Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p><div style="margin-top:28px;display:flex;justify-content:center">${ltPanel()}</div><p style="color:var(--sub);font-size:14px;margin-top:20px">Prefer to message? <a class="link" href="https://t.me/yevedel" target="_blank" rel="noopener">Telegram</a>. I reply fast.</p></div></div></section>`;
 
 /* ----------------------------- pages ----------------------------- */
+function numbers(){const n=C.numbers;return `<section><div class="wrap">
+  <div class="numhead" data-reveal><h2>${n.heading}</h2><span class="eyebrow">Numbers</span></div>
+  <div style="margin-top:36px;border-top:1px solid var(--line)">${n.stats.map(s=>`<div class="numrow" data-reveal><div><div class="lbl">${s[3]}</div><div class="big">${cnt(s[0],s[1],s[2])}</div></div><div class="d">${s[4]}</div></div>`).join("")}</div>
+  <p data-reveal style="margin-top:24px;color:var(--sub);font-size:15px">${n.note} <a class="link" href="https://www.upwork.com/freelancers/yevledenov" target="_blank" rel="noopener">See my Upwork profile →</a></p>
+</div></section>`;}
 function home(){
   const h=C.hero;
   return `
@@ -353,6 +403,7 @@ function home(){
   </div></section>
   <div class="ticker"><div class="track">${[...C.ticker,...C.ticker].map(t=>`<span class="item">${t}</span>`).join("")}</div></div>
   <div class="logos"><div class="wrap"><p>Senior rigor brought to work for teams like</p><ul>${C.logos.map(l=>`<li>${l}</li>`).join("")}</ul></div></div>
+  ${numbers()}
   <section><div class="wrap narrow"><div data-reveal><div class="eyebrow">About</div><h2>${C.about.title}</h2><p class="sub" style="font-size:18px">${C.about.body}</p><p style="margin-top:22px"><a class="link" data-link href="#/about">More about me →</a></p></div></div></section>
   <section id="industries"><div class="wrap">${sectionHead("Industries","I go deep where it counts","One partner, but not a generalist. Pick your space, see the work and the thinking behind it.")}
     <div class="grid ind-grid">${C.industries.map(([l,s])=>`<a class="ind" data-reveal data-link href="#/solutions/${s}">${l}<span class="ar">→</span></a>`).join("")}</div></div></section>
@@ -376,13 +427,31 @@ function home(){
 }
 function faqList(items){return `<div style="margin-top:32px;border-top:1px solid var(--line)" data-reveal>${items.map((f,i)=>`<details ${i===0?"open":""}><summary>${f[0]}</summary><div class="ans">${f[1]}</div></details>`).join("")}</div>`;}
 
-function about(){const a=C.about;return `
-  <section style="border-top:0"><div class="wrap narrow" style="padding-top:72px">
-    <div data-reveal><div class="eyebrow">About</div><h1 style="margin-top:16px">I'm the senior designer you hire before you can afford a team.</h1>
-    <p class="sub" style="font-size:18px">${a.body}</p>
-    <div class="pills">${a.proof.map(p=>`<span class="pill">${p}</span>`).join("")}</div></div>
-    <div style="margin-top:36px;border-top:1px solid var(--line)">${a.sections.map(s=>`<div data-reveal style="padding:30px 0;border-bottom:1px solid var(--line)"><h2>${s.h}</h2><p class="sub">${s.p}</p></div>`).join("")}</div>
-  </div></section>${bookSection()}`;}
+function about(){const a=C.about2;return `
+  <section class="hero" style="border-top:0"><div class="glow" style="opacity:.7;top:46%"></div><div class="inner" style="padding-top:72px;padding-bottom:24px">
+    <div class="eyebrow">${a.eyebrow}</div>
+    <h1 style="font-size:clamp(48px,13vw,128px);line-height:.95;margin-top:16px">${a.title}</h1>
+    <p style="font-size:clamp(22px,3vw,30px);font-weight:500;margin:26px auto 0;max-width:440px">${a.statement}</p>
+  </div></section>
+  <section style="border-top:0;padding-top:6px"><div class="wrap narrow" data-reveal>
+    <p class="sub" style="font-size:18px">${a.intro}</p>
+    <div class="pills">${a.proof.map(p=>`<span class="pill">${p}</span>`).join("")}</div>
+  </div></section>
+  ${numbers()}
+  <section><div class="wrap"><div class="center" data-reveal><span class="eyebrow" style="color:var(--sub)">Recognition</span><h2 class="orange-h" style="margin-top:8px">Recognition</h2></div>
+    <div class="recog">${a.recognition.map(c=>`<div class="card" data-reveal><div class="ricon">♛</div><div class="rbig">${c[0]}</div><div style="font-weight:600;margin-top:6px">${c[1]}</div><p class="sub" style="margin-top:4px;font-size:14px">${c[2]}</p></div>`).join("")}</div>
+  </div></section>
+  <section><div class="wrap narrow center"><div data-reveal><span class="eyebrow" style="color:var(--sub)">My method</span><h2 class="orange-h" style="margin-top:8px">How I work</h2></div>
+    <div data-reveal style="margin-top:40px"><span class="method-pill">My method</span>
+      <div class="nodes">${a.method.nodes.map((n,i)=>`${i?'<span style="color:var(--line2);align-self:center">→</span>':''}<span class="node">${n}</span>`).join("")}</div>
+      <p class="sub" style="margin:28px auto 0;max-width:520px">${a.method.note}</p></div>
+  </div></section>
+  <section><div class="wrap"><div class="center" data-reveal><span class="eyebrow" style="color:var(--sub)">Journey</span><h2 class="orange-h" style="margin-top:8px">Designs shaped by travel</h2></div>
+    <div class="jgrid"><div data-reveal><p class="sub" style="font-size:17px">${a.journey.body}</p><div class="pills">${a.journey.places.map(p=>`<span class="place">${p}</span>`).join("")}</div></div>
+      <div class="jphotos" data-reveal><div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g6"></div></div></div>
+  </div></section>
+  <section><div class="wrap narrow"><div style="border-top:1px solid var(--line)">${a.principles.map(s=>`<div data-reveal style="padding:28px 0;border-bottom:1px solid var(--line)"><h3 style="font-size:22px">${s[0]}</h3><p class="sub" style="margin-top:8px">${s[1]}</p></div>`).join("")}</div></div></section>
+  ${bookSection()}`;}
 
 function work(){return `
   <section style="border-top:0"><div class="wrap" style="padding-top:72px">
