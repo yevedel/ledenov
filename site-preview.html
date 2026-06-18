@@ -189,6 +189,10 @@
   .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
   .trust div{display:flex;gap:8px;font-size:15px}.trust div::before{content:"✓";color:var(--orange)}
   @media(max-width:760px){.trust{grid-template-columns:1fr 1fr}}
+  .cproj{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;margin-top:32px}
+  .cproj .crow2{display:flex;justify-content:space-between;align-items:baseline;gap:16px;background:var(--surface);padding:18px 22px;font-weight:500}
+  .cproj .from{color:var(--orange);font-weight:600;font-size:15px;white-space:nowrap}
+  @media(max-width:640px){.cproj{grid-template-columns:1fr}}
 
   /* reveal — animates on enter AND exit (scroll up & down) */
   [data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
@@ -383,6 +387,7 @@ const C = {
     plans:[["Free UX audit","$0","30 minutes","Send your product. I'll show you where users drop off and what I'd fix first.",false,["A 30-minute call","Where users drop off","What I'd fix first","No commitment"]],
       ["Project","from $500","scoped on a call","A defined piece of work, scoped together so you know the number before you commit.",true,["Production-ready Figma","Front-end-aware handoff","Copy included where needed","A direct line to me"]],
       ["Ongoing","$1,000","per week","Embedded senior partner for product, site, and brand. Senior decisions, founder speed.",false,["Steady senior capacity","Product, site & brand","Priority turnaround","Pause or stop anytime"]]],
+    commonProjects:{heading:"Common projects",sub:"Typical starting points. These are ballpark floors, we scope the exact number on a call.",items:[["Landing page","from $500"],["Marketing site (multi-page)","from $2,000"],["Web app / SaaS dashboard","from $4,000"],["Mobile app (MVP)","from $4,000"],["Design system","from $3,000"],["Brand identity","from $2,000"]]},
     compare:{heading:"What senior design usually costs",sub:"Same senior output, without the overhead or the lock-in.",rows:[["Full-time senior hire","$120k+/yr","Plus recruiting, equity, months of ramp-up.",false],["Design agency","$8–20k/mo","Account managers, slower cycles, a markup on every hour.",false],["Cheap freelancer / DIY-AI","Looks cheap","Pretty files with no product logic. You pay twice.",false],["Me","from $1,000/wk","Senior judgment, one accountable partner, work that ships.",true]]},
     trust:["Scoped on a call, no surprise invoices","NDA on every project","I start within a week","Stop anytime, no lock-in"]},
   reviews:[
@@ -543,6 +548,8 @@ function pricing(){const p=C.pricing;return `
     <div data-reveal><div class="eyebrow">Pricing</div><h1 style="margin-top:16px">${p.heading}</h1><p class="sub">${p.sub}</p></div>
     <div class="grid plans" style="margin-top:36px">${p.plans.map(pl=>{const n=pl[0],price=pl[1],unit=pl[2],d=pl[3],hl=pl[4],inc=pl[5];return `<div class="card plan ${hl?"hl":""}" data-reveal><div class="pname">${n}</div><div class="price">${price}<span class="unit">${unit}</span></div><p class="pd" style="flex:0">${d}</p><ul class="pinc">${inc.map(x=>`<li>${x}</li>`).join("")}</ul><div style="margin-top:22px">${hl?ltPanel():`<button class="btn btn-ghost" data-lt-ghost>Book a call</button>`}</div></div>`;}).join("")}</div>
   </div></section>
+  <section><div class="wrap narrow"><div data-reveal><h2>${p.commonProjects.heading}</h2><p class="sub">${p.commonProjects.sub}</p></div>
+    <div class="cproj">${p.commonProjects.items.map(it=>`<div class="crow2" data-reveal><span>${it[0]}</span><span class="from">${it[1]}</span></div>`).join("")}</div></div></section>
   <section><div class="wrap narrow"><div data-reveal><h2>${p.compare.heading}</h2><p class="sub">${p.compare.sub}</p></div>
     <div class="ctable">${p.compare.rows.map(r=>`<div class="crow ${r[3]?"me":""}" data-reveal><span class="opt">${r[0]}</span><span class="cost">${r[1]}</span><span class="cnote">${r[2]}</span></div>`).join("")}</div></div></section>
   <section><div class="wrap"><div class="trust" data-reveal>${p.trust.map(t=>`<div>${t}</div>`).join("")}</div></div></section>

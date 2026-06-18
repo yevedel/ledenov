@@ -394,6 +394,19 @@ export const pricing = {
     { name: "Ongoing", price: "$1,000", unit: "per week", desc: "Embedded senior partner for product, site, and brand. Senior decisions, founder speed.", cta: "Book a call", highlight: false,
       includes: ["Steady senior capacity", "Product, site & brand", "Priority turnaround", "Pause or stop anytime"] },
   ],
+  // Productized starting points (concrete, no extra price tiers). TODO: confirm the "from" floors with Yev.
+  commonProjects: {
+    heading: "Common projects",
+    sub: "Typical starting points. These are ballpark floors, we scope the exact number on a call.",
+    items: [
+      { name: "Landing page", from: "from $500" },
+      { name: "Marketing site (multi-page)", from: "from $2,000" },
+      { name: "Web app / SaaS dashboard", from: "from $4,000" },
+      { name: "Mobile app (MVP)", from: "from $4,000" },
+      { name: "Design system", from: "from $3,000" },
+      { name: "Brand identity", from: "from $2,000" },
+    ],
+  },
   // Cost-comparison framing (anchors value vs the alternatives) — research-backed (Artone pattern).
   compare: {
     heading: "What senior design usually costs",

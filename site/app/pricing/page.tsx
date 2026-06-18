@@ -50,6 +50,28 @@ export default function Pricing() {
         </div>
       </section>
 
+      {/* Common projects */}
+      <section className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto max-w-4xl px-6">
+          <Reveal>
+            <h2 className="text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl">{pricing.commonProjects.heading}</h2>
+            <p className="mt-3 text-[17px] text-sub">{pricing.commonProjects.sub}</p>
+          </Reveal>
+          <div className="mt-10 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
+            {pricing.commonProjects.items.map((p, i) => (
+              <Reveal
+                key={p.name}
+                delay={(i % 2) * 50}
+                className="flex items-baseline justify-between gap-4 bg-surface px-6 py-5"
+              >
+                <span className="text-[16px] font-medium text-ink">{p.name}</span>
+                <span className="shrink-0 text-[15px] font-semibold text-orange">{p.from}</span>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Cost comparison vs alternatives */}
       <section className="border-t border-line py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-6">
