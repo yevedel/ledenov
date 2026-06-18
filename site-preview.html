@@ -176,6 +176,18 @@
   .fbottom{border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:22px 0;color:var(--sub);font-size:13px}
   .center{text-align:center}
 
+  /* outcomes / audit / risk */
+  .ogrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;margin-top:36px}
+  .ocard{background:var(--surface);padding:26px}
+  @media(max-width:640px){.ogrid{grid-template-columns:1fr}}
+  .auditcard{position:relative;overflow:hidden;border:1px solid rgba(255,62,2,.3);background:rgba(255,239,234,.5);border-radius:var(--rad);padding:48px}
+  @media(max-width:640px){.auditcard{padding:28px}}
+  .asteps{display:flex;flex-wrap:wrap;gap:20px;margin-top:24px}
+  .astep{display:flex;align-items:center;gap:8px;font-size:15px}
+  .an{width:24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex:0 0 auto}
+  .risk{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;padding:0;margin:28px 0 0;font-size:13px;color:var(--sub)}
+  .risk li{display:flex;gap:6px}.risk li::before{content:"✓";color:var(--orange)}
+
   /* pricing extras */
   .pinc{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:8px;flex:1}
   .pinc li{display:flex;gap:8px;font-size:14px}.pinc li::before{content:"✓";color:var(--orange)}
@@ -322,6 +334,10 @@ const C = {
     proof:[{pre:"~$",num:2,suf:"M delivered"},{pre:"",num:950,suf:"+ projects"},{text:"Top Rated Plus"},{pre:"",num:10,suf:"+ years"}]},
   ticker:["Upwork Top Rated Plus","~$2M delivered","950+ projects","Replies within hours","Works across US / EU / AU","Free 30-min UX audit"],
   logos:["Google","Nestlé","P&G","AB InBev","WhatsApp"],
+  audit:{heading:"Not sure where your product leaks? I'll show you. Free.",body:"Send me your product. In a 30-minute call I'll show you exactly where users drop off and the first things I'd fix. No pitch, no commitment.",steps:["Send your product or link","Senior teardown of the UX","Clear next steps you can act on"]},
+  outcomes:{heading:"What you walk away with",items:[["A product that ships","Production-ready design, not a folder of Figma files that never launches."],["Clarity you can show investors","A product and story that look funded, before you are."],["One partner, not three vendors","Product, site, and brand from one accountable person. No coordination tax."],["Senior decisions, made fast","The right calls for your stage, at founder speed, without the agency overhead."]]},
+  loyalty:{heading:"Founders don't just hire me once. They come back.",facts:[["5","contracts with one client since 2016","Benjamin Greene"],["10th","design together, and counting","Mario Cimmino"],["1+ yr","embedded like an internal team member","Scott Morris, Propulsion"]]},
+  riskReversal:["NDA on every project","Scoped on a call, no surprise invoices","Stop anytime, no lock-in"],
   numbers:{heading:"A singular vision with extraordinary reach.",note:"Most of my clients come through Upwork, where I've been Top Rated Plus for over a decade.",
     stats:[["",950,"+","Projects completed","950+ contracts on Upwork for founders across fintech, AI, healthcare, and B2B SaaS."],["~$",2,"M","Earned on Upwork","Top Rated Plus, the top tier of talent, for 10+ years running."],["",10,"+","Years of experience","A decade of senior product, site, and brand design, end to end."]]},
   about2:{eyebrow:"My experience, my story",title:"Beyond Pixels",statement:"10 years of shaping digital clarity.",
@@ -428,9 +444,18 @@ const sectionHead=(eb,h,sub)=>`<div data-reveal><div class="eyebrow">${eb}</div>
 const wg=["g1","g2","g3","g4","g5","g6"];
 function workTile(it,i,masonry){const t=it[0],tag=it[1],slug=it[2];const asp=masonry?(" wa"+(i%6)):"";const inner=`<div class="wthumb ${wg[i%6]}${asp}"><span class="wname">${t}</span><span class="wtag">${tag}</span><span class="war">${slug?"→":"•"}</span><div class="woverlay"><span>${t}</span><small>${slug?"Case study":"Preview"}</small></div></div>`;const card=slug?`<a class="wcard" data-reveal data-link href="#/work/${slug}">${inner}</a>`:`<div class="wcard" data-reveal>${inner}</div>`;return masonry?`<div class="wmitem">${card}</div>`:card;}
 function workGrid(items,masonry){return masonry?`<div class="wmasonry">${items.map((it,i)=>workTile(it,i,true)).join("")}</div>`:`<div class="wgrid">${items.map((it,i)=>workTile(it,i,false)).join("")}</div>`;}
-const bookSection=()=>`<section id="book" class="center"><div class="wrap narrow"><div data-reveal><h2 style="font-size:clamp(30px,5vw,48px)">Let's talk</h2><p class="sub" style="margin:18px auto 0">Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p><div style="margin-top:28px;display:flex;justify-content:center">${ltPanel()}</div><p style="color:var(--sub);font-size:14px;margin-top:20px">Prefer to message? <a class="link" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>. I reply fast.</p></div></div></section>`;
+const bookSection=()=>`<section id="book" class="center"><div class="wrap narrow"><div data-reveal><h2 style="font-size:clamp(30px,5vw,48px)">Let's talk</h2><p class="sub" style="margin:18px auto 0">Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p><div style="margin-top:28px;display:flex;justify-content:center">${ltPanel()}</div><p style="color:var(--sub);font-size:14px;margin-top:20px">Prefer to message? <a class="link" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>. I reply fast.</p><ul class="risk">${C.riskReversal.map(r=>`<li>${r}</li>`).join("")}</ul></div></div></section>`;
 
 /* ----------------------------- pages ----------------------------- */
+function outcomesS(){const o=C.outcomes;return `<section><div class="wrap"><div data-reveal><span class="eyebrow">What you get</span><h2 style="margin-top:8px">${o.heading}</h2></div>
+  <div class="ogrid">${o.items.map(it=>`<div class="ocard" data-reveal><h3 style="font-size:18px">${it[0]}</h3><p class="sub" style="margin-top:6px">${it[1]}</p></div>`).join("")}</div></div></section>`;}
+function loyaltyS(){const l=C.loyalty;return `<section><div class="wrap"><div data-reveal><span class="eyebrow" style="color:var(--sub)">Why it works</span><h2 class="orange-h" style="margin-top:8px;max-width:640px">${l.heading}</h2></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">${l.facts.map(f=>`<div class="card" data-reveal><div style="font-size:48px;font-weight:600;color:var(--orange);letter-spacing:-.03em;line-height:1">${f[0]}</div><p style="margin-top:12px">${f[1]}</p><p class="sub" style="margin-top:4px;font-size:13px">— ${f[2]}</p></div>`).join("")}</div></div></section>`;}
+function auditS(){const a=C.audit;return `<section><div class="wrap"><div class="auditcard" data-reveal>
+  <span class="eyebrow">Start here</span><h2 style="margin-top:10px;max-width:620px">${a.heading}</h2><p class="sub" style="font-size:17px;max-width:560px">${a.body}</p>
+  <div class="asteps">${a.steps.map((s,i)=>`<span class="astep"><span class="an">${i+1}</span>${s}</span>`).join("")}</div>
+  <div style="margin-top:28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><a class="btn btn-primary" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener">Get your free audit →</a><span class="sub" style="font-size:14px">Free · 30 minutes · no commitment</span></div>
+</div></div></section>`;}
 function procPhase(i){return i<6?0:i<8?1:i<10?2:3;}
 function procDetailHTML(i){const s=C.process.steps[i];const ph=C.process.phases[procPhase(i)];return `<div class="pdh"><span class="pdn">${i+1}</span><span class="pdph">${ph}</span></div><h3>${s[0]}</h3><p>${s[1]}</p>`;}
 function procSection(){const p=C.process;return `<section><div class="wrap">
@@ -451,7 +476,7 @@ function home(){
     <div class="eyebrow">${h.eyebrow}</div>
     <h1 style="margin-top:22px">${h.h[0]}<br>${h.h[1]}</h1>
     <p class="lede">${h.sub}</p>
-    <div class="cta">${ltPanel()}<a class="btn btn-ghost" data-link href="#/work">See the work</a></div>
+    <div class="cta">${ltPanel()}<a class="btn btn-ghost" href="https://calendly.com/yevledenov/20min" target="_blank" rel="noopener">Get a free UX audit</a></div>
     <div class="proof"><div class="avatars"><span></span><span></span><span></span><span></span></div>
       <div style="color:var(--sub);font-size:13px">Trusted by founders across the US, EU and Australia</div>
       <div class="stats">${h.proof.map((p,i)=>(i?'<span class="s">·</span>':'')+(p.text?esc(p.text):cnt(p.pre,p.num,p.suf))).join("")}</div>
@@ -461,6 +486,7 @@ function home(){
   <div class="logos"><div class="wrap"><p>Senior rigor brought to work for teams like</p><ul>${C.logos.map(l=>`<li>${l}</li>`).join("")}</ul></div></div>
   ${numbers()}
   <section><div class="wrap narrow"><div data-reveal><div class="eyebrow">About</div><h2>${C.about.title}</h2><p class="sub" style="font-size:18px">${C.about.body}</p><p style="margin-top:22px"><a class="link" data-link href="#/about">More about me →</a></p></div></div></section>
+  ${outcomesS()}
   <section id="industries"><div class="wrap">${sectionHead("Industries","I go deep where it counts","One partner, but not a generalist. Pick your space, see the work and the thinking behind it.")}
     <div class="grid ind-grid">${C.industries.map(([l,s])=>`<a class="ind" data-reveal data-link href="#/solutions/${s}">${l}<span class="ar">→</span></a>`).join("")}</div></div></section>
   <section><div class="wrap">${sectionHead("What I do","Problems I solve","Not a service menu. The things that quietly cost founders time, users, and runway.")}
@@ -470,6 +496,7 @@ function home(){
   <section><div class="wrap">${sectionHead("Why me","You've been burned before. Here's why this is different.",C.advantages.intro)}
     <div class="adv-grid">${C.advantages.blocks.map(([vs,got,get])=>`<div class="adv" data-reveal><div class="vs">${vs}</div><div class="got"><b style="color:var(--ink)">What you got: </b>${got}</div><div class="get"><b>What you get here: </b>${get}</div></div>`).join("")}</div>
     <div class="adv-close" data-reveal><p>${C.advantages.close}</p>${ltPanel()}</div></div></section>
+  ${loyaltyS()}
   <section><div class="wrap">${sectionHead("Testimonials","Founders, in their words","The strongest signal isn't praise. It's that they come back.")}
     <div class="pills" data-reveal>${C.testimonials.repeat.map(r=>`<span class="pill">${r}</span>`).join("")}</div>
     <div class="grid tg">${C.testimonials.quotes.map(([q,n,r])=>`<div class="card tcard" data-reveal><q>“${q}”</q><div class="who"><b>${n}</b><small>${r}</small></div></div>`).join("")}</div>
@@ -477,6 +504,7 @@ function home(){
   <section><div class="wrap">${sectionHead("Work","Selected work","A few in depth, the rest as a quick look.")}
     ${workGrid(C.allWork.slice(0,6))}
     <p data-reveal style="margin-top:28px"><a class="link" data-link href="#/work">See all work →</a></p></div></section>
+  ${auditS()}
   <section><div class="wrap narrow"><div data-reveal><div class="eyebrow">FAQ</div><h2>Straight answers</h2></div>${faqList(C.faq)}</div></section>
   ${bookSection()}`;
 }
