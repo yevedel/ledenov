@@ -14,6 +14,8 @@ export default function Pricing() {
   return (
     <>
       <PageHero eyebrow="Pricing" title={pricing.heading} sub={pricing.sub} glow />
+
+      {/* Plans */}
       <section className="pb-8 pt-4">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-4 lg:grid-cols-3">
@@ -30,8 +32,16 @@ export default function Pricing() {
                   <span className="text-4xl font-semibold tracking-[-0.02em] text-ink">{p.price}</span>
                   <span className="text-[14px] text-sub">{p.unit}</span>
                 </div>
-                <p className="mt-4 flex-1 text-[15px] leading-relaxed text-sub">{p.desc}</p>
-                <div className="mt-6">
+                <p className="mt-4 text-[15px] leading-relaxed text-sub">{p.desc}</p>
+                <ul className="mt-5 flex-1 space-y-2">
+                  {p.includes.map((it) => (
+                    <li key={it} className="flex items-start gap-2 text-[14px] text-ink">
+                      <span className="mt-0.5 text-orange" aria-hidden>✓</span>
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7">
                   <LetsTalk variant={p.highlight ? "primary" : "ghost"} label={p.cta} />
                 </div>
               </Reveal>
@@ -40,7 +50,47 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="py-16">
+      {/* Cost comparison vs alternatives */}
+      <section className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto max-w-4xl px-6">
+          <Reveal>
+            <h2 className="text-3xl font-semibold tracking-[-0.02em] text-ink sm:text-4xl">{pricing.compare.heading}</h2>
+            <p className="mt-3 text-[17px] text-sub">{pricing.compare.sub}</p>
+          </Reveal>
+          <div className="mt-10 overflow-hidden rounded-card border border-line">
+            {pricing.compare.rows.map((r, i) => (
+              <Reveal
+                key={r.option}
+                delay={i * 50}
+                className={`grid grid-cols-1 gap-1 border-b border-line p-5 last:border-b-0 sm:grid-cols-[1fr_auto_1.5fr] sm:items-center sm:gap-6 ${
+                  r.me ? "bg-tint" : "bg-surface"
+                }`}
+              >
+                <span className={`text-[16px] font-semibold ${r.me ? "text-orange-ink" : "text-ink"}`}>{r.option}</span>
+                <span className={`text-[18px] font-semibold ${r.me ? "text-orange" : "text-ink"}`}>{r.cost}</span>
+                <span className="text-[14px] text-sub">{r.note}</span>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust strip */}
+      <section className="border-t border-line py-14">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {pricing.trust.map((t) => (
+              <Reveal key={t} className="flex items-start gap-2 text-[15px] text-ink">
+                <span className="mt-0.5 text-orange" aria-hidden>✓</span>
+                {t}
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing FAQ */}
+      <section className="border-t border-line py-16">
         <div className="mx-auto max-w-3xl px-6">
           <h2 className="text-2xl font-semibold tracking-[-0.02em] text-ink">Pricing questions</h2>
           <dl className="mt-6 divide-y divide-line border-y border-line">

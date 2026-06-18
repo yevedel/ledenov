@@ -377,13 +377,27 @@ export const solutions: Solution[] = [
 
 export const pricing = {
   heading: "Simple, senior, no surprises",
-  sub: "Open pricing. We scope the exact number on a call, then you commit knowing it.",
+  sub: "Open pricing. We scope the exact number on a call, then you commit knowing it. No estimators, no guessing games.",
   plans: [
-    { name: "Free UX audit", price: "$0", unit: "30 minutes", desc: "Send your product. I'll show you where users drop off and what I'd fix first.", cta: "Book the audit", highlight: false },
-    { name: "Project", price: "from $500", unit: "scoped", desc: "A defined piece of work, scoped on the call. Production-ready, front-end-aware handoff.", cta: "Book a call", highlight: true },
-    { name: "Ongoing", price: "$1,000", unit: "per week", desc: "Embedded senior partner for product, site, and brand. Senior decisions, founder speed, one direct line.", cta: "Book a call", highlight: false },
+    { name: "Free UX audit", price: "$0", unit: "30 minutes", desc: "Send your product. I'll show you where users drop off and what I'd fix first.", cta: "Book the audit", highlight: false,
+      includes: ["A 30-minute call", "Where users drop off", "What I'd fix first", "No commitment"] },
+    { name: "Project", price: "from $500", unit: "scoped on a call", desc: "A defined piece of work, scoped together so you know the number before you commit.", cta: "Book a call", highlight: true,
+      includes: ["Production-ready Figma", "Front-end-aware handoff", "Copy included where needed", "A direct line to me"] },
+    { name: "Ongoing", price: "$1,000", unit: "per week", desc: "Embedded senior partner for product, site, and brand. Senior decisions, founder speed.", cta: "Book a call", highlight: false,
+      includes: ["Steady senior capacity", "Product, site & brand", "Priority turnaround", "Pause or stop anytime"] },
   ],
-  faqRef: true,
+  // Cost-comparison framing (anchors value vs the alternatives) — research-backed (Artone pattern).
+  compare: {
+    heading: "What senior design usually costs",
+    sub: "Same senior output, without the overhead or the lock-in.",
+    rows: [
+      { option: "Full-time senior hire", cost: "$120k+/yr", note: "Plus recruiting, equity, months of ramp-up.", me: false },
+      { option: "Design agency", cost: "$8–20k/mo", note: "Account managers, slower cycles, a markup on every hour.", me: false },
+      { option: "Cheap freelancer / DIY-AI", cost: "Looks cheap", note: "Pretty files with no product logic. You pay twice.", me: false },
+      { option: "Me", cost: "from $1,000/wk", note: "Senior judgment, one accountable partner, work that ships.", me: true },
+    ],
+  },
+  trust: ["Scoped on a call, no surprise invoices", "NDA on every project", "I start within a week", "Stop anytime, no lock-in"],
 };
 
 // Big-number social proof (Figma "Numbers" section). Upwork-anchored — it's the main client source.
