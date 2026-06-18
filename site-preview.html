@@ -94,6 +94,20 @@
   .num{width:36px;height:36px;border-radius:50%;background:var(--tint);color:var(--orange-ink);font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center}
   .card .p{color:var(--sub);font-size:15px;margin-top:8px}
   @media(max-width:900px){.proc-grid{grid-template-columns:repeat(2,1fr)}}
+  /* interactive process staircase */
+  .phh{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);padding-bottom:12px;margin-top:48px;font-size:14px;font-weight:500}
+  .phh div+div{border-left:1px solid var(--line);padding-left:16px}
+  .stair{margin-top:24px}
+  .pstep{display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;border:none;border-radius:999px;padding:10px 24px 10px 10px;margin-bottom:8px;cursor:pointer;font-family:inherit;font-size:15px;font-weight:500;transition:background .2s;text-align:left;white-space:nowrap}
+  .pstep:hover,.pstep.on{background:var(--orange)}
+  .pstep .pn{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex:0 0 auto}
+  .pstep.on .pn{background:rgba(255,255,255,.28)}
+  .pdetail{margin-top:24px;border:1px solid var(--line);border-radius:var(--rad);background:var(--surface);padding:24px}
+  .pdh{display:flex;align-items:center;gap:12px}
+  .pdn{width:32px;height:32px;border-radius:50%;background:var(--tint);color:var(--orange-ink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .pdph{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sub)}
+  .pdetail h3{font-size:20px;margin:14px 0 0}.pdetail p{color:var(--sub);margin:8px 0 0}
+  @media(max-width:760px){.phh{display:none}.pstep{margin-left:0!important}}
 
   .adv-grid{grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;margin-top:44px}
   .adv{background:var(--surface);padding:26px}
@@ -327,10 +341,7 @@ const C = {
     ["Our UI is inconsistent and slows the team.","Design systems, prototyping, and micro-animation that keep speed and quality as you grow."],
     ["We need to move fast without looking generic.","AI-assisted workflows, senior-directed. I use the same tools as everyone, then apply the judgment they can't."],
     ["Design keeps breaking in handoff.","Front-end-aware design that drops cleanly into React/Next.js/Tailwind/Webflow. I design with what ships in mind."]],
-  process:[["01","Discovery","We get on a call. I learn the product, the users, the constraints, and what “shipped” means for you. You get a clear scope, no guesswork."],
-    ["02","Design","I work in fast cycles, senior decisions first. You see progress early and often, not a big reveal at the end."],
-    ["03","Ship","Production-ready files and front-end-aware handoff. Built to launch, not to admire in Figma."],
-    ["04","Iterate","I stay close after launch. Real usage beats opinions."]],
+  process:{sub:"One senior partner across the whole arc, from strategy to a build-ready hand-off. Hover a step to see what happens.",phases:["Product strategy","UX design","UI design","Delivery"],steps:[["Strategy workshops","Align on goals, users, and constraints before anything gets designed."],["Idea validation","Pressure-test the concept so we don't build the wrong thing."],["Market research","Study competitors and the landscape to find the gaps."],["Product positioning","Find the sharp, ownable angle the product wins on."],["UX research","Talk to users, map real needs and friction."],["Functional decomposition","Break the product into clear, buildable parts."],["User flows","Map the paths users actually take, end to end."],["Prototyping","Make it clickable and test it early, before UI."],["Moodboards","Set the visual direction and tone."],["Visual design","Production-grade screens, every state covered."],["Hand-off","Build-ready files, front-end-aware, nothing lost in translation."]]},
   advantages:{intro:"Most founders come to me after paying twice. Once for the cheap version, then again to fix it. Here's the honest comparison.",
     blocks:[
       ["vs a cheap freelancer","Pretty Figma files, no product logic, nothing that ships.","Senior product judgment. Decisions backed by 10+ years and 950+ projects, designed to launch, not to admire."],
@@ -415,6 +426,14 @@ function workGrid(items,masonry){return masonry?`<div class="wmasonry">${items.m
 const bookSection=()=>`<section id="book" class="center"><div class="wrap narrow"><div data-reveal><h2 style="font-size:clamp(30px,5vw,48px)">Let's talk</h2><p class="sub" style="margin:18px auto 0">Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p><div style="margin-top:28px;display:flex;justify-content:center">${ltPanel()}</div><p style="color:var(--sub);font-size:14px;margin-top:20px">Prefer to message? <a class="link" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>. I reply fast.</p></div></div></section>`;
 
 /* ----------------------------- pages ----------------------------- */
+function procPhase(i){return i<6?0:i<8?1:i<10?2:3;}
+function procDetailHTML(i){const s=C.process.steps[i];const ph=C.process.phases[procPhase(i)];return `<div class="pdh"><span class="pdn">${i+1}</span><span class="pdph">${ph}</span></div><h3>${s[0]}</h3><p>${s[1]}</p>`;}
+function procSection(){const p=C.process;return `<section><div class="wrap">
+  <div data-reveal><span class="eyebrow" style="color:var(--sub)">Process</span><h2 class="orange-h" style="margin-top:8px">How it works</h2><p class="sub">${p.sub}</p></div>
+  <div class="phh">${p.phases.map(ph=>`<div>${ph}</div>`).join("")}</div>
+  <div class="stair">${p.steps.map((s,i)=>`<button class="pstep${i===0?" on":""}" data-step="${i}" style="margin-left:min(${(i*5.2).toFixed(1)}%,57%)"><span class="pn">${i+1}</span>${s[0]}</button>`).join("")}</div>
+  <div class="pdetail" id="procDetail">${procDetailHTML(0)}</div>
+</div></section>`;}
 function numbers(){const n=C.numbers;return `<section><div class="wrap">
   <div class="numhead" data-reveal><h2>${n.heading}</h2><span class="eyebrow">Numbers</span></div>
   <div style="margin-top:36px;border-top:1px solid var(--line)">${n.stats.map(s=>`<div class="numrow" data-reveal><div><div class="lbl">${s[3]}</div><div class="big">${cnt(s[0],s[1],s[2])}</div></div><div class="d">${s[4]}</div></div>`).join("")}</div>
@@ -442,8 +461,7 @@ function home(){
   <section><div class="wrap">${sectionHead("What I do","Problems I solve","Not a service menu. The things that quietly cost founders time, users, and runway.")}
     <div class="svc">${C.services.map(([q,a])=>`<div class="r" data-reveal><div class="q">“${q}”</div><div class="a">${a}</div></div>`).join("")}</div>
     <div data-reveal style="margin-top:28px">${ltPanel()}</div></div></section>
-  <section><div class="wrap">${sectionHead("Process","How it works","Built to reduce your risk at every step, not to fill time.")}
-    <div class="grid proc-grid">${C.process.map(([n,t,p])=>`<div class="card" data-reveal><div class="num">${n}</div><h3 style="margin-top:14px">${t}</h3><div class="p">${p}</div></div>`).join("")}</div></div></section>
+  ${procSection()}
   <section><div class="wrap">${sectionHead("Why me","You've been burned before. Here's why this is different.",C.advantages.intro)}
     <div class="adv-grid">${C.advantages.blocks.map(([vs,got,get])=>`<div class="adv" data-reveal><div class="vs">${vs}</div><div class="got"><b style="color:var(--ink)">What you got: </b>${got}</div><div class="get"><b>What you get here: </b>${get}</div></div>`).join("")}</div>
     <div class="adv-close" data-reveal><p>${C.advantages.close}</p>${ltPanel()}</div></div></section>
@@ -516,7 +534,7 @@ function solution(slug){const s=C.solutions[slug];if(!s)return notfound();return
     </div></div></section>
   <section><div class="wrap narrow" data-reveal><div class="eyebrow">Why ${s.label.toLowerCase()}</div><p style="font-size:20px;line-height:1.5;margin-top:14px">${s.why}</p><p class="sub" style="margin-top:14px">${s.proof}</p></div></section>
   <section><div class="wrap"><div data-reveal><h2>${s.label} work</h2></div><div class="grid" style="grid-template-columns:repeat(3,1fr)">${[0,1,2].map(()=>`<div class="ph" data-reveal style="aspect-ratio:4/3">Case study →</div>`).join("")}</div></div></section>
-  <section><div class="wrap">${sectionHead("Process","How it works","Built to reduce your risk at every step.")}<div class="grid proc-grid">${C.process.map(([n,t,p])=>`<div class="card" data-reveal><div class="num">${n}</div><h3 style="margin-top:14px">${t}</h3><div class="p">${p}</div></div>`).join("")}</div></div></section>
+  ${procSection()}
   <section><div class="wrap narrow"><div data-reveal><h2>Straight answers, ${s.label.toLowerCase()} edition</h2></div>${faqList(s.faqs)}</div></section>
   ${bookSection()}`;}
 
@@ -614,6 +632,9 @@ document.addEventListener("click",e=>{
   const ltg=e.target.closest("[data-lt-ghost]");
   if(ltg){ e.preventDefault(); location.hash="#/#book"; }
 });
+function setProcStep(i){document.querySelectorAll(".pstep").forEach(el=>el.classList.toggle("on",+el.dataset.step===i));const d=document.getElementById("procDetail");if(d)d.innerHTML=procDetailHTML(i);}
+document.addEventListener("mouseover",e=>{const b=e.target.closest&&e.target.closest(".pstep");if(b)setProcStep(+b.dataset.step);});
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".pstep");if(b)setProcStep(+b.dataset.step);});
 window.addEventListener("hashchange",route);
 window.addEventListener("DOMContentLoaded",route);
 route();

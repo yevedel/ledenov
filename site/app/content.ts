@@ -88,12 +88,20 @@ export const services = {
 
 export const process = {
   heading: "How it works",
-  sub: "Built to reduce your risk at every step, not to fill time.",
+  sub: "One senior partner across the whole arc, from strategy to a build-ready hand-off. Hover a step to see what happens.",
+  phases: ["Product strategy", "UX design", "UI design", "Delivery"],
   steps: [
-    { n: "01", title: "Discovery", body: "We get on a call. I learn the product, the users, the constraints, and what “shipped” means for you. You get a clear scope, no guesswork." },
-    { n: "02", title: "Design", body: "I work in fast cycles, senior decisions first. You see progress early and often, not a big reveal at the end." },
-    { n: "03", title: "Ship", body: "Production-ready files and front-end-aware handoff. Built to launch, not to admire in Figma." },
-    { n: "04", title: "Iterate", body: "I stay close after launch. Real usage beats opinions." },
+    { n: 1, label: "Strategy workshops", phase: 0, desc: "Align on goals, users, and constraints before anything gets designed." },
+    { n: 2, label: "Idea validation", phase: 0, desc: "Pressure-test the concept so we don't build the wrong thing." },
+    { n: 3, label: "Market research", phase: 0, desc: "Study competitors and the landscape to find the gaps." },
+    { n: 4, label: "Product positioning", phase: 0, desc: "Find the sharp, ownable angle the product wins on." },
+    { n: 5, label: "UX research", phase: 0, desc: "Talk to users, map real needs and friction." },
+    { n: 6, label: "Functional decomposition", phase: 0, desc: "Break the product into clear, buildable parts." },
+    { n: 7, label: "User flows", phase: 1, desc: "Map the paths users actually take, end to end." },
+    { n: 8, label: "Prototyping", phase: 1, desc: "Make it clickable and test it early, before UI." },
+    { n: 9, label: "Moodboards", phase: 2, desc: "Set the visual direction and tone." },
+    { n: 10, label: "Visual design", phase: 2, desc: "Production-grade screens, every state covered." },
+    { n: 11, label: "Hand-off", phase: 3, desc: "Build-ready files, front-end-aware, nothing lost in translation." },
   ],
 };
 

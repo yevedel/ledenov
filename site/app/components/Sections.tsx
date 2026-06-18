@@ -4,7 +4,6 @@ import {
   about,
   industries,
   services,
-  process as proc,
   testimonials,
   projects,
   booking,
@@ -14,6 +13,7 @@ import {
 import Reveal from "./Reveal";
 import LetsTalk from "./LetsTalk";
 import WorkGrid from "./WorkGrid";
+import ProcessFlow from "./ProcessFlow";
 
 export function Logos() {
   return (
@@ -104,28 +104,7 @@ export function Services() {
 }
 
 export function Process() {
-  return (
-    <section id="process" className="border-t border-line py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-6">
-        <Reveal>
-          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-sub">Process</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.02em] text-orange sm:text-5xl">{proc.heading}</h2>
-          <p className="mt-4 max-w-2xl text-[17px] text-sub">{proc.sub}</p>
-        </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {proc.steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 60} className="rounded-card border border-line bg-surface p-6">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-tint text-[13px] font-semibold text-orange-ink">
-                {s.n}
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-ink">{s.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-sub">{s.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <ProcessFlow />;
 }
 
 export function Testimonials() {
