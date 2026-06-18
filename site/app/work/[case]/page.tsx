@@ -130,6 +130,42 @@ export default async function CasePage({ params }: { params: Promise<{ case: str
             ))}
           </div>
 
+          {/* Engineering handoff proof */}
+          {(c.engineerQuote || c.handoff) && (
+            <div className="mt-12 rounded-card border border-line bg-surface p-7">
+              <h2 className="text-[12px] font-semibold uppercase tracking-[0.08em] text-orange-ink">Built, not just designed</h2>
+              {c.engineerQuote && (
+                <figure className="mt-4">
+                  <blockquote className="text-[17px] leading-relaxed text-ink">“{c.engineerQuote.quote}”</blockquote>
+                  <figcaption className="mt-3 text-[14px] text-sub">
+                    <span className="font-medium text-ink">{c.engineerQuote.name}</span> — {c.engineerQuote.role}
+                  </figcaption>
+                </figure>
+              )}
+              {c.handoff && (
+                <div className="mt-6 flex flex-wrap gap-2 border-t border-line pt-5">
+                  {c.handoff.map((h) =>
+                    h.href ? (
+                      <a
+                        key={h.label}
+                        href={h.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full border border-line2 px-3 py-1.5 text-[13px] font-medium text-ink transition-colors hover:border-orange hover:text-orange"
+                      >
+                        {h.label} ↗
+                      </a>
+                    ) : (
+                      <span key={h.label} className="rounded-full bg-tint px-3 py-1.5 text-[13px] font-medium text-orange-ink">
+                        {h.label}
+                      </span>
+                    )
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Wrap-up */}
           <div className="mt-12 rounded-card bg-tint p-7">
             <h2 className="text-xl font-semibold text-ink">The outcome</h2>

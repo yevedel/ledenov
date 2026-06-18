@@ -188,8 +188,10 @@ export const audit = {
     emailPlaceholder: "you@company.com",
     submit: "Send for a free teardown",
     success: "Got it. I'll review your product and reply within one business day, no pitch, no call required.",
-    // TODO: set to a real form endpoint (Formspree / Next route handler). Empty string = mailto fallback to site.email.
-    endpoint: "",
+    // Posts to the built-in route handler (app/api/teardown). That handler needs an env var
+    // (RESEND_API_KEY or TEARDOWN_WEBHOOK_URL) to actually deliver — see .env.example.
+    // If the request fails, AuditForm falls back to a mailto to site.email, so a lead is never lost.
+    endpoint: "/api/teardown",
   },
   altCta: "Prefer to talk it through? Book a call instead.",
 };
@@ -249,6 +251,10 @@ export type CaseDetail = {
   headline: string;
   subhead: string;
   liveUrl?: string;
+  // Engineering-side proof (the synthetic audit's explicit book_call gate for handoff-scarred buyers).
+  engineerQuote?: { quote: string; name: string; role: string };
+  // Build-ready handoff artifacts; optional href links to a Loom/PR/Figma/token file.
+  handoff?: { label: string; href?: string }[];
   // ⚠️ metrics for paladir are PLACEHOLDERS (no real data) — replace before launch.
   metrics: { value: string; label: string }[];
   meta: { role: string; client: string; scope: string; domain: string; platform: string; year: string };
@@ -267,6 +273,18 @@ export const cases: CaseDetail[] = [
     subhead:
       "Paladir is an AI-powered compliance platform for SMBs working toward SOC 2 and ISO 27001. I redesigned it end to end, so it reads like a guided journey, not a regulatory inventory.",
     liveUrl: "https://www.paladir.com", // ⚠️ PLACEHOLDER live link — confirm/replace with the real shipped URL.
+    // ⚠️ PLACEHOLDER — replace with a real engineer quote + real handoff links before launch.
+    engineerQuote: {
+      quote: "The Figma dropped straight into our React/Tailwind setup. Tokens, components, states, all there. We shipped the redesign in two sprints with basically no design rework.",
+      name: "Engineer name",
+      role: "Founding Engineer, Paladir",
+    },
+    handoff: [
+      { label: "Build-ready Figma (components + variants)" },
+      { label: "Tailwind design tokens" },
+      { label: "Loom handoff walkthrough" },
+      { label: "Shipped production URL", href: "https://www.paladir.com" },
+    ],
     metrics: [
       { value: "+64%", label: "onboarding completion" },
       { value: "15 min", label: "to a configured framework (from ~3 days)" },
@@ -384,6 +402,18 @@ export const cases: CaseDetail[] = [
     subhead:
       "HostIQ.ai is an AI assistant for hosting operations. The founders shipped a fast v0/Lovable MVP, then hit a wall: users didn't trust the AI to act. I redesigned the core flows so the AI feels accountable.",
     liveUrl: "https://www.hostiq.ai",
+    // ⚠️ PLACEHOLDER — replace with a real engineer quote + real handoff links before launch.
+    engineerQuote: {
+      quote: "Yev thinks like an engineer. The handoff was component-for-component what we build with, so I rebuilt the core flows from his Figma in a few days, no back-and-forth.",
+      name: "Engineer name",
+      role: "CTO & co-founder, HostIQ.ai",
+    },
+    handoff: [
+      { label: "Build-ready Figma (React-shaped components)" },
+      { label: "Tailwind tokens + state matrix" },
+      { label: "Loom walkthrough of the core flows" },
+      { label: "Live product", href: "https://www.hostiq.ai" },
+    ],
     metrics: [
       { value: "+52%", label: "signup-to-activation" },
       { value: "−40%", label: "support tickets" },

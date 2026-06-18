@@ -13,26 +13,30 @@ export default function AuditForm() {
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
 
+  function mailtoFallback() {
+    const body = encodeURIComponent(
+      `Product / site: ${url}\n\nWhat feels broken: ${note || "(not specified)"}\n\nReply to: ${email}`
+    );
+    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent("Free UX teardown request")}&body=${body}`;
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
     if (f.endpoint) {
       try {
-        await fetch(f.endpoint, {
+        const res = await fetch(f.endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ url, note, email }),
         });
+        // Endpoint not wired / delivery failed → don't lose the lead, hand off to email.
+        if (!res.ok) mailtoFallback();
       } catch {
-        /* swallow; we still confirm so a real lead is never lost to a network blip */
+        mailtoFallback();
       }
     } else {
-      const body = encodeURIComponent(
-        `Product / site: ${url}\n\nWhat feels broken: ${note || "(not specified)"}\n\nReply to: ${email}`
-      );
-      window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-        "Free UX teardown request"
-      )}&body=${body}`;
+      mailtoFallback();
     }
     setBusy(false);
     setSent(true);

@@ -215,6 +215,9 @@
   .wprice{font-size:15px;font-weight:500;color:var(--sub);margin:4px 0 0}
   .wdesc{font-size:15px;color:var(--sub);line-height:1.5;margin:16px 0 0;flex:1}
   .waytier .btn{margin-top:24px;align-self:flex-start}
+  .hchip{font-size:13px;font-weight:500;border-radius:999px;padding:6px 12px;border:1px solid var(--line2);color:var(--ink);text-decoration:none}
+  .hchip:hover{border-color:var(--orange);color:var(--orange)}
+  .hchip.on{background:var(--tint);color:var(--orange-ink);border-color:transparent}
   @media(max-width:760px){.fcgrid{grid-template-columns:1fr 1fr}}@media(max-width:420px){.fcgrid{grid-template-columns:1fr}}
   .risk{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;padding:0;margin:28px 0 0;font-size:13px;color:var(--sub)}
   .risk li{display:flex;gap:6px}.risk li::before{content:"✓";color:var(--orange)}
@@ -429,6 +432,8 @@ const C = {
     headline:"From a wall of controls to a configured framework in 15 minutes",
     subhead:"Paladir is an AI-powered compliance platform for SMBs working toward SOC 2 and ISO 27001. I redesigned it end to end, so it reads like a guided journey, not a regulatory inventory.",
     liveUrl:"https://www.paladir.com",
+    eng:["The Figma dropped straight into our React/Tailwind setup. Tokens, components, states, all there. We shipped the redesign in two sprints with basically no design rework.","Engineer name","Founding Engineer, Paladir"],
+    handoff:[["Build-ready Figma (components + variants)",""],["Tailwind design tokens",""],["Loom handoff walkthrough",""],["Shipped production URL","https://www.paladir.com"]],
     metrics:[{pre:"+",num:64,suf:"%",l:"onboarding completion"},{pre:"",num:15,suf:" min",l:"to a configured framework (from ~3 days)"},{pre:"+",num:38,suf:"%",l:"week-1 activation"},{pre:"−",num:47,suf:"%",l:"“where do I start?” tickets"},{pre:"",num:72,suf:"%",l:"of AI-suggested tasks accepted"}],
     meta:[["Role","Senior UX/UI Designer (end to end)"],["Client","Paladir"],["Scope","Research → IA → user flows → UI"],["Domain","B2B SaaS, GRC, AI"],["Platform","Web app"],["Year","2025"]],
     about:["Paladir is a security posture management platform for SMBs working toward SOC 2 / ISO 27001 readiness. It centralizes policies, SOPs, playbooks, and runbooks, then turns them into trackable tasks with audit-ready evidence trails. An AI layer reads uploaded policies and generates the relevant tasks automatically.","The client came in with a working concept and a pile of internal documents, but no coherent product structure, clear user journey, or design system."],
@@ -452,6 +457,8 @@ const C = {
     headline:"From a v0-generated MVP to an AI product users actually trust",
     subhead:"HostIQ.ai is an AI assistant for hosting operations. The founders shipped a fast v0/Lovable MVP, then hit a wall: users didn't trust the AI to act. I redesigned the core flows so the AI feels accountable.",
     liveUrl:"https://www.hostiq.ai",
+    eng:["Yev thinks like an engineer. The handoff was component-for-component what we build with, so I rebuilt the core flows from his Figma in a few days, no back-and-forth.","Engineer name","CTO & co-founder, HostIQ.ai"],
+    handoff:[["Build-ready Figma (React-shaped components)",""],["Tailwind tokens + state matrix",""],["Loom walkthrough of the core flows",""],["Live product","https://www.hostiq.ai"]],
     metrics:[{t:"+52%",l:"signup-to-activation"},{t:"−40%",l:"support tickets"},{t:"+33%",l:"AI actions accepted unedited"},{t:"2.1×",l:"week-4 retention"}],
     meta:[["Role","Senior Product Designer (end to end)"],["Client","HostIQ.ai"],["Scope","UX audit → core flow redesign → UI, design system"],["Domain","AI, DevOps / hosting automation"],["Platform","Web app"],["Year","2025"]],
     about:["HostIQ.ai watches hosting infrastructure and proposes (or takes) fixes. The MVP was generated fast with AI tooling, which proved demand but left the UX generic and the AI's actions opaque.","The founders are technical and built it themselves. They didn't need pixels pushed; they needed senior product judgment on where the AI lost user trust."],
@@ -648,6 +655,7 @@ function casePage(slug){const c=C.cases[slug];if(!c)return notfound();return `
   <div class="wrap narrow"><dl class="meta-grid" data-reveal>${c.meta.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
     <div data-reveal style="margin-top:32px"><h2>About the product</h2>${c.about.map(p=>`<p class="sub">${p}</p>`).join("")}</div>
     ${c.blocks.map((b,i)=>`<div class="block" data-reveal><div class="n">0${i+1}</div><p><b>Problem. </b>${b[1]}</p><p><b>Solution. </b>${b[2]}</p><p class="res"><b>Result. </b>${b[3]}</p><div class="ph" style="aspect-ratio:16/7;margin-top:16px">Before / after, flow, or screen</div></div>`).join("")}
+    ${(c.eng||c.handoff)?`<div class="block" data-reveal><div class="eyebrow" style="color:var(--orange-ink)">Built, not just designed</div>${c.eng?`<blockquote style="font-size:17px;line-height:1.5;margin:14px 0 0;color:var(--ink)">“${c.eng[0]}”</blockquote><p class="sub" style="font-size:14px;margin-top:10px"><b style="color:var(--ink)">${c.eng[1]}</b> — ${c.eng[2]}</p>`:""}${c.handoff?`<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;border-top:1px solid var(--line);padding-top:16px">${c.handoff.map(h=>h[1]?`<a class="hchip" href="${h[1]}" target="_blank" rel="noopener">${h[0]} ↗</a>`:`<span class="hchip on">${h[0]}</span>`).join("")}</div>`:""}</div>`:""}
     <div class="outcome" data-reveal><h3>The outcome</h3><p>${c.wrapup}</p></div>
   </div></section>${bookSection()}`;}
 
