@@ -304,6 +304,152 @@ export const cases: CaseDetail[] = [
     wrapup:
       "A GRC platform that reads less like a regulatory inventory and more like a guided, AI-assisted workflow. Compliance progress is visible at every level, the AI feels woven in rather than bolted on, and onboarding takes a non-technical SMB owner from “I don't know where to start” to a configured framework.",
   },
+
+  // ⚠️⚠️ THE THREE CASES BELOW ARE FULLY PLACEHOLDER (names, metrics, copy, live URLs).
+  // They exist to span the domains the synthetic audit said each persona needs (regulated
+  // fintech / AI-built MVP / scrappy pre-seed MVP). Replace with real projects before launch.
+  {
+    slug: "confyde",
+    title: "Confyde — a compliant payments dashboard traders actually trust",
+    resultLine: "Failed transactions down 31%; KYC approval cut from ~2 days to under 4 hours",
+    tags: ["Fintech", "Regulated / KYC", "Web app", "2024"],
+    headline: "A regulated payments dashboard that feels fast without cutting compliance corners",
+    subhead:
+      "Confyde is a B2B cross-border payments platform. I redesigned the dashboard, KYC onboarding, and transaction flows so compliance reads as guardrails, not roadblocks.",
+    liveUrl: "https://www.confyde.com",
+    metrics: [
+      { value: "−31%", label: "failed transactions" },
+      { value: "<4 hrs", label: "KYC approval (from ~2 days)" },
+      { value: "+27%", label: "monthly active accounts" },
+      { value: "−44%", label: "compliance support tickets" },
+      { value: "4.6/5", label: "operator satisfaction" },
+    ],
+    meta: {
+      role: "Senior Product Designer (end to end)",
+      client: "Confyde",
+      scope: "Research → IA → KYC & payment flows → UI, design system",
+      domain: "Fintech, regulated payments (KYC/AML)",
+      platform: "Web app",
+      year: "2024",
+    },
+    about: [
+      "Confyde lets SMBs move money across borders with built-in KYC/AML compliance. The product handled real regulated flows, but the UI buried operators in compliance states they couldn't act on.",
+      "The team had the licensing and the rails. What they lacked: a dashboard that made risk legible and a KYC flow that didn't make new accounts abandon onboarding.",
+    ],
+    blocks: [
+      {
+        problem: "Operators couldn't tell a flagged transaction from a failed one; every state looked the same, so support drowned in 'why is this stuck?' tickets.",
+        solution: "A status system with clear states (clear / review / blocked), each with the one action that moves it forward and a plain-language reason.",
+        result: "Compliance support tickets down 44%; operators self-resolve most holds.",
+      },
+      {
+        problem: "KYC onboarding asked for everything up front; ~2 days of back-and-forth and heavy drop-off before an account could transact.",
+        solution: "A staged KYC flow that unlocks limits progressively, asks only for what each tier needs, and shows live verification status.",
+        result: "KYC approval time cut from ~2 days to under 4 hours; monthly active accounts up 27%.",
+      },
+      {
+        problem: "The transaction screen exposed raw rail data, so users mis-read fees and routing and abandoned transfers.",
+        solution: "A single transfer flow with upfront fees, routing, and a confirmation that mirrors what actually settles.",
+        result: "Failed transactions down 31%.",
+      },
+    ],
+    wrapup:
+      "A regulated payments product where compliance is a visible, navigable part of the flow rather than a wall. Operators trust the states they see, and new accounts reach their first transaction in hours, not days.",
+  },
+  {
+    slug: "hostiq",
+    title: "HostIQ.ai — turning an AI-built MVP into a product people trust",
+    resultLine: "Signup-to-activation up 52%; support load down 40% after the redesign",
+    tags: ["AI", "MVP turnaround", "Web app", "2025"],
+    headline: "From a v0-generated MVP to an AI product users actually trust",
+    subhead:
+      "HostIQ.ai is an AI assistant for hosting operations. The founders shipped a fast v0/Lovable MVP, then hit a wall: users didn't trust the AI to act. I redesigned the core flows so the AI feels accountable.",
+    liveUrl: "https://www.hostiq.ai",
+    metrics: [
+      { value: "+52%", label: "signup-to-activation" },
+      { value: "−40%", label: "support tickets" },
+      { value: "+33%", label: "AI actions accepted unedited" },
+      { value: "2.1×", label: "week-4 retention" },
+    ],
+    meta: {
+      role: "Senior Product Designer (end to end)",
+      client: "HostIQ.ai",
+      scope: "UX audit of the MVP → core flow redesign → UI, design system",
+      domain: "AI, DevOps / hosting automation",
+      platform: "Web app",
+      year: "2025",
+    },
+    about: [
+      "HostIQ.ai watches hosting infrastructure and proposes (or takes) fixes. The MVP was generated fast with AI tooling and shipped, which proved demand but left the UX generic and the AI's actions opaque.",
+      "The founders are technical and built the thing themselves. They didn't need pixels pushed; they needed senior product judgment on where the AI lost user trust.",
+    ],
+    blocks: [
+      {
+        problem: "The AI took actions with no visible reasoning or undo, so users disabled automation and the core value died.",
+        solution: "Every AI action now shows its reasoning, expected impact, and a one-click revert; high-risk actions ask first.",
+        result: "AI actions accepted without edits up 33%; automation kept on instead of switched off.",
+      },
+      {
+        problem: "The v0-generated onboarding dumped users into an empty dashboard with no first win.",
+        solution: "A guided first-run that connects one service and surfaces a real, useful fix within minutes.",
+        result: "Signup-to-activation up 52%.",
+      },
+      {
+        problem: "Generic components and inconsistent states made a serious infra tool feel like a toy, hurting trust with technical buyers.",
+        solution: "A tight design system with real infra states (healthy / degraded / acting) and dense, scannable layouts.",
+        result: "Support tickets down 40%; week-4 retention 2.1×.",
+      },
+    ],
+    wrapup:
+      "An AI-built MVP turned into a product technical users trust: the AI explains itself, every action is reversible, and the first session ends in a real fix. Senior product direction on top of the founders' own build.",
+  },
+  {
+    slug: "vuelo",
+    title: "Vuelo — a pre-revenue travel MVP that looked fundable",
+    resultLine: "Took a solo founder from idea to a demo that closed a pre-seed round",
+    tags: ["Travel", "Pre-seed MVP", "Mobile", "2024"],
+    headline: "From a napkin idea to a pre-seed-ready travel app in three weeks",
+    subhead:
+      "Vuelo is a group-trip planning app. A solo, non-technical founder needed an MVP credible enough to raise on, on a pre-seed budget. I designed the core flows and a build-ready handoff.",
+    liveUrl: "https://www.vuelo.app",
+    metrics: [
+      { value: "Pre-seed", label: "round closed off the demo" },
+      { value: "3 wks", label: "idea to build-ready MVP" },
+      { value: "+61%", label: "invite-to-join (user test)" },
+      { value: "9/10", label: "usability task completion" },
+    ],
+    meta: {
+      role: "Senior Product Designer (end to end)",
+      client: "Vuelo",
+      scope: "Positioning → core flows → UI → build-ready handoff",
+      domain: "Consumer, travel",
+      platform: "Mobile (iOS)",
+      year: "2024",
+    },
+    about: [
+      "Vuelo helps friends plan group trips without the spreadsheet chaos. The founder had a sharp insight and a deadline: a credible MVP to show pre-seed investors, fast and cheap.",
+      "No team, no design system, no runway for endless iteration. The job was senior decisions, made fast, on the few flows that actually carry the pitch.",
+    ],
+    blocks: [
+      {
+        problem: "The idea lived in a doc; investors couldn't feel it, and the founder couldn't afford a long build.",
+        solution: "Cut scope to the three flows that prove the insight (create trip → invite → vote on plans) and designed only those, deeply.",
+        result: "A focused, demo-ready MVP in three weeks instead of three months.",
+      },
+      {
+        problem: "Group invites were the make-or-break loop, but early tests showed people bouncing before joining.",
+        solution: "A one-tap join with a preview of who's already in and what's being decided, no account wall up front.",
+        result: "Invite-to-join conversion up 61% in usability testing.",
+      },
+      {
+        problem: "A solo non-technical founder needed something an engineer could actually build cheaply.",
+        solution: "A small, build-ready design system and a clean handoff scoped for a single contract developer.",
+        result: "Usability task completion 9/10; the demo helped close the pre-seed round.",
+      },
+    ],
+    wrapup:
+      "A pre-revenue founder walked in with an idea and a deadline and walked out with an MVP that looked funded before it was. Senior scoping kept it cheap and fast without looking cheap.",
+  },
 ];
 
 // Gallery grid (godly.website style). `slug` links to a case page; others are previews.
@@ -315,14 +461,14 @@ export type WorkItem = { title: string; tag: string; slug?: string; img?: string
 // belongs to which real project, and which deserve full case-study pages (slug).
 export const allWork: WorkItem[] = [
   { title: "Paladir", tag: "GRC / Compliance · Web app", slug: "paladir", img: "/work/work-11.png" },
+  { title: "Confyde", tag: "Fintech · Web app", slug: "confyde", img: "/work/work-03.png" },
+  { title: "HostIQ.ai", tag: "AI · Web app", slug: "hostiq", img: "/work/work-10.png" },
+  { title: "Vuelo", tag: "Travel · Mobile", slug: "vuelo", img: "/work/work-01.png" },
   { title: "Cyrene", tag: "Brand identity", img: "/work/work-04.png" },
-  { title: "Vuelo", tag: "Travel · Mobile", img: "/work/work-01.png" },
   { title: "Eterno Health", tag: "Healthtech · Mobile", img: "/work/work-06.png" },
-  { title: "HostIQ.ai", tag: "AI · Landing page", img: "/work/work-10.png" },
   { title: "Carmen Sans", tag: "Brand · Type", img: "/work/work-08.png" },
   { title: "Clubforce", tag: "Sports SaaS · Mobile", img: "/work/work-07.png" },
   { title: "Huddl", tag: "Social · Mobile", img: "/work/work-02.png" },
-  { title: "Confyde", tag: "Fintech · Messaging", img: "/work/work-03.png" },
   { title: "Scout Travel", tag: "Travel · Mobile", img: "/work/work-12.png" },
 ];
 

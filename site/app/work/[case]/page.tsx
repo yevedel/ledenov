@@ -42,6 +42,16 @@ export default async function CasePage({ params }: { params: Promise<{ case: str
             {c.headline}
           </h1>
           <p className="mt-5 text-[18px] leading-relaxed text-sub">{c.subhead}</p>
+          {c.liveUrl && (
+            <a
+              href={c.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium text-orange hover:underline"
+            >
+              View it live ↗
+            </a>
+          )}
         </div>
       </section>
 

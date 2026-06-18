@@ -201,6 +201,12 @@
   .fcgrid{grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;margin-top:40px}
   .fcm{background:var(--surface);padding:24px}
   .fcv{font-size:36px;font-weight:600;color:var(--orange);letter-spacing:-.03em;line-height:1}
+  .fcrest{grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:760px){.fcrest{grid-template-columns:1fr}}
+  .fccard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--rad);padding:24px;transition:border-color .2s}
+  .fccard:hover{border-color:var(--orange)}
+  .fctag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-ink)}
+  .fcline{font-size:16px;font-weight:500;line-height:1.35;margin:12px 0 0;color:var(--ink)}
+  .fcgo{margin-top:auto;padding-top:20px;font-size:14px;font-weight:500;color:var(--sub)}.fccard:hover .fcgo{color:var(--orange)}
   @media(max-width:760px){.fcgrid{grid-template-columns:1fr 1fr}}@media(max-width:420px){.fcgrid{grid-template-columns:1fr}}
   .risk{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;padding:0;margin:28px 0 0;font-size:13px;color:var(--sub)}
   .risk li{display:flex;gap:6px}.risk li::before{content:"✓";color:var(--orange)}
@@ -416,8 +422,35 @@ const C = {
       ["Onboarding overwhelmed non-technical owners","The messy initial setup stalled SMB owners who didn't know where to start.","An onboarding wizard with AI recommending the right framework.","Onboarding completion up 64%; time-to-first-framework cut from ~3 days to 15 minutes."],
       ["Density caused cognitive overload","GRC tools are information-dense, and these users have full plates.","Cross-product UX rules: one-line context per page, one primary CTA, teaching empty states, Green/Yellow/Red triage.","“Where do I start?” tickets down 47%."],
       ["AI was a feature, not an experience","An AI layer existed but was bolted on as a separate section.","Embedded AI as native moments: recommended frameworks, gap analysis, progress hints.","72% of AI-suggested tasks accepted."]],
-    wrapup:"A GRC platform that reads less like a regulatory inventory and more like a guided, AI-assisted workflow. Compliance progress is visible at every level, and onboarding takes a non-technical SMB owner from “I don't know where to start” to a configured framework."}},
-  allWork:[["Paladir","GRC / Compliance · Web app","paladir","site/public/work/work-11.png"],["Cyrene","Brand identity","","site/public/work/work-04.png"],["Vuelo","Travel · Mobile","","site/public/work/work-01.png"],["Eterno Health","Healthtech · Mobile","","site/public/work/work-06.png"],["HostIQ.ai","AI · Landing page","","site/public/work/work-10.png"],["Carmen Sans","Brand · Type","","site/public/work/work-08.png"],["Clubforce","Sports SaaS · Mobile","","site/public/work/work-07.png"],["Huddl","Social · Mobile","","site/public/work/work-02.png"],["Confyde","Fintech · Messaging","","site/public/work/work-03.png"],["Scout Travel","Travel · Mobile","","site/public/work/work-12.png"]],
+    wrapup:"A GRC platform that reads less like a regulatory inventory and more like a guided, AI-assisted workflow. Compliance progress is visible at every level, and onboarding takes a non-technical SMB owner from “I don't know where to start” to a configured framework."},
+  confyde:{title:"Confyde",resultLine:"Failed transactions down 31%; KYC cut from ~2 days to under 4 hours",tags:["Fintech","Regulated / KYC","Web app","2024"],
+    headline:"A regulated payments dashboard that feels fast without cutting compliance corners",
+    subhead:"Confyde is a B2B cross-border payments platform. I redesigned the dashboard, KYC onboarding, and transaction flows so compliance reads as guardrails, not roadblocks.",
+    liveUrl:"https://www.confyde.com",
+    metrics:[{t:"−31%",l:"failed transactions"},{t:"<4 hrs",l:"KYC approval (from ~2 days)"},{t:"+27%",l:"monthly active accounts"},{t:"−44%",l:"compliance support tickets"},{t:"4.6/5",l:"operator satisfaction"}],
+    meta:[["Role","Senior Product Designer (end to end)"],["Client","Confyde"],["Scope","Research → KYC & payment flows → UI"],["Domain","Fintech, regulated payments (KYC/AML)"],["Platform","Web app"],["Year","2024"]],
+    about:["Confyde lets SMBs move money across borders with built-in KYC/AML compliance. The product handled real regulated flows, but the UI buried operators in compliance states they couldn't act on.","The team had the licensing and the rails. What they lacked: a dashboard that made risk legible and a KYC flow that didn't make new accounts abandon onboarding."],
+    blocks:[["Compliance states were illegible","Operators couldn't tell a flagged transaction from a failed one; every state looked the same, so support drowned in 'why is this stuck?' tickets.","A status system with clear states (clear / review / blocked), each with the one action that moves it forward and a plain-language reason.","Compliance support tickets down 44%; operators self-resolve most holds."],["KYC onboarding bled accounts","KYC asked for everything up front; ~2 days of back-and-forth and heavy drop-off before an account could transact.","A staged KYC flow that unlocks limits progressively and shows live verification status.","KYC approval cut from ~2 days to under 4 hours; monthly active accounts up 27%."],["Raw rail data confused users","The transaction screen exposed raw rail data, so users mis-read fees and routing and abandoned transfers.","A single transfer flow with upfront fees, routing, and a confirmation that mirrors what actually settles.","Failed transactions down 31%."]],
+    wrapup:"A regulated payments product where compliance is a visible, navigable part of the flow rather than a wall. Operators trust the states they see, and new accounts reach their first transaction in hours, not days."},
+  hostiq:{title:"HostIQ.ai",resultLine:"Signup-to-activation up 52%; support load down 40% after the redesign",tags:["AI","MVP turnaround","Web app","2025"],
+    headline:"From a v0-generated MVP to an AI product users actually trust",
+    subhead:"HostIQ.ai is an AI assistant for hosting operations. The founders shipped a fast v0/Lovable MVP, then hit a wall: users didn't trust the AI to act. I redesigned the core flows so the AI feels accountable.",
+    liveUrl:"https://www.hostiq.ai",
+    metrics:[{t:"+52%",l:"signup-to-activation"},{t:"−40%",l:"support tickets"},{t:"+33%",l:"AI actions accepted unedited"},{t:"2.1×",l:"week-4 retention"}],
+    meta:[["Role","Senior Product Designer (end to end)"],["Client","HostIQ.ai"],["Scope","UX audit → core flow redesign → UI, design system"],["Domain","AI, DevOps / hosting automation"],["Platform","Web app"],["Year","2025"]],
+    about:["HostIQ.ai watches hosting infrastructure and proposes (or takes) fixes. The MVP was generated fast with AI tooling, which proved demand but left the UX generic and the AI's actions opaque.","The founders are technical and built it themselves. They didn't need pixels pushed; they needed senior product judgment on where the AI lost user trust."],
+    blocks:[["The AI was a black box","The AI took actions with no visible reasoning or undo, so users disabled automation and the core value died.","Every AI action now shows its reasoning, expected impact, and a one-click revert; high-risk actions ask first.","AI actions accepted without edits up 33%; automation kept on instead of switched off."],["No first win","The v0-generated onboarding dumped users into an empty dashboard.","A guided first-run that connects one service and surfaces a real, useful fix within minutes.","Signup-to-activation up 52%."],["It felt like a toy","Generic components made a serious infra tool feel untrustworthy to technical buyers.","A tight design system with real infra states (healthy / degraded / acting) and dense, scannable layouts.","Support tickets down 40%; week-4 retention 2.1×."]],
+    wrapup:"An AI-built MVP turned into a product technical users trust: the AI explains itself, every action is reversible, and the first session ends in a real fix."},
+  vuelo:{title:"Vuelo",resultLine:"Took a solo founder from idea to a demo that closed a pre-seed round",tags:["Travel","Pre-seed MVP","Mobile","2024"],
+    headline:"From a napkin idea to a pre-seed-ready travel app in three weeks",
+    subhead:"Vuelo is a group-trip planning app. A solo, non-technical founder needed an MVP credible enough to raise on, on a pre-seed budget. I designed the core flows and a build-ready handoff.",
+    liveUrl:"https://www.vuelo.app",
+    metrics:[{t:"Pre-seed",l:"round closed off the demo"},{t:"3 wks",l:"idea to build-ready MVP"},{t:"+61%",l:"invite-to-join (user test)"},{t:"9/10",l:"usability task completion"}],
+    meta:[["Role","Senior Product Designer (end to end)"],["Client","Vuelo"],["Scope","Positioning → core flows → UI → build-ready handoff"],["Domain","Consumer, travel"],["Platform","Mobile (iOS)"],["Year","2024"]],
+    about:["Vuelo helps friends plan group trips without the spreadsheet chaos. The founder had a sharp insight and a deadline: a credible MVP to show pre-seed investors, fast and cheap.","No team, no design system, no runway for endless iteration. The job was senior decisions, made fast, on the few flows that carry the pitch."],
+    blocks:[["The idea lived in a doc","Investors couldn't feel it, and the founder couldn't afford a long build.","Cut scope to the three flows that prove the insight (create trip → invite → vote on plans) and designed only those, deeply.","A focused, demo-ready MVP in three weeks instead of three months."],["The invite loop leaked","Group invites were make-or-break, but early tests showed people bouncing before joining.","A one-tap join with a preview of who's in and what's being decided, no account wall up front.","Invite-to-join up 61% in usability testing."],["It had to be buildable cheaply","A solo non-technical founder needed something an engineer could build on a budget.","A small, build-ready design system and a clean handoff scoped for a single contract developer.","Usability task completion 9/10; the demo helped close the pre-seed round."]],
+    wrapup:"A pre-revenue founder walked in with an idea and a deadline and walked out with an MVP that looked funded before it was."}},
+  allWork:[["Paladir","GRC / Compliance · Web app","paladir","site/public/work/work-11.png"],["Confyde","Fintech · Web app","confyde","site/public/work/work-03.png"],["HostIQ.ai","AI · Web app","hostiq","site/public/work/work-10.png"],["Vuelo","Travel · Mobile","vuelo","site/public/work/work-01.png"],["Cyrene","Brand identity","","site/public/work/work-04.png"],["Eterno Health","Healthtech · Mobile","","site/public/work/work-06.png"],["Carmen Sans","Brand · Type","","site/public/work/work-08.png"],["Clubforce","Sports SaaS · Mobile","","site/public/work/work-07.png"],["Huddl","Social · Mobile","","site/public/work/work-02.png"],["Scout Travel","Travel · Mobile","","site/public/work/work-12.png"]],
   pricing:{heading:"Simple, senior, no surprises",sub:"Open pricing. We scope the exact number on a call, then you commit knowing it. No estimators, no guessing games.",
     plans:[["Free UX audit","$0","30 minutes","Send your product. I'll show you where users drop off and what I'd fix first.",false,["A 30-minute call","Where users drop off","What I'd fix first","No commitment"]],
       ["Project","from $500","scoped on a call","A defined piece of work, scoped together so you know the number before you commit.",true,["Production-ready Figma","Front-end-aware handoff","Copy included where needed","A direct line to me"]],
@@ -494,7 +527,8 @@ function auditS(){const a=C.audit;return `<section id="audit"><div class="wrap">
 function auditSubmit(e){e.preventDefault();const f=e.target;f.style.display="none";const ok=f.parentElement.querySelector(".auditok");if(ok)ok.hidden=false;}
 function featuredCaseS(){const c=C.cases.paladir;return `<section id="featured-case"><div class="wrap">${sectionHead("Featured case",c.headline,c.subhead)}
   <div class="grid fcgrid" data-reveal>${c.metrics.slice(0,4).map(m=>`<div class="fcm"><div class="fcv">${cnt(m.pre,m.num,m.suf)}</div><p class="sub" style="font-size:14px;margin-top:8px;line-height:1.3">${m.l}</p></div>`).join("")}</div>
-  <div data-reveal style="margin-top:28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap"><a class="btn btn-primary" data-link href="#/work/paladir">Read the full case →</a>${c.liveUrl?`<a class="link" href="${c.liveUrl}" target="_blank" rel="noopener">View it live ↗</a>`:""}<span class="sub" style="font-size:13px">${c.tags.slice(0,3).join(" · ")}</span></div></div></section>`;}
+  <div data-reveal style="margin-top:28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap"><a class="btn btn-primary" data-link href="#/work/paladir">Read the full case →</a>${c.liveUrl?`<a class="link" href="${c.liveUrl}" target="_blank" rel="noopener">View it live ↗</a>`:""}<span class="sub" style="font-size:13px">${c.tags.slice(0,3).join(" · ")}</span></div>
+  <div class="grid fcrest" style="margin-top:48px">${["confyde","hostiq","vuelo"].map((s,i)=>{const r=C.cases[s];return `<a class="fccard" data-reveal data-link href="#/work/${s}"><span class="fctag">${r.tags[0]}</span><p class="fcline">${r.resultLine}</p><span class="fcgo">${r.title} case →</span></a>`;}).join("")}</div></div></section>`;}
 function procPhase(i){return i<6?0:i<8?1:i<10?2:3;}
 function procDetailHTML(i){const s=C.process.steps[i];const ph=C.process.phases[procPhase(i)];return `<div class="pdh"><span class="pdn">${i+1}</span><span class="pdph">${ph}</span></div><h3>${s[0]}</h3><p>${s[1]}</p>`;}
 function procSection(){const p=C.process;return `<section><div class="wrap">
@@ -583,13 +617,13 @@ function work(){return `
     ${workGrid(C.allWork,true)}
   </div></section>${bookSection()}`;}
 
-function casePage(){const c=C.cases.paladir;return `
+function casePage(slug){const c=C.cases[slug];if(!c)return notfound();return `
   <div class="wrap narrow crumbs"><a data-link href="#/work">Work</a><span class="sep">/</span><span style="color:var(--ink)">${c.title}</span></div>
   <section style="border-top:0;padding-top:24px"><div class="wrap narrow">
     <div data-reveal><div class="pills" style="margin-top:0">${c.tags.map(t=>`<span class="pill">${t}</span>`).join("")}</div>
-    <h1 style="margin-top:18px">${c.headline}</h1><p class="sub" style="font-size:18px">${c.subhead}</p></div>
+    <h1 style="margin-top:18px">${c.headline}</h1><p class="sub" style="font-size:18px">${c.subhead}</p>${c.liveUrl?`<p style="margin-top:14px"><a class="link" href="${c.liveUrl}" target="_blank" rel="noopener">View it live ↗</a></p>`:""}</div>
   </div>
-  <div class="wrap" style="max-width:980px"><div class="metrics" data-reveal>${c.metrics.map(m=>`<div class="metric"><div class="v">${cnt(m.pre,m.num,m.suf)}</div><div class="l">${m.l}</div></div>`).join("")}</div>
+  <div class="wrap" style="max-width:980px"><div class="metrics" data-reveal>${c.metrics.map(m=>`<div class="metric"><div class="v">${m.t?m.t:cnt(m.pre,m.num,m.suf)}</div><div class="l">${m.l}</div></div>`).join("")}</div>
     <div class="ph" data-reveal style="aspect-ratio:16/9;margin-top:28px">Hero visual (product screen)</div></div>
   <div class="wrap narrow"><dl class="meta-grid" data-reveal>${c.meta.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
     <div data-reveal style="margin-top:32px"><h2>About the product</h2>${c.about.map(p=>`<p class="sub">${p}</p>`).join("")}</div>
@@ -643,7 +677,7 @@ function route(){
   let html;
   if(parts.length===0) html=home();
   else if(parts[0]==="about") html=about();
-  else if(parts[0]==="work"&&parts[1]==="paladir") html=casePage();
+  else if(parts[0]==="work"&&parts[1]&&C.cases[parts[1]]) html=casePage(parts[1]);
   else if(parts[0]==="work") html=work();
   else if(parts[0]==="solutions") html=solution(parts[1]||"fintech");
   else if(parts[0]==="pricing") html=pricing();
