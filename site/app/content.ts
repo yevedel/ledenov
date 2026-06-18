@@ -43,12 +43,12 @@ export const scarcity = "Booking 2 new projects this quarter.";
 export const hero = {
   eyebrow: "Product design for founders",
   headline: ["Design that ships.", "Not Figma files that don't."],
-  sub: "You're too early for a design team and too serious to ship something half-baked. I'm the one senior partner who turns messy product, site, and brand into things that actually launch. ~$2M delivered across 950+ projects.",
-  proof: ["~$2M delivered", "950+ projects", "Top Rated Plus", "10+ years"],
+  sub: "Past the MVP scramble, not ready for a full design team. I'm the one senior partner who turns messy product, site, and brand into things that actually launch, and founders keep coming back, a 5th and 10th project deep.",
+  proof: ["Clients return for a 5th & 10th project", "10+ years senior", "Top Rated Plus", "~$2M delivered"],
 };
 
 export const logos = {
-  label: "Senior rigor brought to work for teams like",
+  label: "Brands I've contributed to over a decade",
   items: ["Google", "Nestlé", "P&G", "AB InBev", "WhatsApp"],
 };
 
@@ -145,7 +145,7 @@ export const projects = {
 export const faq = {
   heading: "Straight answers",
   items: [
-    { q: "What does it cost?", a: "Projects start at $500. For ongoing work I run at $1,000/week. We scope the exact number on the call, so you commit knowing it, no surprise invoices." },
+    { q: "What does it cost?", a: "Projects start at $500, that's one core flow redesigned and handed off build-ready. For ongoing work I run at $1,000/week. We scope the exact number on the call, so you commit knowing it, no surprise invoices." },
     { q: "How fast can you start, and how long does it take?", a: "I usually take on a new project within a week. A focused scope ships from two weeks, longer for bigger builds. We set the timeline on the call so you're not guessing." },
     { q: "Do you work solo? What if I need more than one person?", a: "Yes, solo and senior. That's the value: one accountable partner, no middlemen. When you genuinely need a team, I help you build one, later, once the direction is proven." },
     { q: "Do you sign an NDA?", a: "Yes, always. Your product and data stay yours." },
@@ -458,13 +458,13 @@ export const pricing = {
 // Big-number social proof (Figma "Numbers" section). Upwork-anchored — it's the main client source.
 export const numbers = {
   eyebrow: "Numbers",
-  heading: "A singular vision with extraordinary reach.",
-  note: "Most of my clients come through Upwork, where I've been Top Rated Plus for over a decade.",
+  heading: "A decade of senior work, and clients who keep coming back.",
+  note: "Top Rated Plus on Upwork for 10+ years. The volume is mostly repeat founders, not one-off gigs.",
   upworkHref: "https://www.upwork.com/freelancers/yevledenov",
   stats: [
-    { pre: "", num: 950, suf: "+", label: "Projects completed", desc: "950+ contracts on Upwork for founders across fintech, AI, healthcare, and B2B SaaS." },
-    { pre: "~$", num: 2, suf: "M", label: "Earned on Upwork", desc: "Top Rated Plus, the top tier of talent, for 10+ years running." },
-    { pre: "", num: 10, suf: "+", label: "Years of experience", desc: "A decade of senior product, site, and brand design, end to end." },
+    { pre: "", num: 10, suf: "+", label: "Years, senior end to end", desc: "A decade of senior product, site, and brand design, from strategy to build-ready handoff." },
+    { pre: "~$", num: 2, suf: "M", label: "Delivered for founders", desc: "Top Rated Plus, the top tier of talent, for 10+ years running, with clients who return." },
+    { pre: "", num: 950, suf: "+", label: "Projects, mostly repeat", desc: "950+ contracts across fintech, AI, healthcare, and B2B SaaS, much of it the same founders coming back." },
   ],
 };
 

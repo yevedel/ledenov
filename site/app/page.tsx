@@ -22,6 +22,7 @@ export default function Home() {
     <>
       <Hero />
       <Ticker />
+      <Loyalty />
       <Logos />
       <Numbers />
       <About />
@@ -30,7 +31,6 @@ export default function Home() {
       <Services />
       <Process />
       <Advantages />
-      <Loyalty />
       <Testimonials />
       <Projects />
       <AuditOffer />

@@ -337,20 +337,20 @@
 /* ----------------------------- content ----------------------------- */
 const C = {
   hero:{eyebrow:"Product design for founders",h:["Design that ships.","Not Figma files that don't."],
-    sub:"You're too early for a design team and too serious to ship something half-baked. I'm the one senior partner who turns messy product, site, and brand into things that actually launch. ~$2M delivered across 950+ projects.",
-    proof:[{pre:"~$",num:2,suf:"M delivered"},{pre:"",num:950,suf:"+ projects"},{text:"Top Rated Plus"},{pre:"",num:10,suf:"+ years"}]},
+    sub:"Past the MVP scramble, not ready for a full design team. I'm the one senior partner who turns messy product, site, and brand into things that actually launch, and founders keep coming back, a 5th and 10th project deep.",
+    proof:[{text:"Clients return for a 5th & 10th project"},{text:"10+ years senior"},{text:"Top Rated Plus"},{pre:"~$",num:2,suf:"M delivered"}]},
   ticker:["Upwork Top Rated Plus","~$2M delivered","950+ projects","Replies within hours","Works across US / EU / AU","Free 30-min UX audit"],
   logos:["Google","Nestlé","P&G","AB InBev","WhatsApp"],
   audit:{heading:"Not sure where your product leaks? I'll show you. Free.",body:"Send me your product. In a 30-minute call I'll show you exactly where users drop off and the first things I'd fix. No pitch, no commitment.",steps:["Send your product or link","Senior teardown of the UX","Clear next steps you can act on"]},
   outcomes:{heading:"What you walk away with",items:[["A product that ships","Production-ready design, not a folder of Figma files that never launches."],["Clarity you can show investors","A product and story that look funded, before you are."],["One partner, not three vendors","Product, site, and brand from one accountable person. No coordination tax."],["Senior decisions, made fast","The right calls for your stage, at founder speed, without the agency overhead."]]},
   loyalty:{heading:"Founders don't just hire me once. They come back.",facts:[["5","contracts with one client since 2016","Benjamin Greene"],["10th","design together, and counting","Mario Cimmino"],["1+ yr","embedded like an internal team member","Scott Morris, Propulsion"]]},
   riskReversal:["NDA on every project","Scoped on a call, no surprise invoices","Stop anytime, no lock-in"],
-  numbers:{heading:"A singular vision with extraordinary reach.",note:"Most of my clients come through Upwork, where I've been Top Rated Plus for over a decade.",
+  numbers:{heading:"A decade of senior work, and clients who keep coming back.",note:"Top Rated Plus on Upwork for 10+ years. The volume is mostly repeat founders, not one-off gigs.",
     stats:[["",950,"+","Projects completed","950+ contracts on Upwork for founders across fintech, AI, healthcare, and B2B SaaS."],["~$",2,"M","Earned on Upwork","Top Rated Plus, the top tier of talent, for 10+ years running."],["",10,"+","Years of experience","A decade of senior product, site, and brand design, end to end."]]},
   about2:{eyebrow:"My experience, my story",title:"Beyond Pixels",statement:"10 years of shaping digital clarity.",
     intro:"I'm Yev Ledenov. For 10+ years I've designed products, sites, and brands for founders, across fintech, AI, healthcare, and B2B SaaS. Most of that work came through Upwork, where I've been Top Rated Plus for over a decade.",
     proof:["~$2M earned on Upwork","950+ projects","Top Rated Plus, 10+ years","Based in Zagreb, work worldwide"],
-    recognition:[["Top Rated Plus","On Upwork, 10+ years","The top tier of Upwork talent, and my main, steady source of clients."],["950+","Completed projects","Proven, repeat experience in UX/UI across many industries."],["~$2M","Earned on platform","Real client work at scale, with clients who come back."]],
+    recognition:[["10+ yrs","Senior, end to end","A decade of senior product, site, and brand design, from strategy to build-ready handoff."],["~$2M","Delivered for founders","Top tier of talent for 10+ years, with clients who return."],["950+","Projects, mostly repeat","Much of it the same founders coming back, across fintech, AI, healthcare, and B2B."]],
     method:{nodes:["Research","UX","UI","Testing","Handoff"],note:"One senior partner across the whole arc, from research to a build-ready handoff. No relay race between vendors."},
     journey:{body:"I've worked from many corners of Europe and beyond. Different cities, different problems, different users. That range shows up in the work: more empathy, more visual vocabulary, fewer assumptions.",places:["Croatia — Zagreb","Croatia — Dubrovnik","Greece — Santorini","Norway — Oslo","Estonia — Tallinn","Portugal — Madeira"]},
     principles:[["One partner, not three vendors","Most founders end up coordinating a UX person, a web person, and a brand person, then stitching the seams themselves. I cover product UX/UI, sites, brand, and AI-assisted workflows as one accountable partner."],["Senior judgment, not just execution","The value isn't pixels, it's knowing which decisions matter at your stage and which can wait. I bring that rigor without agency overhead or the wait for a hire."],["Built to ship","I design with what ships in mind, front-end-aware work that drops cleanly into React/Next.js/Tailwind/Webflow."]]},
@@ -385,7 +385,7 @@ const C = {
       ["One of the most talented designers I've ever worked with. Innovative, unique, and modern.","Tessa Scordio","Frequency Ads (US)"],
       ["Best designer on Upwork, as simple as that.","Dav G","SaaS SMS platform (France)"]]},
   faq:[
-    ["What does it cost?","Projects start at $500. For ongoing work I run at $1,000/week. We scope the exact number on the call, so you commit knowing it, no surprise invoices."],
+    ["What does it cost?","Projects start at $500, that's one core flow redesigned and handed off build-ready. For ongoing work I run at $1,000/week. We scope the exact number on the call, so you commit knowing it, no surprise invoices."],
     ["How fast can you start, and how long does it take?","I usually take on a new project within a week. A focused scope ships from two weeks, longer for bigger builds. We set the timeline on the call so you're not guessing."],
     ["Do you work solo? What if I need more than one person?","Yes, solo and senior. That's the value: one accountable partner, no middlemen. When you genuinely need a team, I help you build one, later, once the direction is proven."],
     ["Do you sign an NDA?","Yes, always. Your product and data stay yours."],
@@ -494,7 +494,8 @@ function home(){
     </div>
   </div></section>
   <div class="ticker"><div class="track">${[...C.ticker,...C.ticker].map(t=>`<span class="item">${t}</span>`).join("")}</div></div>
-  <div class="logos"><div class="wrap"><p>Senior rigor brought to work for teams like</p><ul>${C.logos.map(l=>`<li>${l}</li>`).join("")}</ul></div></div>
+  ${loyaltyS()}
+  <div class="logos"><div class="wrap"><p>Brands I've contributed to over a decade</p><ul>${C.logos.map(l=>`<li>${l}</li>`).join("")}</ul></div></div>
   ${numbers()}
   <section><div class="wrap narrow"><div data-reveal><div class="eyebrow">About</div><h2>${C.about.title}</h2><p class="sub" style="font-size:18px">${C.about.body}</p><p style="margin-top:22px"><a class="link" data-link href="#/about">More about me →</a></p></div></div></section>
   ${outcomesS()}
@@ -507,7 +508,6 @@ function home(){
   <section><div class="wrap">${sectionHead("Why me","You've been burned before. Here's why this is different.",C.advantages.intro)}
     <div class="adv-grid">${C.advantages.blocks.map(([vs,got,get])=>`<div class="adv" data-reveal><div class="vs">${vs}</div><div class="got"><b style="color:var(--ink)">What you got: </b>${got}</div><div class="get"><b>What you get here: </b>${get}</div></div>`).join("")}</div>
     <div class="adv-close" data-reveal><p>${C.advantages.close}</p>${ltPanel()}</div></div></section>
-  ${loyaltyS()}
   <section><div class="wrap">${sectionHead("Testimonials","Founders, in their words","The strongest signal isn't praise. It's that they come back.")}
     <div class="pills" data-reveal>${C.testimonials.repeat.map(r=>`<span class="pill">${r}</span>`).join("")}</div>
     <div class="grid tg">${C.testimonials.quotes.map(([q,n,r])=>`<div class="card tcard" data-reveal><q>“${q}”</q><div class="who"><span class="av">${initials(n)}</span><span class="meta"><b>${n}</b><small>${r}</small></span><span class="plat">Upwork</span></div></div>`).join("")}</div>
