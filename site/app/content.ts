@@ -32,10 +32,10 @@ export const nav = [
 export const ticker = [
   "Upwork Top Rated Plus",
   "~$2M delivered",
-  "950+ projects",
+  "Clients who come back",
   "Replies within hours",
   "Works across US / EU / AU time zones",
-  "Free 30-min UX audit",
+  "Free async UX teardown",
 ];
 
 export const scarcity = "Booking 2 new projects this quarter.";
@@ -45,11 +45,15 @@ export const hero = {
   headline: ["Design that ships.", "Not Figma files that don't."],
   sub: "Past the MVP scramble, not ready for a full design team. I'm the one senior partner who turns messy product, site, and brand into things that actually launch, and founders keep coming back, a 5th and 10th project deep.",
   proof: ["Clients return for a 5th & 10th project", "10+ years senior", "Top Rated Plus", "~$2M delivered"],
+  priceNote: "Projects from $500. Senior judgment, not agency overhead.",
 };
 
+// NOTE: switched from unsubstantiated megabrand logos (Google/Nestlé/…) to NAMED real clients,
+// per the synthetic-audit finding ("borrowed prestige / contributed how?"). Names are from Yev's
+// own client list. ⚠️ CONFIRM the exact set + add real logo assets, or revert to the enterprise strip.
 export const logos = {
-  label: "Brands I've contributed to over a decade",
-  items: ["Google", "Nestlé", "P&G", "AB InBev", "WhatsApp"],
+  label: "Founders and teams I've designed for",
+  items: ["Propulsion", "Clubforce", "HostIQ.ai", "Halyk Bank", "Eterno Health", "Confyde"],
 };
 
 export const about = {
@@ -161,12 +165,26 @@ export const booking = {
 };
 
 // Free UX audit — the low-risk hook (the main "why reach out now").
+// ASYNC by design: send a product → get a written teardown back. NO call required.
+// (Fixes the synthetic-audit "free audit is secretly a Calendly call" bait-and-switch.)
 export const audit = {
   eyebrow: "Start here",
   heading: "Not sure where your product leaks? I'll show you. Free.",
-  body: "Send me your product. In a 30-minute call I'll show you exactly where users drop off and the first things I'd fix. No pitch, no commitment.",
+  body: "Send me your product. You'll get a short senior teardown of where users drop off and the first things I'd fix, in writing. No call required, no pitch, no commitment.",
   steps: ["Send your product or link", "Senior teardown of the UX", "Clear next steps you can act on"],
-  cta: "Get your free audit",
+  form: {
+    urlLabel: "Your product or site URL",
+    urlPlaceholder: "https://yourproduct.com",
+    noteLabel: "What feels broken? (optional)",
+    notePlaceholder: "e.g. users sign up but never activate…",
+    emailLabel: "Where should I send the teardown?",
+    emailPlaceholder: "you@company.com",
+    submit: "Send for a free teardown",
+    success: "Got it. I'll review your product and reply within one business day, no pitch, no call required.",
+    // TODO: set to a real form endpoint (Formspree / Next route handler). Empty string = mailto fallback to site.email.
+    endpoint: "",
+  },
+  altCta: "Prefer to talk it through? Book a call instead.",
 };
 
 // What the founder walks away with (outcome framing, not credentials).
@@ -209,6 +227,7 @@ export type CaseDetail = {
   tags: string[];
   headline: string;
   subhead: string;
+  liveUrl?: string;
   // ⚠️ metrics for paladir are PLACEHOLDERS (no real data) — replace before launch.
   metrics: { value: string; label: string }[];
   meta: { role: string; client: string; scope: string; domain: string; platform: string; year: string };
@@ -226,6 +245,7 @@ export const cases: CaseDetail[] = [
     headline: "From a wall of controls to a configured framework in 15 minutes",
     subhead:
       "Paladir is an AI-powered compliance platform for SMBs working toward SOC 2 and ISO 27001. I redesigned it end to end, so it reads like a guided journey, not a regulatory inventory.",
+    liveUrl: "https://www.paladir.com", // ⚠️ PLACEHOLDER live link — confirm/replace with the real shipped URL.
     metrics: [
       { value: "+64%", label: "onboarding completion" },
       { value: "15 min", label: "to a configured framework (from ~3 days)" },
@@ -288,18 +308,20 @@ export const cases: CaseDetail[] = [
 // `img` is a screenshot path under /public/work — drop real screenshots there later.
 export type WorkItem = { title: string; tag: string; slug?: string; img?: string };
 // Real Dribbble shots from Yev's portfolio (images in /public/work).
-// TODO: titles/tags are provisional, named by visual type — Yev to relabel with real project names/industries.
+// ⚠️ TITLES ARE PLACEHOLDERS mapped from Yev's client list to give each tile a real-sounding
+// name/industry (the audit flagged generic "Mobile app" labels). Yev to confirm which screenshot
+// belongs to which real project, and which deserve full case-study pages (slug).
 export const allWork: WorkItem[] = [
-  { title: "Paladir", tag: "GRC / Compliance", slug: "paladir", img: "/work/work-11.png" },
+  { title: "Paladir", tag: "GRC / Compliance · Web app", slug: "paladir", img: "/work/work-11.png" },
   { title: "Cyrene", tag: "Brand identity", img: "/work/work-04.png" },
-  { title: "Mobile app", tag: "Mobile", img: "/work/work-01.png" },
-  { title: "Consumer app", tag: "Mobile", img: "/work/work-06.png" },
-  { title: "Product landing", tag: "Landing page", img: "/work/work-10.png" },
+  { title: "Vuelo", tag: "Travel · Mobile", img: "/work/work-01.png" },
+  { title: "Eterno Health", tag: "Healthtech · Mobile", img: "/work/work-06.png" },
+  { title: "HostIQ.ai", tag: "AI · Landing page", img: "/work/work-10.png" },
   { title: "Carmen Sans", tag: "Brand · Type", img: "/work/work-08.png" },
-  { title: "Mobile app", tag: "Mobile", img: "/work/work-07.png" },
-  { title: "Social app", tag: "Mobile", img: "/work/work-02.png" },
-  { title: "Messaging app", tag: "Mobile", img: "/work/work-03.png" },
-  { title: "Mobile app", tag: "Mobile", img: "/work/work-12.png" },
+  { title: "Clubforce", tag: "Sports SaaS · Mobile", img: "/work/work-07.png" },
+  { title: "Huddl", tag: "Social · Mobile", img: "/work/work-02.png" },
+  { title: "Confyde", tag: "Fintech · Messaging", img: "/work/work-03.png" },
+  { title: "Scout Travel", tag: "Travel · Mobile", img: "/work/work-12.png" },
 ];
 
 export type Solution = {

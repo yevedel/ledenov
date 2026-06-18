@@ -2,6 +2,7 @@ import Hero from "./components/Hero";
 import Ticker from "./components/Ticker";
 import Numbers from "./components/Numbers";
 import Advantages from "./components/Advantages";
+import FeaturedCase from "./components/FeaturedCase";
 import Faq from "./components/Faq";
 import {
   Logos,
@@ -31,6 +32,7 @@ export default function Home() {
       <Services />
       <Process />
       <Advantages />
+      <FeaturedCase />
       <Testimonials />
       <Projects />
       <AuditOffer />

@@ -19,6 +19,7 @@ import LetsTalk from "./LetsTalk";
 import WorkGrid from "./WorkGrid";
 import ProcessFlow from "./ProcessFlow";
 import IndustryIcon from "./IndustryIcon";
+import AuditForm from "./AuditForm";
 
 export function Logos() {
   return (
@@ -236,7 +237,7 @@ export function Loyalty() {
 
 export function AuditOffer() {
   return (
-    <section className="border-t border-line py-20 sm:py-28">
+    <section id="audit" className="border-t border-line py-20 sm:py-28">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal className="relative overflow-hidden rounded-card border border-orange/30 bg-tint/40 p-8 sm:p-12">
           <div aria-hidden className="hero-glow pointer-events-none absolute -right-20 -top-20 h-[320px] w-[320px] rounded-full opacity-50" />
@@ -252,17 +253,8 @@ export function AuditOffer() {
                 </li>
               ))}
             </ol>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href={site.calendly}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-orange px-5 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-orange-ink"
-              >
-                {audit.cta} →
-              </a>
-              <span className="text-[14px] text-sub">Free · 30 minutes · no commitment</span>
-            </div>
+            <AuditForm />
+            <p className="mt-4 text-[13px] text-sub">Free · async · no call required · I reply within one business day</p>
           </div>
         </Reveal>
       </div>
