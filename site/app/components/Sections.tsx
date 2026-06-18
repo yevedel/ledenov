@@ -18,6 +18,7 @@ import Reveal from "./Reveal";
 import LetsTalk from "./LetsTalk";
 import WorkGrid from "./WorkGrid";
 import ProcessFlow from "./ProcessFlow";
+import IndustryIcon from "./IndustryIcon";
 
 export function Logos() {
   return (
@@ -67,10 +68,13 @@ export function Industries() {
             <Reveal key={it.slug} delay={i * 40}>
               <Link
                 href={`/solutions/${it.slug}`}
-                className="group flex items-center justify-between rounded-card border border-line bg-surface px-5 py-5 transition-colors hover:border-orange"
+                className="group flex h-full flex-col justify-between gap-8 rounded-card border border-line bg-surface p-5 transition-colors hover:border-orange"
               >
-                <span className="text-[16px] font-medium text-ink">{it.label}</span>
-                <span className="text-sub transition-transform group-hover:translate-x-0.5 group-hover:text-orange">→</span>
+                <IndustryIcon slug={it.slug} className="h-6 w-6 text-ink/30 transition-colors group-hover:text-orange" />
+                <span className="flex items-center justify-between">
+                  <span className="text-[16px] font-medium text-ink">{it.label}</span>
+                  <span className="text-sub transition-transform group-hover:translate-x-0.5 group-hover:text-orange">→</span>
+                </span>
               </Link>
             </Reveal>
           ))}
@@ -130,15 +134,29 @@ export function Testimonials() {
         </Reveal>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.quotes.map((q, i) => (
-            <Reveal key={i} delay={(i % 3) * 60} className="flex flex-col rounded-card border border-line bg-surface p-6">
-              <p className="text-[15px] leading-relaxed text-ink">“{q.quote}”</p>
-              <div className="mt-5 border-t border-line pt-4">
-                <p className="text-[14px] font-semibold text-ink">{q.name}</p>
-                <p className="text-[13px] text-sub">{q.role}</p>
-              </div>
-            </Reveal>
-          ))}
+          {testimonials.quotes.map((q, i) => {
+            const initials = q.name.split(" ").map((w) => w[0]).slice(0, 2).join("");
+            return (
+              <Reveal key={i} delay={(i % 3) * 60} className="flex flex-col rounded-card border border-line bg-surface p-6">
+                <p className="text-[15px] leading-relaxed text-ink">“{q.quote}”</p>
+                <div className="mt-5 flex items-center gap-3 border-t border-line pt-4">
+                  <span
+                    aria-hidden
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-tint to-line2 text-[12px] font-semibold text-orange-ink"
+                  >
+                    {initials}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[14px] font-semibold text-ink">{q.name}</p>
+                    <p className="truncate text-[13px] text-sub">{q.role}</p>
+                  </div>
+                  <span className="ml-auto shrink-0 text-[11px] font-medium uppercase tracking-[0.06em] text-sub">
+                    {q.platform}
+                  </span>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
 
         <Reveal className="mt-8">

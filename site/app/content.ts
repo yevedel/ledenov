@@ -126,12 +126,12 @@ export const testimonials = {
     "“over a year, like a member of our internal team” (Scott Morris)",
   ],
   quotes: [
-    { quote: "Yev worked with us for over a year. He was truly like a member of our internal team. He's highly creative and really collaborative. We tackled some difficult design problems together.", name: "Scott Morris", role: "Propulsion (US)" },
-    { quote: "He understands both the big picture and the details. Proactive with recommendations, takes feedback without reservation. I would work with him again.", name: "Zach Wagner", role: "Product MVP (US)" },
-    { quote: "The consummate professional! Super talented and great to work with. Hire with confidence!", name: "Ozzie Burnham", role: "Finance SaaS startup (US)" },
-    { quote: "Outstanding job on our UX. They took our ideas and turned them into clean, modern, user-friendly designs. The final output exceeded expectations.", name: "Patrick McCarthy", role: "Product lead (UK)" },
-    { quote: "One of the most talented designers I've ever worked with. Innovative, unique, and modern.", name: "Tessa Scordio", role: "Frequency Ads (US)" },
-    { quote: "Best designer on Upwork, as simple as that.", name: "Dav G", role: "SaaS SMS platform (France)" },
+    { quote: "Yev worked with us for over a year. He was truly like a member of our internal team. He's highly creative and really collaborative. We tackled some difficult design problems together.", name: "Scott Morris", role: "Propulsion (US)", platform: "Upwork" },
+    { quote: "He understands both the big picture and the details. Proactive with recommendations, takes feedback without reservation. I would work with him again.", name: "Zach Wagner", role: "Product MVP (US)", platform: "Upwork" },
+    { quote: "The consummate professional! Super talented and great to work with. Hire with confidence!", name: "Ozzie Burnham", role: "Finance SaaS startup (US)", platform: "Upwork" },
+    { quote: "Outstanding job on our UX. They took our ideas and turned them into clean, modern, user-friendly designs. The final output exceeded expectations.", name: "Patrick McCarthy", role: "Product lead (UK)", platform: "Upwork" },
+    { quote: "One of the most talented designers I've ever worked with. Innovative, unique, and modern.", name: "Tessa Scordio", role: "Frequency Ads (US)", platform: "Upwork" },
+    { quote: "Best designer on Upwork, as simple as that.", name: "Dav G", role: "SaaS SMS platform (France)", platform: "Upwork" },
   ],
   link: { label: "Read all reviews", href: "/reviews" },
 };
@@ -287,19 +287,19 @@ export const cases: CaseDetail[] = [
 // Gallery grid (godly.website style). `slug` links to a case page; others are previews.
 // `img` is a screenshot path under /public/work — drop real screenshots there later.
 export type WorkItem = { title: string; tag: string; slug?: string; img?: string };
+// Real Dribbble shots from Yev's portfolio (images in /public/work).
+// TODO: titles/tags are provisional, named by visual type — Yev to relabel with real project names/industries.
 export const allWork: WorkItem[] = [
-  { title: "Paladir", tag: "GRC / Compliance", slug: "paladir" },
-  { title: "Vuelo", tag: "Fintech" },
-  { title: "HostIQ.ai", tag: "SaaS" },
-  { title: "Reliant.ai", tag: "AI" },
-  { title: "Propulsion", tag: "B2B SaaS" },
-  { title: "Trolleymate", tag: "Mobile" },
-  { title: "Zoomprop", tag: "Real Estate" },
-  { title: "Eterno Health", tag: "Healthcare" },
-  { title: "Vozzy", tag: "Marketplace" },
-  { title: "EverTwo Films", tag: "Brand / Web" },
-  { title: "Firstfan", tag: "Music / Social" },
-  { title: "Clubrunna", tag: "Sports" },
+  { title: "Paladir", tag: "GRC / Compliance", slug: "paladir", img: "/work/work-11.png" },
+  { title: "Cyrene", tag: "Brand identity", img: "/work/work-04.png" },
+  { title: "Mobile app", tag: "Mobile", img: "/work/work-01.png" },
+  { title: "Consumer app", tag: "Mobile", img: "/work/work-06.png" },
+  { title: "Product landing", tag: "Landing page", img: "/work/work-10.png" },
+  { title: "Carmen Sans", tag: "Brand · Type", img: "/work/work-08.png" },
+  { title: "Mobile app", tag: "Mobile", img: "/work/work-07.png" },
+  { title: "Social app", tag: "Mobile", img: "/work/work-02.png" },
+  { title: "Messaging app", tag: "Mobile", img: "/work/work-03.png" },
+  { title: "Mobile app", tag: "Mobile", img: "/work/work-12.png" },
 ];
 
 export type Solution = {
