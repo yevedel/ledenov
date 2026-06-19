@@ -282,8 +282,14 @@
   /* work gallery (godly-style) */
   .wgrid{display:grid;gap:20px 18px;grid-template-columns:repeat(3,1fr);margin-top:36px}
   @media(max-width:900px){.wgrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wgrid{grid-template-columns:1fr}}
-  .wcard{display:block;cursor:pointer}
-  .wthumb{position:relative;aspect-ratio:16/10;border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .5s}
+  .wcard{display:block;cursor:pointer;border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;background:var(--surface)}
+  .wthumb{position:relative;aspect-ratio:16/10;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .5s}
+  .wchrome{display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding:10px 14px}
+  .wdots{display:flex;gap:6px}.wdots span{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+  .wtagc{margin-left:auto;font-size:11px;font-weight:500;color:var(--sub)}
+  .iconc{width:40px;height:40px;border-radius:50%;background:var(--tint);color:var(--orange-ink);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .ic{width:20px;height:20px}
+  .svc .iconc{width:36px;height:36px}
   .wimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
   .wcard:hover .wthumb{transform:scale(1.03)}
   .wname{font-size:24px;font-weight:600;color:rgba(27,27,27,.22);letter-spacing:-.02em}
@@ -521,13 +527,16 @@ const indPaths={ai:'<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12
 const indIcon=s=>`<svg class="iglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${indPaths[s]||""}</svg>`;
 const initials=n=>n.split(" ").map(w=>w[0]).slice(0,2).join("");
 const wg=["g1","g2","g3","g4","g5","g6"];
-function workTile(it,i,masonry){const t=it[0],tag=it[1],slug=it[2],img=it[3];const asp=masonry?(" wa"+(i%6)):"";const vis=img?`<img class="wimg" src="${img}" alt="${t}">`:`<span class="wname">${t}</span>`;const inner=`<div class="wthumb ${img?"":wg[i%6]}${asp}">${vis}<span class="wtag">${tag}</span><span class="war">${slug?"→":"•"}</span><div class="woverlay"><span>${t}</span><small>${slug?"Case study":"Preview"}</small></div></div>`;const card=slug?`<a class="wcard" data-reveal data-link href="#/work/${slug}">${inner}</a>`:`<div class="wcard" data-reveal>${inner}</div>`;return masonry?`<div class="wmitem">${card}</div>`:card;}
+const ICONS={ship:'<path d="M12 3l7 4v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V7l7-4z"/><path d="M9 12l2 2 4-4"/>',chart:'<path d="M4 19V5M4 19h16"/><path d="M7 15l3-4 3 2 4-6"/>',partner:'<circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0113 0"/>',bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/>',window:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6" cy="6.5" r="0.6"/><path d="M8 14l2.5 2.5L8 19"/>',browser:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M6 7h0M8 7h0"/>',grid:'<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',sparkles:'<path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3z"/><path d="M19 14l.7 1.8L21.5 16.5l-1.8.7L19 19l-.7-1.8L16.5 16.5l1.8-.7L19 14z"/>',code:'<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13 5l-2 14"/>'};
+function icon(n){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="ic">${ICONS[n]||""}</svg>`;}
+const svcIcons=["window","browser","grid","sparkles","code"],outIcons=["ship","chart","partner","bolt"];
+function workTile(it,i,masonry){const t=it[0],tag=it[1],slug=it[2],img=it[3];const asp=masonry?(" wa"+(i%6)):"";const vis=img?`<img class="wimg" src="${img}" alt="${t}">`:`<span class="wname">${t}</span>`;const inner=`<div class="wchrome"><span class="wdots"><span></span><span></span><span></span></span><span class="wtagc">${tag}</span></div><div class="wthumb ${img?"":wg[i%6]}${asp}">${vis}<span class="war">${slug?"→":"•"}</span><div class="woverlay"><span>${t}</span><small>${slug?"Case study":"Preview"}</small></div></div>`;const card=slug?`<a class="wcard" data-reveal data-link href="#/work/${slug}">${inner}</a>`:`<div class="wcard" data-reveal>${inner}</div>`;return masonry?`<div class="wmitem">${card}</div>`:card;}
 function workGrid(items,masonry){return masonry?`<div class="wmasonry">${items.map((it,i)=>workTile(it,i,true)).join("")}</div>`:`<div class="wgrid">${items.map((it,i)=>workTile(it,i,false)).join("")}</div>`;}
 const bookSection=()=>`<section id="book" class="center"><div class="wrap narrow"><div data-reveal><h2 style="font-size:clamp(30px,5vw,48px)">Let's talk</h2><p class="sub" style="margin:18px auto 0">Book a 20-minute call. Tell me the problem, and I'll tell you straight whether I'm the right fit. No pitch.</p><div style="margin-top:28px;display:flex;justify-content:center">${ltPanel()}</div><p style="color:var(--sub);font-size:14px;margin-top:20px">Prefer to message? <a class="link" href="https://wa.me/0000000000" target="_blank" rel="noopener">WhatsApp</a>. I reply fast.</p><ul class="risk">${C.riskReversal.map(r=>`<li>${r}</li>`).join("")}</ul></div></div></section>`;
 
 /* ----------------------------- pages ----------------------------- */
 function outcomesS(){const o=C.outcomes;return `<section><div class="wrap"><div data-reveal><span class="eyebrow">What you get</span><h2 style="margin-top:8px">${o.heading}</h2></div>
-  <div class="ogrid">${o.items.map(it=>`<div class="ocard" data-reveal><h3 style="font-size:18px">${it[0]}</h3><p class="sub" style="margin-top:6px">${it[1]}</p></div>`).join("")}</div></div></section>`;}
+  <div class="ogrid">${o.items.map((it,i)=>`<div class="ocard" data-reveal><span class="iconc">${icon(outIcons[i%outIcons.length])}</span><h3 style="font-size:18px;margin-top:18px">${it[0]}</h3><p class="sub" style="margin-top:6px">${it[1]}</p></div>`).join("")}</div></div></section>`;}
 function loyaltyS(){const l=C.loyalty;return `<section><div class="wrap"><div data-reveal><span class="eyebrow" style="color:var(--sub)">Why it works</span><h2 class="orange-h" style="margin-top:8px;max-width:640px">${l.heading}</h2></div>
   <div class="grid" style="grid-template-columns:repeat(3,1fr)">${l.facts.map(f=>`<div class="card" data-reveal><div style="font-size:48px;font-weight:600;color:var(--orange);letter-spacing:-.03em;line-height:1">${f[0]}</div><p style="margin-top:12px">${f[1]}</p><p class="sub" style="margin-top:4px;font-size:13px">— ${f[2]}</p></div>`).join("")}</div></div></section>`;}
 function auditS(){const a=C.audit;return `<section id="audit"><div class="wrap"><div class="auditcard" data-reveal>
@@ -591,7 +600,7 @@ function home(){
   <section id="industries"><div class="wrap">${sectionHead("Industries","I go deep where it counts","One partner, but not a generalist. Pick your space, see the work and the thinking behind it.")}
     <div class="grid ind-grid">${C.industries.map(([l,s])=>`<a class="ind" data-reveal data-link href="#/solutions/${s}">${indIcon(s)}<span class="foot">${l}<span class="ar">→</span></span></a>`).join("")}</div></div></section>
   <section><div class="wrap">${sectionHead("What I do","Problems I solve","Not a service menu. The things that quietly cost founders time, users, and runway.")}
-    <div class="svc">${C.services.map(([q,a])=>`<div class="r" data-reveal><div class="q">“${q}”</div><div class="a">${a}</div></div>`).join("")}</div>
+    <div class="svc">${C.services.map((s,i)=>{const q=s[0],a=s[1];return `<div class="r" data-reveal><div class="q" style="display:flex;align-items:flex-start;gap:12px"><span class="iconc">${icon(svcIcons[i%svcIcons.length])}</span><span>“${q}”</span></div><div class="a">${a}</div></div>`;}).join("")}</div>
     <div data-reveal style="margin-top:28px">${ltPanel()}</div></div></section>
   ${procSection()}
   <section><div class="wrap">${sectionHead("Why me","You've been burned before. Here's why this is different.",C.advantages.intro)}
