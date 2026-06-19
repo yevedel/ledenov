@@ -19,6 +19,10 @@ import LetsTalk from "./LetsTalk";
 import WorkGrid from "./WorkGrid";
 import ProcessFlow from "./ProcessFlow";
 import IndustryIcon from "./IndustryIcon";
+import Icon from "./Icon";
+
+const serviceIcons = ["window", "browser", "grid", "sparkles", "code"];
+const outcomeIcons = ["ship", "chart", "partner", "bolt"];
 import AuditForm from "./AuditForm";
 
 export function Logos() {
@@ -98,7 +102,12 @@ export function Services() {
           {services.items.map((s, i) => (
             <Reveal key={i} delay={i * 50}>
               <div className="grid gap-2 py-7 sm:grid-cols-[1fr_1.4fr] sm:gap-10">
-                <p className="text-[19px] font-medium tracking-[-0.01em] text-ink">“{s.problem}”</p>
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-tint text-orange-ink">
+                    <Icon name={serviceIcons[i % serviceIcons.length]} className="h-5 w-5" />
+                  </span>
+                  <p className="text-[19px] font-medium tracking-[-0.01em] text-ink">“{s.problem}”</p>
+                </div>
                 <p className="text-[16px] leading-relaxed text-sub">{s.body}</p>
               </div>
             </Reveal>
@@ -195,7 +204,10 @@ export function Outcomes() {
         <div className="mt-10 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
           {outcomes.items.map((o, i) => (
             <Reveal key={o.h} delay={(i % 2) * 60} className="bg-surface p-7">
-              <h3 className="text-lg font-semibold text-ink">{o.h}</h3>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-tint text-orange-ink">
+                <Icon name={outcomeIcons[i % outcomeIcons.length]} className="h-5 w-5" />
+              </span>
+              <h3 className="mt-5 text-lg font-semibold text-ink">{o.h}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-sub">{o.p}</p>
             </Reveal>
           ))}

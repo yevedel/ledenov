@@ -17,32 +17,40 @@ const aspects = ["aspect-[4/3]", "aspect-[16/11]", "aspect-[3/4]", "aspect-[16/1
 function Tile({ item, i, masonry }: { item: WorkItem; i: number; masonry: boolean }) {
   const aspect = masonry ? aspects[i % aspects.length] : "aspect-[16/10]";
   const inner = (
-    <div className={`group relative block overflow-hidden rounded-card border border-line ${masonry ? "mb-4 break-inside-avoid" : ""}`}>
-      <div className={`${aspect} w-full bg-gradient-to-br ${grads[i % grads.length]} transition-transform duration-500 group-hover:scale-[1.04]`}>
-        {item.img && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={item.img} alt={item.title} className="h-full w-full object-cover object-top" />
-        )}
-        {!item.img && (
-          <div className="flex h-full w-full items-center justify-center">
-            <span className="text-2xl font-semibold tracking-[-0.02em] text-ink/20">{item.title}</span>
-          </div>
-        )}
+    <div className={`group block overflow-hidden rounded-card border border-line bg-surface ${masonry ? "mb-4 break-inside-avoid" : ""}`}>
+      {/* window chrome (product-mockup feel) */}
+      <div className="flex items-center gap-2 border-b border-line px-3.5 py-2.5">
+        <span className="flex gap-1.5" aria-hidden>
+          <span className="h-2 w-2 rounded-full bg-line2" />
+          <span className="h-2 w-2 rounded-full bg-line2" />
+          <span className="h-2 w-2 rounded-full bg-line2" />
+        </span>
+        <span className="ml-auto text-[11px] font-medium text-sub">{item.tag}</span>
       </div>
 
-      {/* category chip (always visible, godly-style) */}
-      <span className="absolute left-3 top-3 rounded-full bg-surface/90 px-2.5 py-1 text-[11px] font-medium text-ink backdrop-blur">
-        {item.tag}
-      </span>
-      {/* top-right action dot */}
-      <span className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-surface/90 text-orange backdrop-blur">
-        {item.slug ? "→" : "•"}
-      </span>
+      {/* screen */}
+      <div className="relative overflow-hidden">
+        <div className={`${aspect} w-full bg-gradient-to-br ${grads[i % grads.length]} transition-transform duration-500 group-hover:scale-[1.04]`}>
+          {item.img ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={item.img} alt={item.title} className="h-full w-full object-cover object-top" />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center">
+              <span className="text-2xl font-semibold tracking-[-0.02em] text-ink/20">{item.title}</span>
+            </div>
+          )}
+        </div>
 
-      {/* title overlay on hover */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-black/55 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <span className="text-[15px] font-medium text-white">{item.title}</span>
-        <span className="text-[12px] text-white/80">{item.slug ? "Case study" : "Preview"}</span>
+        {/* top-right action dot */}
+        <span className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-surface/90 text-orange backdrop-blur">
+          {item.slug ? "→" : "•"}
+        </span>
+
+        {/* title overlay on hover */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-black/55 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="text-[15px] font-medium text-white">{item.title}</span>
+          <span className="text-[12px] text-white/80">{item.slug ? "Case study" : "Preview"}</span>
+        </div>
       </div>
     </div>
   );
