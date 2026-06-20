@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Crumbs } from "../../components/Bits";
+import { JsonLd } from "../../components/JsonLd";
 import Reveal from "../../components/Reveal";
 import { BookCall } from "../../components/Sections";
 import LetsTalk from "../../components/LetsTalk";
-import { cases } from "../../content";
+import { cases, site } from "../../content";
 
 export function generateStaticParams() {
   return cases.map((c) => ({ case: c.slug }));
@@ -18,7 +19,13 @@ export async function generateMetadata({
   const { case: slug } = await params;
   const c = cases.find((x) => x.slug === slug);
   if (!c) return { title: "Case study — Yev Ledenov" };
-  return { title: `${c.title} — Yev Ledenov`, description: c.subhead };
+  const path = `/work/${c.slug}`;
+  return {
+    title: `${c.title} — Yev Ledenov`,
+    description: c.subhead,
+    alternates: { canonical: path },
+    openGraph: { title: c.title, description: c.subhead, url: path, type: "article" },
+  };
 }
 
 export default async function CasePage({ params }: { params: Promise<{ case: string }> }) {
@@ -28,6 +35,21 @@ export default async function CasePage({ params }: { params: Promise<{ case: str
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          name: c.title,
+          headline: c.headline,
+          abstract: c.subhead,
+          url: `https://${site.domain}/work/${c.slug}`,
+          ...(c.liveUrl ? { sameAs: c.liveUrl } : {}),
+          dateCreated: c.meta.year,
+          genre: c.meta.domain,
+          creator: { "@id": `https://${site.domain}/#person` },
+          about: c.meta.client,
+        }}
+      />
       <Crumbs items={[{ label: "Work", href: "/work" }, { label: c.meta.client }]} />
 
       {/* Hero: result-first */}
@@ -175,7 +197,7 @@ export default async function CasePage({ params }: { params: Promise<{ case: str
           {/* Mid CTA */}
           <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-lg font-medium text-ink">Got a dense product that should feel simple?</p>
-            <LetsTalk variant="primary" label="Book a call" />
+            <LetsTalk variant="primary" label="Book a call" align="left" />
           </div>
         </div>
       </section>

@@ -17,9 +17,11 @@ const styles: Record<Variant, string> = {
 export default function LetsTalk({
   variant = "primary",
   label = "Let's talk",
+  align = "right",
 }: {
   variant?: Variant;
   label?: string;
+  align?: "left" | "right";
 }) {
   const [open, setOpen] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
@@ -57,7 +59,9 @@ export default function LetsTalk({
         <div
           role="dialog"
           aria-label="Get in touch"
-          className="absolute right-0 z-50 mt-2 w-[300px] rounded-2xl border border-line bg-surface p-2 shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
+          className={`absolute z-50 mt-2 w-[min(300px,calc(100vw-2.5rem))] rounded-2xl border border-line bg-surface p-2 shadow-[0_12px_40px_rgba(0,0,0,0.10)] ${
+            align === "left" ? "left-0" : "right-0"
+          }`}
         >
           <a
             href={site.calendly}

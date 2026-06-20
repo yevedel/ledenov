@@ -7,6 +7,8 @@ import { aboutPage } from "../content";
 export const metadata: Metadata = {
   title: "About — Yev Ledenov",
   description: aboutPage.intro,
+  alternates: { canonical: "/about" },
+  openGraph: { title: "About — Yev Ledenov", description: aboutPage.intro, url: "/about" },
 };
 
 const a = aboutPage;

@@ -29,6 +29,7 @@ export default function Count({
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
+            io.disconnect(); // run once — no re-zero/flicker when scrolled past and back
             const t0 = performance.now();
             const step = (t: number) => {
               const k = Math.min(1, (t - t0) / 1100);
@@ -37,8 +38,6 @@ export default function Count({
               if (k < 1) raf = requestAnimationFrame(step);
             };
             raf = requestAnimationFrame(step);
-          } else {
-            setV(0);
           }
         });
       },

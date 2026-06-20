@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "./JsonLd";
 
 export function PageHero({
   eyebrow,
@@ -33,6 +34,7 @@ export function PageHero({
 export function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
   return (
     <nav className="mx-auto max-w-3xl px-6 pt-10 text-[13px] text-sub" aria-label="Breadcrumb">
+      <BreadcrumbJsonLd items={items} />
       {items.map((it, i) => (
         <span key={i}>
           {i > 0 && <span className="mx-1.5 text-line2">/</span>}

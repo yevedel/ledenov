@@ -114,7 +114,7 @@ export function Services() {
           ))}
         </div>
         <Reveal className="mt-8">
-          <LetsTalk variant="ghost" label="Not sure which is you? Book a call" />
+          <LetsTalk variant="ghost" label="Not sure which is you? Book a call" align="left" />
         </Reveal>
       </div>
     </section>

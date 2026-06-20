@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "../components/Bits";
 import Reveal from "../components/Reveal";
 import LetsTalk from "../components/LetsTalk";
@@ -8,6 +9,8 @@ import { pricing, faq } from "../content";
 export const metadata: Metadata = {
   title: "Pricing — Yev Ledenov",
   description: pricing.sub,
+  alternates: { canonical: "/pricing" },
+  openGraph: { title: "Pricing — Yev Ledenov", description: pricing.sub, url: "/pricing" },
 };
 
 export default function Pricing() {
@@ -42,7 +45,16 @@ export default function Pricing() {
                   ))}
                 </ul>
                 <div className="mt-7">
-                  <LetsTalk variant={p.highlight ? "primary" : "ghost"} label={p.cta} />
+                  {p.price === "$0" ? (
+                    <Link
+                      href="/#audit"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-line2 px-5 py-2.5 text-[15px] font-medium text-ink transition-colors hover:border-ink"
+                    >
+                      {p.cta} →
+                    </Link>
+                  ) : (
+                    <LetsTalk variant={p.highlight ? "primary" : "ghost"} label={p.cta} align="left" />
+                  )}
                 </div>
               </Reveal>
             ))}

@@ -4,9 +4,12 @@ import WorkGrid from "../components/WorkGrid";
 import { BookCall } from "../components/Sections";
 import { allWork } from "../content";
 
+const workDesc = "Selected product, site, and brand work across fintech, AI, healthcare, and B2B SaaS.";
 export const metadata: Metadata = {
   title: "Work — Yev Ledenov",
-  description: "Selected product, site, and brand work across fintech, AI, healthcare, and B2B SaaS.",
+  description: workDesc,
+  alternates: { canonical: "/work" },
+  openGraph: { title: "Work — Yev Ledenov", description: workDesc, url: "/work" },
 };
 
 export default function Work() {

@@ -536,16 +536,16 @@ export const solutions: Solution[] = [
     eyebrow: "Product design for fintech founders",
     headline: "Users decide if they trust you on the first screen.",
     sub: "I design fintech products, onboarding, KYC, dashboards, payments, that feel clear and trustworthy, and ship to production. One senior partner, regulated-grade rigor, founder speed.",
-    offer: "Free 30-minute fintech UX audit. Send your product, I'll show you where users drop off before they fund.",
+    offer: "Free fintech UX teardown. Send your product, I'll show you where users drop off before they fund.",
     why: "In fintech, trust is the conversion. One confusing step in onboarding or KYC, one screen that feels unsafe, and the funded account never happens. The hard part isn't making it pretty, it's making compliance, dense data, and speed feel effortless at once. That's a senior judgment call, not a template.",
-    proofLine: "Work spanning an FCA-regulated fintech (Vuelo) to finance SaaS startups.",
+    proofLine: "Work spanning regulated payments and KYC flows to finance SaaS startups.",
   },
   {
     slug: "ai", label: "AI",
     eyebrow: "Product design for AI founders",
     headline: "Make the AI legible, not magic.",
     sub: "I design AI products where users trust the output, understand the system, and actually act on it. Senior product judgment over generic chat UIs.",
-    offer: "Free 30-minute AI UX audit. Send your product, I'll show you where users lose trust.",
+    offer: "Free AI UX teardown. Send your product, I'll show you where users lose trust.",
     why: "AI products fail on legibility, not capability. If users can't tell why the model said what it said, or what to do next, they bounce. I design the data density, the trust cues, and the novel interaction patterns that make AI feel reliable.",
     proofLine: "Work across AI products including Reliant.ai and Blackwave.ai.",  },
   {
@@ -553,7 +553,7 @@ export const solutions: Solution[] = [
     eyebrow: "Product design for Web3 founders",
     headline: "Onboard normal users, not just degens.",
     sub: "I design Web3 products that get past wallets and jargon, so mainstream users actually convert.",
-    offer: "Free 30-minute Web3 UX audit. Send your product, I'll show you where users drop off.",
+    offer: "Free Web3 UX teardown. Send your product, I'll show you where users drop off.",
     why: "Web3's hardest problem is onboarding. Wallets, gas, and jargon kill conversion for everyone outside the bubble. I design gamified onboarding and wallet flows that move normal users through, step by step.",
     proofLine: "Work on gamified onboarding and wallet-conversion flows.",  },
   {
@@ -561,7 +561,7 @@ export const solutions: Solution[] = [
     eyebrow: "Product design for health startups",
     headline: "Patients and clinicians actually use it.",
     sub: "I design digital health products people use, not avoid, balancing engagement, clarity, regulation, and accessibility.",
-    offer: "Free 30-minute healthcare UX audit. Send your product, I'll show you where engagement breaks.",
+    offer: "Free healthcare UX teardown. Send your product, I'll show you where engagement breaks.",
     why: "Health products live or die on engagement and trust. Clinicians have no patience for friction; patients need clarity and accessibility. I design for both, within regulated constraints, incl. RTL/Arabic where needed.",
     proofLine: "Work across health products including Eterno Health and a Saudi telehealth platform.",  },
   {
@@ -569,7 +569,7 @@ export const solutions: Solution[] = [
     eyebrow: "Product design for edtech founders",
     headline: "Learners finish, not bounce.",
     sub: "I design edtech products that hold attention, show progress, and keep learners motivated.",
-    offer: "Free 30-minute edtech UX audit. Send your product, I'll show you where learners drop off.",
+    offer: "Free edtech UX teardown. Send your product, I'll show you where learners drop off.",
     why: "Edtech's metric is completion. Engagement, progress, and motivation are design problems, not content problems. I design the flows that keep learners moving.",
     proofLine: "Work across learning products.",  },
   {
@@ -577,7 +577,7 @@ export const solutions: Solution[] = [
     eyebrow: "Product design for ecommerce founders",
     headline: "Shoppers check out, not abandon.",
     sub: "I design ecommerce experiences built for conversion, trust, and speed.",
-    offer: "Free 30-minute ecommerce UX audit. Send your store, I'll show you where carts die.",
+    offer: "Free ecommerce UX teardown. Send your store, I'll show you where carts die.",
     why: "Every step between interest and checkout leaks revenue. I design for conversion, trust, and speed, so the path to purchase is the path of least resistance.",
     proofLine: "Work across ecommerce and DTC products.",  },
   {
@@ -585,7 +585,7 @@ export const solutions: Solution[] = [
     eyebrow: "Product design for real-estate founders",
     headline: "Turn listings and data into action.",
     sub: "I design real-estate and proptech products that make dense data searchable, scannable, and actionable.",
-    offer: "Free 30-minute real-estate UX audit. Send your product, I'll show you where users stall.",
+    offer: "Free real-estate UX teardown. Send your product, I'll show you where users stall.",
     why: "Real-estate products drown in data. The win is search, filtering, and density that lead to action, not analysis paralysis. I design for the decision, not just the dataset.",
     proofLine: "Work across proptech including Zoomprop and Lusardi Land.",  },
   {
@@ -593,7 +593,7 @@ export const solutions: Solution[] = [
     eyebrow: "Product design for gaming & gambling founders",
     headline: "Compliant, fast, retention-driven.",
     sub: "I design gaming and gambling products that balance speed, trust, regulation, and retention.",
-    offer: "Free 30-minute UX audit. Send your product, I'll show you where players drop off.",
+    offer: "Free UX teardown. Send your product, I'll show you where players drop off.",
     why: "Gambling products need speed and trust under heavy regulation, with retention as the north star. I design flows that stay compliant without killing momentum.",
     proofLine: "Work across regulated gaming products.",  },
   {
@@ -601,7 +601,7 @@ export const solutions: Solution[] = [
     eyebrow: "Product design for B2B SaaS founders",
     headline: "Users find value before they churn.",
     sub: "I design B2B SaaS products, dashboards, activation, and retention, so users reach value fast and stick.",
-    offer: "Free 30-minute B2B SaaS UX audit. Send your product, I'll show you where activation breaks.",
+    offer: "Free B2B SaaS UX teardown. Send your product, I'll show you where activation breaks.",
     why: "B2B SaaS lives on activation and retention. If users don't reach value fast, they churn before they pay. I design the dashboards and flows that get them there.",
     proofLine: "Work across B2B SaaS including Propulsion, Frequency Ads, and Reliant.ai.",  },
 ];
@@ -610,8 +610,8 @@ export const pricing = {
   heading: "Simple, senior, no surprises",
   sub: "Open pricing. We scope the exact number on a call, then you commit knowing it. No estimators, no guessing games.",
   plans: [
-    { name: "Free UX audit", price: "$0", unit: "30 minutes", desc: "Send your product. I'll show you where users drop off and what I'd fix first.", cta: "Book the audit", highlight: false,
-      includes: ["A 30-minute call", "Where users drop off", "What I'd fix first", "No commitment"] },
+    { name: "Free UX teardown", price: "$0", unit: "async, no call", desc: "Send your product. You'll get a short written teardown of where users drop off and what I'd fix first.", cta: "Get a teardown", highlight: false,
+      includes: ["A written teardown", "Where users drop off", "What I'd fix first", "No call, no commitment"] },
     { name: "Project", price: "from $500", unit: "scoped on a call", desc: "A defined piece of work, scoped together so you know the number before you commit.", cta: "Book a call", highlight: true,
       includes: ["Production-ready Figma", "Front-end-aware handoff", "Copy included where needed", "A direct line to me"] },
     { name: "Ongoing", price: "$1,000", unit: "per week", desc: "Embedded senior partner for product, site, and brand. Senior decisions, founder speed.", cta: "Book a call", highlight: false,
@@ -648,7 +648,7 @@ export const pricing = {
 export const numbers = {
   eyebrow: "Numbers",
   heading: "A decade of senior work, end to end.",
-  note: "Top Rated Plus on Upwork for over a decade, the top tier of talent on the platform.",
+  note: "Top Rated Plus on Upwork for 7+ years, the top tier of talent on the platform.",
   upworkHref: "https://www.upwork.com/freelancers/yevledenov",
   stats: [
     { pre: "", num: 10, suf: "+", label: "Years, senior end to end", desc: "A decade of senior product, site, and brand design, from strategy to build-ready handoff." },
@@ -660,13 +660,13 @@ export const numbers = {
 export const aboutPage = {
   hero: { eyebrow: "My experience, my story", title: "Beyond Pixels", statement: "10 years of shaping digital clarity." },
   intro:
-    "I'm Yev Ledenov. For 10+ years I've designed products, sites, and brands for founders, across fintech, AI, healthcare, and B2B SaaS. Most of that work came through Upwork, where I've been Top Rated Plus for over a decade. Founders hire me when they're too early for a design team and too serious to ship something half-baked.",
-  proof: ["~$2M earned on Upwork", "Clients who come back", "Top Rated Plus, 10+ years", "Based in Zagreb, work worldwide"],
+    "I'm Yev Ledenov. For 10+ years I've designed products, sites, and brands for founders, across fintech, AI, healthcare, and B2B SaaS. Most of that work came through Upwork, where I've been Top Rated Plus for 7+ years. Founders hire me when they're too early for a design team and too serious to ship something half-baked.",
+  proof: ["~$2M earned on Upwork", "Clients who come back", "Top Rated Plus, 7+ years", "Based in Zagreb, work worldwide"],
   recognition: {
     eyebrow: "Recognition",
     heading: "Recognition",
     cards: [
-      { big: "Top Rated Plus", label: "On Upwork, 10+ years", desc: "The top tier of Upwork talent, and my main, steady source of clients." },
+      { big: "Top Rated Plus", label: "On Upwork, 7+ years", desc: "The top tier of Upwork talent, and my main, steady source of clients." },
       { big: "950+", label: "Completed projects", desc: "Proven, repeat experience in UX/UI across many industries, not one-offs." },
       { big: "~$2M", label: "Earned on platform", desc: "Real client work at scale, with clients who come back." },
     ],

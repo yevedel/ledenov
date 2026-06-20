@@ -6,6 +6,8 @@ import { blogPage } from "../content";
 export const metadata: Metadata = {
   title: "Blog — Yev Ledenov",
   description: blogPage.sub,
+  alternates: { canonical: "/blog" },
+  openGraph: { title: "Blog — Yev Ledenov", description: blogPage.sub, url: "/blog" },
 };
 
 export default function Blog() {

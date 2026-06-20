@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   title: "Yev Ledenov — Senior product design for founders",
   description:
     "One senior product-design partner for product, site, and brand, at founder speed. ~$2M delivered across 950+ projects. Book a call.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Yev Ledenov — Senior product design for founders",
     description:
@@ -32,21 +33,43 @@ export const metadata: Metadata = {
   },
 };
 
+const base = `https://${site.domain}`;
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Yevhen Ledenov",
-  alternateName: "Yev Ledenov",
-  jobTitle: "Senior Product Designer",
-  url: `https://${site.domain}`,
-  address: { "@type": "PostalAddress", addressLocality: "Zagreb", addressCountry: "HR" },
-  worksFor: { "@type": "Organization", name: "Ledo.digital OÜ" },
-  sameAs: site.socials.map((s) => s.href),
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${base}/#person`,
+      name: "Yevhen Ledenov",
+      alternateName: "Yev Ledenov",
+      jobTitle: "Senior Product Designer",
+      url: base,
+      email: `mailto:${site.email}`,
+      address: { "@type": "PostalAddress", addressLocality: "Zagreb", addressCountry: "HR" },
+      worksFor: { "@id": `${base}/#org` },
+      sameAs: site.socials.map((s) => s.href),
+    },
+    {
+      "@type": "Organization",
+      "@id": `${base}/#org`,
+      name: "Ledo.digital OÜ",
+      legalName: "Ledo.digital OÜ",
+      url: base,
+      founder: { "@id": `${base}/#person` },
+      foundingDate: "2023-07",
+      email: `mailto:${site.email}`,
+      address: { "@type": "PostalAddress", addressLocality: "Zagreb", addressCountry: "HR" },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={app.variable}>
+      <head>
+        {/* Mark JS as available before paint so scroll-reveal only hides content when it can reveal it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <script
           type="application/ld+json"

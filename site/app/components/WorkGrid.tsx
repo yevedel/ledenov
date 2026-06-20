@@ -45,12 +45,12 @@ function Tile({ item, i, masonry }: { item: WorkItem; i: number; masonry: boolea
         <span className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-surface/90 text-orange backdrop-blur">
           {item.slug ? "→" : "•"}
         </span>
+      </div>
 
-        {/* title overlay on hover */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-black/55 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="text-[15px] font-medium text-white">{item.title}</span>
-          <span className="text-[12px] text-white/80">{item.slug ? "Case study" : "Preview"}</span>
-        </div>
+      {/* caption — always visible (works on touch, not hover-only) */}
+      <div className="flex items-center justify-between gap-2 border-t border-line px-3.5 py-3">
+        <span className="truncate text-[15px] font-medium text-ink">{item.title}</span>
+        <span className="shrink-0 text-[12px] text-sub group-hover:text-orange">{item.slug ? "Case study →" : "Preview"}</span>
       </div>
     </div>
   );

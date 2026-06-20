@@ -11,15 +11,15 @@
 const OWNER_EMAIL = process.env.TEARDOWN_TO || "yevledenov@gmail.com";
 const FROM_EMAIL = process.env.TEARDOWN_FROM || "teardown@ledenov.com"; // must be a Resend-verified sender
 
-type Payload = { url?: string; note?: string; email?: string };
+type Payload = { url?: string; note?: string; email?: string; source?: string };
 
 function isEmail(v: unknown): v is string {
   return typeof v === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 }
 
-async function deliver(p: Required<Pick<Payload, "url" | "email">> & { note: string }) {
+async function deliver(p: Required<Pick<Payload, "url" | "email">> & { note: string; source?: string }) {
   const subject = `Free UX teardown request — ${p.url}`;
-  const text = `Product / site: ${p.url}\n\nWhat feels broken: ${p.note || "(not specified)"}\n\nReply to: ${p.email}`;
+  const text = `Product / site: ${p.url}\n\nWhat feels broken: ${p.note || "(not specified)"}\n\nReply to: ${p.email}${p.source ? `\n\nSource: ${p.source}` : ""}`;
 
   if (process.env.RESEND_API_KEY) {
     const res = await fetch("https://api.resend.com/emails", {
@@ -65,13 +65,14 @@ export async function POST(request: Request) {
   const url = (body.url || "").trim();
   const email = (body.email || "").trim();
   const note = (body.note || "").trim();
+  const source = (body.source || "").trim() || undefined;
 
   if (!url || !isEmail(email)) {
     return Response.json({ ok: false, error: "A product URL and a valid email are required." }, { status: 422 });
   }
 
   try {
-    await deliver({ url, email, note });
+    await deliver({ url, email, note, source });
     return Response.json({ ok: true });
   } catch (err) {
     console.error("[teardown] delivery failed:", err);

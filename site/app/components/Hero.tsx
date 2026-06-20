@@ -38,14 +38,6 @@ export default function Hero() {
 
         {/* inline proof */}
         <div className="mt-10 flex flex-col items-center gap-3">
-          <div className="flex -space-x-2" aria-hidden>
-            {[0, 1, 2, 3].map((i) => (
-              <span
-                key={i}
-                className="h-8 w-8 rounded-full border-2 border-bg bg-gradient-to-br from-tint to-line2"
-              />
-            ))}
-          </div>
           <p className="text-[13px] text-sub">Trusted by founders across the US, EU and Australia</p>
           <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[13px] font-medium text-ink">
             {hero.proof.map((p, i) => (

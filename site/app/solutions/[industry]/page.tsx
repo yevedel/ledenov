@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Crumbs } from "../../components/Bits";
 import Reveal from "../../components/Reveal";
 import LetsTalk from "../../components/LetsTalk";
+import AuditForm from "../../components/AuditForm";
 import { Process, BookCall } from "../../components/Sections";
 import { solutions, faq } from "../../content";
 
@@ -18,7 +19,14 @@ export async function generateMetadata({
   const { industry } = await params;
   const s = solutions.find((x) => x.slug === industry);
   if (!s) return { title: "Solutions — Yev Ledenov" };
-  return { title: `${s.label} product design — Yev Ledenov`, description: s.sub };
+  const path = `/solutions/${s.slug}`;
+  const title = `${s.label} product design — Yev Ledenov`;
+  return {
+    title,
+    description: s.sub,
+    alternates: { canonical: path },
+    openGraph: { title, description: s.sub, url: path },
+  };
 }
 
 export default async function SolutionPage({ params }: { params: Promise<{ industry: string }> }) {
@@ -39,21 +47,21 @@ export default async function SolutionPage({ params }: { params: Promise<{ indus
             <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">{s.headline}</h1>
             <p className="mt-5 text-[18px] leading-relaxed text-sub">{s.sub}</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <LetsTalk variant="primary" label="Book a call" />
-              <LetsTalk variant="ghost" label="Get the free audit" />
+              <LetsTalk variant="primary" label="Book a call" align="left" />
+              <a
+                href="#teardown"
+                className="inline-flex items-center justify-center rounded-full border border-line2 px-5 py-2.5 text-[15px] font-medium text-ink transition-colors hover:border-ink"
+              >
+                Get the free teardown
+              </a>
             </div>
           </div>
 
-          {/* Offer card + mini form (visual; TODO wire to a form backend) */}
-          <div className="rounded-card border border-line bg-surface p-7">
-            <h2 className="text-lg font-semibold text-ink">Free 30-minute {s.label} UX audit</h2>
+          {/* Offer card + working async teardown form (posts to /api/teardown, tagged by industry) */}
+          <div id="teardown" className="scroll-mt-28 rounded-card border border-line bg-surface p-7">
+            <h2 className="text-lg font-semibold text-ink">Free {s.label} UX teardown</h2>
             <p className="mt-2 text-[14px] leading-relaxed text-sub">{s.offer}</p>
-            <div className="mt-5 space-y-3">
-              <input className="w-full rounded-lg border border-line bg-bg px-4 py-3 text-[14px] outline-none focus:border-orange" placeholder="Name" aria-label="Name" />
-              <input className="w-full rounded-lg border border-line bg-bg px-4 py-3 text-[14px] outline-none focus:border-orange" placeholder="Email" type="email" aria-label="Email" />
-              <input className="w-full rounded-lg border border-line bg-bg px-4 py-3 text-[14px] outline-none focus:border-orange" placeholder="Product URL" aria-label="Product URL" />
-              <LetsTalk variant="primary" label="Send request" />
-            </div>
+            <AuditForm compact source={`solutions/${s.slug}`} />
           </div>
         </div>
       </section>

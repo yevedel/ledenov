@@ -56,8 +56,10 @@ body {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.reveal { opacity: 0; }
-.reveal.in { animation: fadeup 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+/* Hidden only when JS is available (class set synchronously in layout). Without JS,
+   content stays fully visible — no blank page for crawlers/no-JS users. */
+html.js .reveal { opacity: 0; }
+html.js .reveal.in { animation: fadeup 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
 /* Marquee ticker */
 @keyframes marquee {

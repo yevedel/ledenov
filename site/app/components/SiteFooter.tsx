@@ -23,7 +23,7 @@ export default function SiteFooter() {
           <div className="max-w-sm">
             <p className="text-xl font-semibold text-ink">{footer.tagline}</p>
             <div className="mt-5">
-              <LetsTalk variant="primary" label="Book a call" />
+              <LetsTalk variant="primary" label="Book a call" align="left" />
             </div>
           </div>
 

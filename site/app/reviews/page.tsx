@@ -7,6 +7,8 @@ import { reviewsPage } from "../content";
 export const metadata: Metadata = {
   title: "Reviews — Yev Ledenov",
   description: reviewsPage.sub,
+  alternates: { canonical: "/reviews" },
+  openGraph: { title: "Reviews — Yev Ledenov", description: reviewsPage.sub, url: "/reviews" },
 };
 
 const grads = [
